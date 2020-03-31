@@ -1,0 +1,28 @@
+<?php
+    $collection = $this->getAuthors();
+?>
+<table class="data table" id="test-data-table">
+    <caption class="table-caption">Authors</caption>
+    <thead>
+        <tr>
+            <th scope="col" class="col title">Name</th>
+            <th scope="col" class="col author">Books</th>
+            <th scope="col" class="col content">Telephone</th>
+            <th scope="col" class="col actions">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($collection as $key => $data): ?>
+            <tr>
+                <td data-th="Name" class="col name"><?php echo $data->getName(); ?></td>
+                <td data-th="Books" class="col books"><?php echo $data->getBooks(); ?></td>
+                <td data-th="Telephone" class="col telephone"><?php echo $data->getTelephone(); ?></td>
+                <td data-th="Actions" class="col actions">
+                    <a href="<?php echo $block->getBaseUrl().'manager/author/view/id/'.$data->getAuthorId(); ?>" class="action view">
+                        <span>View</span>
+                    </a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>

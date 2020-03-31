@@ -1,0 +1,24 @@
+<?php
+    $joinCollection = $this->getJoinData();
+?>
+<table class="data table" id="test-data-table">
+    <caption class="table-caption">Join books-author</caption>
+    <thead>
+        <tr>
+            <th scope="col" class="col title">Author</th>
+            <th scope="col" class="col author">Title</th>
+            <th scope="col" class="col content">Content</th>
+            <th scope="col" class="col created_at">Books</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($joinCollection as $key => $data): ?>
+            <tr>
+                <td data-th="Author" class="col author"><?php echo $data->getAuthor(); ?></td>
+                <td data-th="Title" class="col title"><?php echo $data->getTitle(); ?></td>
+                <td data-th="Content" class="col content"><?php echo $data->getContent(); ?></td>
+                <td data-th="Books" class="col books"><?php echo $data->getBooks(); ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>

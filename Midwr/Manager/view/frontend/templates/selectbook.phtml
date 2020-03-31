@@ -1,0 +1,31 @@
+<?php
+    $collection = $this->getSelectedData();
+?>
+<table class="data table" id="test-data-table">
+    <caption class="table-caption">Selected Books</caption>
+    <thead>
+        <tr>
+            <th scope="col" class="col title">Title</th>
+            <th scope="col" class="col author">Author</th>
+            <th scope="col" class="col content">Content</th>
+            <th scope="col" class="col actions">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($collection as $key => $data): ?>
+            <tr>
+                <td data-th="Title" class="col title"><?php echo $data->getTitle(); ?></td>
+                <td data-th="Author" class="col author"><?php echo $data->getAuthor(); ?></td>
+                <td data-th="Content" class="col content"><?php echo $data->getContent(); ?></td>
+                <td data-th="Actions" class="col actions">
+                    <a href="<?php echo $block->getBaseUrl().'manager/book/delete/id/'.$data->getBookId(); ?>" class="action delete">
+                        <span>Delete</span>
+                    </a>
+                    <a href="<?php echo $block->getBaseUrl().'manager/book/updateform/id/'.$data->getBookId(); ?>" class="action update">
+                        <span>Update</span>
+                    </a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>

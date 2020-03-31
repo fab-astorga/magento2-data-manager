@@ -1,0 +1,33 @@
+<?php
+    $id = $this->getBookId();
+?>
+<form class="" action="<?php echo $block->getBaseUrl().'manager/book/update/id/'.$id; ?>" id="book-form" method="post">
+    <fieldset class="fieldset">
+        <legend class="legend"><span>Update Content Book</span></legend><br>
+        <div class="field title">
+            <label class="label" for="title"><span>Title</span></label>
+            <div class="control">
+                <input name="title" id="title" title="Name" value="" class="input-text" type="text">
+            </div>
+        </div>
+        <div class="field author">
+            <label class="label" for="author"><span>Author</span></label>
+            <div class="control">
+                <input name="author" id="author" title="Author" value="" class="input-text" type="text">
+            </div>
+        </div>
+        <div class="field content">
+            <label class="label" for="content"><span>Content</span></label>
+            <div class="control">
+                <textarea name="content" id="content" title="Content" class="input-text" cols="5" rows="3"></textarea>
+            </div>
+        </div>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" title="Submit" class="action submit primary">
+                <span>Update</span>
+            </button>
+        </div>
+    </div>
+</form>

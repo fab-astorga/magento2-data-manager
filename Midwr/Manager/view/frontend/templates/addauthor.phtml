@@ -1,0 +1,31 @@
+<?php ?>
+<form class="" action="<?php echo $block->getBaseUrl().'manager/author/save'; ?>" id="author-form" method="post">
+    <fieldset class="fieldset">
+        <legend class="legend"><span>Author Form</span></legend><br>
+        <div class="field name">
+            <label class="label" for="name"><span>Name</span></label>
+            <div class="control">
+                <input name="name" id="name" title="Name" value="" class="input-text" type="text">
+            </div>
+        </div>
+        <div class="field author">
+            <label class="label" for="author"><span>Books</span></label>
+            <div class="control">
+                <input name="books" id="books" title="Books" value="" class="input-text" type="text">
+            </div>
+        </div>
+        <div class="field telephone">
+            <label class="label" for="telephone"><span>Telephone</span></label>
+            <div class="control">
+                <textarea name="telephone" id="telephone" title="Telephone" class="input-text" cols="5" rows="3"></textarea>
+            </div>
+        </div>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" title="Submit" class="action submit primary">
+                <span>Add</span>
+            </button>
+        </div>
+    </div>
+</form>
