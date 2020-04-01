@@ -14,12 +14,10 @@ class Select extends \Magento\Framework\View\Element\Template
 
     public function __construct(
         Context $context,
-        BookFactory $book,
-        LoggerInterface $logger
+        BookFactory $book
     ) 
     {
         $this->_book = $book;
-        $this->_logger = $logger;
         parent::__construct($context);
     }
  
@@ -40,5 +38,5 @@ class Select extends \Magento\Framework\View\Element\Template
                         ->addFieldToFilter($column, array('eq'=>$data));
 
         return $collection;
-    }   
+    }
 }

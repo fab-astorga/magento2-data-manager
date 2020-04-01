@@ -1,17 +1,18 @@
-<?php ?>
-<form class="" action="<?php echo $block->getBaseUrl().'manager/author/save'; ?>" id="author-form" method="post">
+<?php
+?>
+<form class="" action="<?php echo $block->getBaseUrl().'manager/author/save'; ?>" id="author-test-form" method="post">
     <fieldset class="fieldset">
-        <legend class="legend"><span>Author Form</span></legend><br>
+        <legend class="legend"><span>New Author</span></legend><br>
         <div class="field name">
-            <label class="label" for="name"><span>Name</span></label>
+            <label class="label" for="title"><span>Name</span></label>
             <div class="control">
                 <input name="name" id="name" title="Name" value="" class="input-text" type="text">
             </div>
         </div>
-        <div class="field author">
-            <label class="label" for="author"><span>Books</span></label>
+        <div class="field books">
+            <label class="label" for="books"><span>Books</span></label>
             <div class="control">
-                <input name="books" id="books" title="Books" value="" class="input-text" type="text">
+                <input name="books" id="books" title="Books" value="" class="number" type="text">
             </div>
         </div>
         <div class="field telephone">
@@ -23,7 +24,7 @@
     </fieldset>
     <div class="actions-toolbar">
         <div class="primary">
-            <button type="submit" title="Submit" class="action submit primary">
+            <button type="add" title="add" class="action add primary">
                 <span>Add</span>
             </button>
         </div>

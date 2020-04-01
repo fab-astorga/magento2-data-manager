@@ -18,7 +18,8 @@ class Update extends \Magento\Framework\App\Action\Action
         BookFactory $book,
         TypeListInterface $cacheTypeList,
         Pool $cacheFrontendPool
-    ) {
+    ) 
+    {
         $this->_book = $book;
         $this->_cacheTypeList = $cacheTypeList;
         $this->_cacheFrontendPool = $cacheFrontendPool;

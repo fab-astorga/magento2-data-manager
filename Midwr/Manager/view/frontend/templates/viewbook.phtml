@@ -1,19 +1,19 @@
 <?php
-	$singleData = $this->getSingleBook();
+	$singleBook = $this->getSingleBook();
 ?>
 <div>
 	<h3>Title</h3>
-	<p><?php echo $singleData->getTitle(); ?></p>	
+	<p><?php echo $singleBook->getTitle(); ?></p>	
 </div>
 <div>
 	<h3>Author</h3>
-	<p><?php echo $singleData->getAuthor(); ?></p>
+	<p><?php echo $singleBook->getAuthor(); ?></p>
 </div>
 <div>
 	<h3>Content</h3>
-	<p><?php echo $singleData->getContent(); ?></p>
+	<p><?php echo $singleBook->getContent(); ?></p>
 </div>
 <div>
 	<h3>Date</h3>
-	<p><?php echo $singleData->getCreatedAt(); ?></p>
+	<p><?php echo $singleBook->getCreatedAt(); ?></p>
 </div>

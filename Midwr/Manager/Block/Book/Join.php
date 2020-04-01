@@ -24,7 +24,7 @@ class Join extends \Magento\Framework\View\Element\Template
  
     protected function _prepareLayout()
     {
-        $this->pageConfig->getTitle()->set(__('JOIN book-author'));
+        $this->pageConfig->getTitle()->set(__('JOIN books-author'));
         return parent::_prepareLayout();
     }
      
@@ -36,7 +36,6 @@ class Join extends \Magento\Framework\View\Element\Template
         $collection->getSelect()->joinLeft(array('second_table' => $author_table),
                                                  'main_table.author = second_table.name')
                                                  ->group('main_table.author');
-
         return $collection;
     }
 }
