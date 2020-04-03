@@ -30,6 +30,9 @@ class Save extends \Magento\Framework\App\Action\Action
     }
 	public function execute()
     {
+        //$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        //$buildOptions = $objectManager->create('Midwr\Manager\Model\Indexer\CustomIndexer');
+
         $data = $this->getRequest()->getParams();
         $book = $this->_book->create();
         $book->setData($data);
@@ -43,6 +46,7 @@ class Save extends \Magento\Framework\App\Action\Action
             foreach ($this->_cacheFrontendPool as $cacheFrontend) {
                 $cacheFrontend->getBackend()->clean();
             }
+            //$buildOptions->executeRow($data['book_id']);
         } else {
             $this->messageManager->addErrorMessage(__('Data was not saved.'));
         }

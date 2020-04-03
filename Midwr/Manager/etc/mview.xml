@@ -1,0 +1,8 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Mview/etc/mview.xsd">
+   <view id="custom_indexer" class="Midwr\Manager\Model\Indexer\CustomIndexer" group="indexer">
+       <subscriptions>
+           <table name="book_t" entity_column="book_id" />
+           <table name="author_t" entity_column="author_id" />
+       </subscriptions>
+   </view>
+</config>

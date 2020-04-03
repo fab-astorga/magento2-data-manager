@@ -8,6 +8,6 @@ class Add extends \Magento\Framework\App\Action\Action
     {
         $this->_view->loadLayout();
         $this->_view->getLayout()->initMessages();
-        $this->_view->renderLayout();
+        $this->_view->renderLayout()  ;
     }
 }
