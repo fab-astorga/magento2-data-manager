@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="book_t" resource="default" engine="innodb" comment="Book Table">
+        <column xsi:type="smallint" name="book_id" padding="6" unsigned="false" nullable="false" identity="true" comment="BOOK ID"/>
+        <column xsi:type="varchar" name="title" nullable="false" length="255" comment="TITLE"/>
+        <column xsi:type="varchar" name="content" nullable="false" length="255" comment="CONTENT"/>
+        <column xsi:type="smallint" name="author_id" padding="6" unsigned="false" nullable="false" identity="true" comment="AUTHOR ID"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="CREATED AT"/>
+        <constraint xsi:type="primary" name="PRIMARY">
+            <column name="book_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="BOOK_AUTHOR_ID" table="book_t" column="author_id" 
+                    referenceTable="author_t" referenceColumn="author_id" onDelete="CASCADE"/>
+    </table>
+
+    <table name="author_t" resource="default" engine="innodb" comment="Author Table">
+        <column xsi:type="smallint" name="author_id" padding="6" unsigned="false" nullable="false" identity="true" comment="AUTHOR ID"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Name"/>
+        <column xsi:type="int" name="books" padding="11" unsigned="false" nullable="false" identity="false" comment="BOOKS"/>
+        <column xsi:type="varchar" name="telephone" nullable="false" length="255" comment="TELEPHONE"/>
+        <constraint xsi:type="primary" name="PRIMARY">
+            <column name="author_id"/>
+        </constraint>
+    </table>
+</schema>

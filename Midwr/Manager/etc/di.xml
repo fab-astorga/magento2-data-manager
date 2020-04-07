@@ -1,0 +1,7 @@
+<!-- Create a type in order to make a proxy for an specific class, proxy is generated automatically -->
+<type name="Magento\Catalog\Model\Product">
+    <arguments>
+        <argument name="catalogProductStatus" xsi:type="object">Magento\Catalog\Model\Product\Attribute\Source\Status\Proxy</argument>
+        <argument name="productLink" xsi:type="object">Magento\Catalog\Model\Product\Link\Proxy</argument>
+    </arguments>
+</type>
