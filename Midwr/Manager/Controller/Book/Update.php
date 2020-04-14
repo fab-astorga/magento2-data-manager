@@ -25,8 +25,13 @@ class Update extends \Magento\Framework\App\Action\Action
         $this->_cacheFrontendPool = $cacheFrontendPool;
         parent::__construct($context);
     }
+
 	public function execute()
     {
+        /****** Custom indexer test ******/
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        $buildOpt = $objectManager->create('Midwr\Manager\Model\Indexer\CustomIndexer');
+
         $id = $this->getRequest()->getParam('id');
         $params = $this->getRequest()->getParams();
 
@@ -39,20 +44,21 @@ class Update extends \Magento\Framework\App\Action\Action
             $item->setAuthor( $params['author'] );
             $item->setContent( $params['content'] );
         }
+        $buildOpt->executeRow($id);
 
-        if( $collection->save() ){
-            $this->messageManager->addSuccessMessage(__('You updated the data.'));
+        $checkMessage = ( $collection->save() ) ? 'You updated the data.' :  'Data was not updated.';
+        $this->messageManager->addNoticeMessage(__($checkMessage));
 
             // Clean cache in order to catch changes
-            $types = array('block_html','collections', 'full_page');
-            foreach ($types as $type) {
-                $this->_cacheTypeList->cleanType($type);
-            }
-            foreach ($this->_cacheFrontendPool as $cacheFrontend) {
-                $cacheFrontend->getBackend()->clean();
-            }
-        } else {
-            $this->messageManager->addErrorMessage(__('Data was not updated.'));
+        $types = array('block_html','collections', 'full_page');
+        foreach ($types as $type) 
+        {
+            $this->_cacheTypeList->cleanType($type);
+        }
+        
+        foreach ($this->_cacheFrontendPool as $cacheFrontend)
+        {
+            $cacheFrontend->getBackend()->clean();    
         }
 
         $resultRedirect = $this->resultRedirectFactory->create();

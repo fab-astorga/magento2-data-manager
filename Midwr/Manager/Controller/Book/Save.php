@@ -30,25 +30,26 @@ class Save extends \Magento\Framework\App\Action\Action
     }
 	public function execute()
     {
-        //$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-        //$buildOptions = $objectManager->create('Midwr\Manager\Model\Indexer\CustomIndexer');
+        /****** Custom indexer test ******/
+        $bookId = $this->getRequest()->getParam('book_id');
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        $buildOpt = $objectManager->create('Midwr\Manager\Model\Indexer\CustomIndexer');
 
         $data = $this->getRequest()->getParams();
         $book = $this->_book->create();
         $book->setData($data);
-        if($book->save()){
-            $this->messageManager->addSuccessMessage(__('You saved the data.'));
-            // Clean cache in order to catch changes
-            $types = array('block_html','collections', 'full_page');
-            foreach ($types as $type) {
-                $this->_cacheTypeList->cleanType($type);
-            }
-            foreach ($this->_cacheFrontendPool as $cacheFrontend) {
-                $cacheFrontend->getBackend()->clean();
-            }
-            //$buildOptions->executeRow($data['book_id']);
-        } else {
-            $this->messageManager->addErrorMessage(__('Data was not saved.'));
+        $buildOpt->executeRow($bookId);
+
+        $checkMessage = ( $book->save() ) ? 'You saved the data.' :  'Data was not saved.';
+        $this->messageManager->addNoticeMessage(__($checkMessage));
+                   
+            /******  Clean cache in order to catch changes ******/
+        $types = array('block_html','collections', 'full_page');
+        foreach ($types as $type) {
+            $this->_cacheTypeList->cleanType($type);
+        }
+        foreach ($this->_cacheFrontendPool as $cacheFrontend) {
+            $cacheFrontend->getBackend()->clean();
         }
         
         $resultRedirect = $this->resultRedirectFactory->create();

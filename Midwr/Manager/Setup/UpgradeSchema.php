@@ -2,9 +2,9 @@
  
 namespace Midwr\Manager\Setup;
  
-use Magento\Framework\Setup\UpgradeSchemaInterface;
-use Magento\Framework\Setup\ModuleContextInterface;
-use Magento\Framework\Setup\SchemaSetupInterface;
+use \Magento\Framework\Setup\UpgradeSchemaInterface;
+use \Magento\Framework\Setup\ModuleContextInterface;
+use \Magento\Framework\Setup\SchemaSetupInterface;
  
 class UpgradeSchema implements UpgradeSchemaInterface
 {
@@ -17,7 +17,6 @@ class UpgradeSchema implements UpgradeSchemaInterface
         ModuleContextInterface $context
     ) {
         $installer = $setup;
- 
         $installer->startSetup();
  
         if (version_compare($context->getVersion(), '1.0.1', '<')) {

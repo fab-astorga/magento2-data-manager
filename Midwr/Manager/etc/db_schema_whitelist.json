@@ -1,0 +1,26 @@
+{
+    "author_t": {
+        "column": {
+            "author_id": true,
+            "name": true,
+            "books": true,
+            "telephone": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "book_t": {
+        "column": {
+            "book_id": true,
+            "title": true,
+            "content": true,
+            "author_id": true,
+            "created_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "BOOK_T_AUTHOR_ID_AUTHOR_T_AUTHOR_ID": true
+        }
+    }
+}

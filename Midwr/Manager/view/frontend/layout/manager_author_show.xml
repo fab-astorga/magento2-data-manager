@@ -4,6 +4,9 @@
     <body>
         <referenceContainer name="content">
             <block class="Midwr\Manager\Block\Author\Show" name="author.show" template="Midwr_Manager::showauthor.phtml">
+                <arguments>
+                    <argument name="cache_lifetime" xsi:type="number">3600</argument>
+                </arguments>
             </block>
         </referenceContainer>
     </body>
