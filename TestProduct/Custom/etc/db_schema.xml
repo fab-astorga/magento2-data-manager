@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+  <table name="online_prices" resource="default" engine="innodb" comment="prices">
+    <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Entity ID"/>
+    <column xsi:type="float" name="qty_48" unsigned="true" nullable="true" comment="First price"/>
+    <column xsi:type="float" name="qty_144" unsigned="true" nullable="true" comment="Second price"/>
+    <column xsi:type="float" name="qty_288" unsigned="true" nullable="true" comment="Third price"/>
+    <column xsi:type="float" name="qty_576" unsigned="true" nullable="true" comment="Fourth price"/>
+    <column xsi:type="float" name="qty_1008" unsigned="true" nullable="true" comment="Fifth price"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+        <column name="entity_id"/>
+    </constraint>
+    <index referenceId="ONLINE_PRICES_ENTITY_ID" indexType="btree">
+      <column name="entity_id"/>
+    </index>
+    <constraint xsi:type="foreign" referenceId="ONLINE_PRICES_ENTITY_ID_CATALOG_PRODUCT_ENTITY_ID" table="online_prices" column="entity_id" referenceTable="catalog_product_entity"
+                referenceColumn="entity_id" onDelete="CASCADE"/>
+  </table>
+</schema>

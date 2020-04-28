@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="TestOrder\Custom\Api\Data\AttributeInterface" type="TestOrder\Custom\Model\Attribute"/>
+    <preference for="TestOrder\Custom\Api\CustomOrderInterface" type="TestOrder\Custom\Model\CustomOrderManagement"/>
+    <type name="Magento\Sales\Api\OrderRepositoryInterface">
+        <plugin name="save_custom_attribute" type="TestOrder\Custom\Plugin\OrderSave"/>
+        <plugin name="get_custom_attribute" type="TestOrder\Custom\Plugin\OrderGet"/>
+    </type>
+</config>
