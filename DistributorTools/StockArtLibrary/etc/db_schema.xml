@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="stock_art_cover_entity" resource="default" engine="innodb" comment="stock_art_cover_entity">
+        <column xsi:type="int" name="cover_id" padding="10" identity="true" unsigned="true" nullable="false" comment="cover_id"/>
+        <column xsi:type="varchar" name="name" nullable="true" length="255" comment="title"/>
+        <column xsi:type="varchar" name="url_image" nullable="true" length="255" comment="url_image"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="cover_id"/>
+        </constraint>
+        <index referenceId="STOCK_ART_COVER_ENTITY_COVER_ID" indexType="btree">
+            <column name="cover_id"/>
+        </index>
+    </table>
+    <table name="stock_art_images" resource="default" engine="innodb" comment="stock_art_images">
+        <column xsi:type="int" name="entity_id" padding="10" identity="true" unsigned="true" nullable="false" comment="Entity ID"/>
+        <column xsi:type="int" name="image_id" padding="10" identity="false" unsigned="true" nullable="false" comment="Image ID"/>
+        <column xsi:type="varchar" name="title" nullable="true" length="255" comment="title"/>
+        <column xsi:type="varchar" name="url_image" nullable="true" length="255" comment="url_image"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <index referenceId="STOCK_ART_IMAGES_IMAGE_ID" indexType="btree">
+            <column name="image_id"/>
+        </index>
+        <constraint xsi:type="foreign" referenceId="STOCK_ART_IMAGES_IMAGE_ID_STOCK_ART_COVER_ENTITY_COVER_ID" table="stock_art_images" column="image_id"
+                    referenceTable="stock_art_cover_entity" referenceColumn="cover_id" onDelete="CASCADE"/>
+    </table>
+</schema>

@@ -1,0 +1,30 @@
+{
+    "stock_art_cover_entity": {
+        "column": {
+            "cover_id": true,
+            "name": true,
+            "url_image": true
+        },
+        "index": {
+            "STOCK_ART_COVER_ENTITY_COVER_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "stock_art_images": {
+        "column": {
+            "entity_id": true,
+            "image_id": true,
+            "title": true,
+            "url_image": true
+        },
+        "index": {
+            "STOCK_ART_IMAGES_IMAGE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "STOCK_ART_IMAGES_IMAGE_ID_STOCK_ART_COVER_ENTITY_COVER_ID": true
+        }
+    }
+}

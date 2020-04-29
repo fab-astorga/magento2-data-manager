@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route method="POST" url="/V1/stock_art_cover/save/:name/:urlImage">
+        <service class="DistributorTools\StockArtLibrary\Api\StockArtCoverRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/stock_art_cover/:stockArtCoverId">
+        <service class="DistributorTools\StockArtLibrary\Api\StockArtCoverRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/stock_art_cover/:value/:attributeCode/">
+        <service class="DistributorTools\StockArtLibrary\Api\StockArtCoverRepositoryInterface" method="get"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="DELETE" url="/V1/stock_art_cover">
+        <service class="DistributorTools\StockArtLibrary\Api\StockArtCoverRepositoryInterface" method="delete"/>
+        <resources>
+            <resource ref="DistributorTools_StockArtLibrary::manage"/>
+        </resources>
+    </route>
+    <route method="DELETE" url="/V1/stock_art_cover/:stockArtCoverId">
+        <service class="DistributorTools\StockArtLibrary\Api\StockArtCoverRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="DistributorTools_StockArtLibrary::manage"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/stock_art_cover">
+        <service class="DistributorTools\StockArtLibrary\Api\StockArtCoverRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+</routes>
