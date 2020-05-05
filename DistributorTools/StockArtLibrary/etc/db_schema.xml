@@ -12,8 +12,8 @@
         </index>
     </table>
     <table name="stock_art_images" resource="default" engine="innodb" comment="stock_art_images">
-        <column xsi:type="int" name="entity_id" padding="10" identity="true" unsigned="true" nullable="false" comment="Entity ID"/>
-        <column xsi:type="int" name="image_id" padding="10" identity="false" unsigned="true" nullable="false" comment="Image ID"/>
+        <column xsi:type="int" name="entity_id" padding="10" identity="true" unsigned="true" nullable="false" comment="entity_id"/>
+        <column xsi:type="int" name="image_id" padding="10" identity="false" unsigned="true" nullable="false" comment="image_id"/>
         <column xsi:type="varchar" name="title" nullable="true" length="255" comment="title"/>
         <column xsi:type="varchar" name="url_image" nullable="true" length="255" comment="url_image"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">

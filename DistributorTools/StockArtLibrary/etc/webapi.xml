@@ -36,4 +36,10 @@
             <resource ref="anonymous"/>
         </resources>
     </route>
+    <route method="GET" url="/V1/stock_art_images">
+        <service class="DistributorTools\StockArtLibrary\Api\StockArtImagesAttributeRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
 </routes>

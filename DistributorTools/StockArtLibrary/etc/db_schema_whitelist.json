@@ -14,7 +14,6 @@
     },
     "stock_art_images": {
         "column": {
-            "entity_id": true,
             "image_id": true,
             "title": true,
             "url_image": true

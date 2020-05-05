@@ -5,8 +5,8 @@ namespace DistributorTools\StockArtLibrary\Model;
 use DistributorTools\StockArtLibrary\Api\Data\StockArtCoverExtensionInterface;
 use DistributorTools\StockArtLibrary\Api\Data\StockArtCoverInterface;
 use DistributorTools\StockArtLibrary\Model\ResourceModel\StockArtCover as ResourceModelStockArtCover;
-use Magento\Framework\DataObject\IdentityInterface;
-use Magento\Framework\Model\AbstractExtensibleModel;
+use \Magento\Framework\DataObject\IdentityInterface;
+use \Magento\Framework\Model\AbstractExtensibleModel;
 
 /**
  * Class StockArtCover
