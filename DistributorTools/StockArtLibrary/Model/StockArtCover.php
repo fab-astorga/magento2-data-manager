@@ -58,17 +58,33 @@ class StockArtCover extends AbstractExtensibleModel implements StockArtCoverInte
     /**
      * @inheritdoc
      */
-    public function getUrlImage()
+    public function getThumbnail()
     {
-        return $this->_getData(self::URL_IMAGE);
+        return $this->_getData(self::THUMBNAIL);
     }
 
     /**
      * @inheritdoc
      */
-    public function setUrlImage($urlImage)
+    public function setThumbnail($thumbnail)
     {
-        return $this->setData(self::URL_IMAGE, $urlImage);
+        return $this->setData(self::THUMBNAIL, $thumbnail);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getImg()
+    {
+        return $this->_getData(self::IMG);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setImg($img)
+    {
+        return $this->setData(self::IMG, $img);
     }
 
     /**
@@ -89,6 +105,6 @@ class StockArtCover extends AbstractExtensibleModel implements StockArtCoverInte
 
     public function getIdentities()
     {
-        return [self::CACHE_TAG . '_' . $this->getCoverId()];
+        return [self::CACHE_TAG . '_' . $this->getId()];
     }
 }

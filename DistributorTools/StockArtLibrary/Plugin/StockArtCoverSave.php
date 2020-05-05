@@ -31,16 +31,16 @@ class StockArtCoverSave
 
     private function saveStockArtImagesAttribute(\DistributorTools\StockArtLibrary\Api\Data\StockArtCoverInterface $stockArtCover )
     {
-        $this->_logger->addDebug("--------AFTER SAVE STOCK ART COVER ------------");
-        $imageId = $stockArtCover->getCoverId();
-        $title = 'This is a stock art image title';
-        $urlImage = 'www.blablablabla.com/image';
+      /*  $this->_logger->info("--------AFTER SAVE STOCK ART COVER ------------");
+        $coverId = $stockArtCover->getId();
+        $name = 'This is a stock art image title';
+        $img = 'www.blablablabla.com/image';
 
         $stockArtImagesAttribute = $this->_stockArtImagesAttributeFactory->create();        
-        $stockArtImagesAttribute->setImageId( $imageId );
-        $stockArtImagesAttribute->setTitle( $title );
-        $stockArtImagesAttribute->setUrlImage( $urlImage );
-        $stockArtImagesAttribute->save();
+        $stockArtImagesAttribute->setCoverId( $coverId );
+        $stockArtImagesAttribute->setName( $name );
+        $stockArtImagesAttribute->setImg( $img );
+        $stockArtImagesAttribute->save();  */
        
         return $stockArtCover;
     }

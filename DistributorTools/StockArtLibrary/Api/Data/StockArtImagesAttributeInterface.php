@@ -8,47 +8,47 @@ namespace DistributorTools\StockArtLibrary\Api\Data;
 Interface StockArtImagesAttributeInterface
 {
     /** 
-     * Set image id
+     * Set cover id
      * 
-     * @param int $imageId
+     * @param int $coverId
      * @return $this
      */
-    public function setImageId($imageId);
+    public function setCoverId($coverId);
 
     /**
-     * get image id
+     * get cover id
      * 
      * @return int
      */
-    public function getImageId();
+    public function getCoverId();
 
     /**
-     * Set title
+     * Set name
      * 
-     * @param string $title
+     * @param string $name
      * @return $this
      */
-    public function setTitle($title);
+    public function setName($name);
 
     /**
-     * get title
+     * get name
      * 
      * @return string
      */
-    public function getTitle();
+    public function getName();
 
     /**
-     * Set url image
+     * Set image
      * 
-     * @param string $urlImage
+     * @param string $img
      * @return $this
      */
-    public function setUrlImage($urlImage);
+    public function setImg($img);
 
     /**
-     * get url image
+     * get image
      * 
      * @return string
      */
-    public function getUrlImage();
+    public function getImg();
 }

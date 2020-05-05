@@ -82,11 +82,12 @@ class StockArtCoverRepository implements StockArtCoverRepositoryInterface
     /**
      * @inheritdoc
      */
-    public function save($name, $urlImage)
+    public function save($name, $thumbnail, $img)
     {
         $stockArtCover = $this->_stockArtCoverFactory->create();
         $stockArtCover->setName($name);
-        $stockArtCover->setUrlImage($urlImage);
+        $stockArtCover->setThumbnail($thumbnail);
+        $stockArtCover->setImg($img);
         $this->_resourceModelStockArtCover->save($stockArtCover);
         return $stockArtCover;
     }

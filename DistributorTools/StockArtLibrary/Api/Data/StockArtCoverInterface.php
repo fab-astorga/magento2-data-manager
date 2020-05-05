@@ -10,9 +10,10 @@ use Magento\Framework\Api\CustomAttributesDataInterface;
 interface StockArtCoverInterface extends CustomAttributesDataInterface
 {
     const TABLE       = 'stock_art_cover_entity';
-    const ID          = 'cover_id';
+    const ID          = 'id';
     const NAME        = 'name';
-    const URL_IMAGE   = 'url_image';
+    const THUMBNAIL   = 'thumbnail';
+    const IMG         = 'img';
 
     /**
      * Retrieve the name
@@ -30,19 +31,34 @@ interface StockArtCoverInterface extends CustomAttributesDataInterface
     public function setName($name);
 
     /**
+     * Retrieve the thumbnail
+     *
+     * @return string
+     */
+    public function getThumbnail();
+
+    /**
+     * Set thumbnail
+     *
+     * @param string $thumbnail
+     * @return $this
+     */
+    public function setThumbnail($thumbnail);
+
+    /**
      * Retrieve the url image
      *
      * @return string
      */
-    public function getUrlImage();
+    public function getImg();
 
     /**
      * Set url image
      *
-     * @param string $urlImage
+     * @param string $img
      * @return $this
      */
-    public function setUrlImage($urlImage);
+    public function setImg($img);
 
     /**
      * Retrieve existing extension attributes object or create a new one.

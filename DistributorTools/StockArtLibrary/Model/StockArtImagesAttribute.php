@@ -14,48 +14,48 @@ class StockArtImagesAttribute extends \Magento\Framework\Model\AbstractModel imp
     /**
      * @inheritdoc
      */
-    public function setImageId($imageId)
+    public function setCoverId($coverId)
     {
-        return $this->setData('image_id', $imageId);
+        return $this->setData('cover_id', $coverId);
     }
 
     /**
      * @inheritdoc
      */
-    public function getImageId()
+    public function getCoverId()
     {
-        return $this->getData('image_id');
+        return $this->getData('cover_id');
     }
 
     /**
      * @inheritdoc
      */
-    public function setTitle($title)
+    public function setName($name)
     {
-        return $this->setData('title', $title);
+        return $this->setData('name', $name);
     }
 
     /**
      * @inheritdoc
      */
-    public function getTitle()
+    public function getName()
     {
-        return $this->getData('title');
+        return $this->getData('name');
     }
 
     /**
      * @inheritdoc
      */
-    public function setUrlImage($urlImage)
+    public function setImg($img)
     {
-        return $this->setData('url_image', $urlImage);
+        return $this->setData('img', $img);
     }
 
     /**
      * @inheritdoc
      */
-    public function getUrlImage()
+    public function getImg()
     {
-        return $this->getData('url_image');
+        return $this->getData('img');
     }
 }

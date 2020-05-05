@@ -12,10 +12,11 @@ interface StockArtCoverRepositoryInterface
      * Save stock art cover
      *
      * @param string $name
-     * @param string $urlImage
+     * @param string $thumbnail
+     * @param string $img
      * @return \DistributorTools\StockArtLibrary\Api\Data\StockArtCoverInterface
      */
-    public function save($name, $urlImage);
+    public function save($name, $thumbnail, $img);
 
     /**
      * Retrieve stock art cover by id

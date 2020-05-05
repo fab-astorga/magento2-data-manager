@@ -7,6 +7,6 @@ class StockArtImagesAttribute extends \Magento\Framework\Model\ResourceModel\Db\
 
     protected function _construct()
     {
-        $this->_init('stock_art_images', 'entity_id');
+        $this->_init('stock_art_images', 'id');
     }
 }

@@ -6,7 +6,7 @@ use Magento\Framework\Exception\NoSuchEntityException;
 
 class StockArtCoverGet
 {
-    const FIELD = 'image_id';
+    const FIELD = 'cover_id';
 
     protected $_stockArtCoverExtensionFactory;
     protected $_stockArtImagesAttributeFactory;
@@ -41,8 +41,7 @@ class StockArtCoverGet
 
     private function getStockArtImagesAttribute(\DistributorTools\StockArtLibrary\Api\Data\StockArtCoverInterface $stockArtCover )
     {
-        $stockArtCoverId = $stockArtCover->getCoverId();
-        $this->_logger->info("AFTER GET!! ID : " . $stockArtCoverId);
+        $stockArtCoverId = $stockArtCover->getId();
 
         try {
             $filter[] = $this->_filterBuilder
