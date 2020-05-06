@@ -6,8 +6,8 @@
     <preference for="DistributorTools\StockArtLibrary\Api\Data\StockArtImagesAttributeInterface" type="DistributorTools\StockArtLibrary\Model\StockArtImagesAttribute"/>
     <preference for="DistributorTools\StockArtLibrary\Api\Data\StockArtImagesAttributeSearchResultsInterface" type="DistributorTools\StockArtLibrary\Model\StockArtImagesAttributeSearchResults"/>
     <preference for="DistributorTools\StockArtLibrary\Api\StockArtImagesAttributeRepositoryInterface" type="DistributorTools\StockArtLibrary\Model\StockArtImagesAttributeRepository"/>
+    <preference for="DistributorTools\StockArtLibrary\Api\StockArtLibraryManagementInterface" type="DistributorTools\StockArtLibrary\Model\StockArtLibraryManagement"/>
     <type name="DistributorTools\StockArtLibrary\Api\StockArtCoverRepositoryInterface">
-        <plugin name="save_stock_art_images_attribute" type="DistributorTools\StockArtLibrary\Plugin\StockArtCoverSave"/>
-        <plugin name="get_stock_art_images_attribute" type="DistributorTools\StockArtLibrary\Plugin\StockArtCoverGet"/>
+       <plugin name="get_stock_art_images_attribute" type="DistributorTools\StockArtLibrary\Plugin\StockArtCoverGet"/>
     </type>
 </config>

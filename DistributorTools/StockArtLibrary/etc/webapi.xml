@@ -1,33 +1,45 @@
 <?xml version="1.0"?>
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
-    <route method="POST" url="/V1/stock_art_cover/save/:name/:thumbnail/:img">
-        <service class="DistributorTools\StockArtLibrary\Api\StockArtCoverRepositoryInterface" method="save"/>
+    <route method="POST" url="/V1/distributor_tools/stock_art_library">
+        <service class="DistributorTools\StockArtLibrary\Api\StockArtLibraryManagementInterface" method="saveStockArtLibrary"/>
         <resources>
             <resource ref="self"/>
         </resources>
     </route>
-    <route method="POST" url="/V1/stock_art_images/save/:coverId/:name/:img">
-        <service class="DistributorTools\StockArtLibrary\Api\StockArtImagesAttributeRepositoryInterface" method="save"/>
+    <route method="POST" url="/V1/distributor_tools/stock_art_library/save_cover">
+        <service class="DistributorTools\StockArtLibrary\Api\StockArtLibraryManagementInterface" method="saveCover"/>
         <resources>
             <resource ref="self"/>
+        </resources>
+    </route>
+    <route method="POST" url="/V1/distributor_tools/stock_art_library/save_cover_image">
+        <service class="DistributorTools\StockArtLibrary\Api\StockArtLibraryManagementInterface" method="saveCoverImage"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <route method="DELETE" url="/V1/distributor_tools/stock_art_library/delete_cover">
+        <service class="DistributorTools\StockArtLibrary\Api\StockArtLibraryManagementInterface" method="deleteCover"/>
+        <resources>
+            <resource ref="DistributorTools_StockArtLibrary::manage"/>
+        </resources>
+    </route>
+    <route method="DELETE" url="/V1/distributor_tools/stock_art_library/delete_cover_image">
+        <service class="DistributorTools\StockArtLibrary\Api\StockArtLibraryManagementInterface" method="deleteCoverImage"/>
+        <resources>
+            <resource ref="DistributorTools_StockArtLibrary::manage"/>
+        </resources>
+    </route>
+    <route method="DELETE" url="/V1/stock_art_cover/:stockArtCoverId">
+        <service class="DistributorTools\StockArtLibrary\Api\StockArtCoverRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="DistributorTools_StockArtLibrary::manage"/>
         </resources>
     </route>
     <route method="GET" url="/V1/stock_art_cover/:stockArtCoverId">
         <service class="DistributorTools\StockArtLibrary\Api\StockArtCoverRepositoryInterface" method="getById"/>
         <resources>
             <resource ref="anonymous"/>
-        </resources>
-    </route>
-    <route method="GET" url="/V1/stock_art_cover/:value/:attributeCode/">
-        <service class="DistributorTools\StockArtLibrary\Api\StockArtCoverRepositoryInterface" method="get"/>
-        <resources>
-            <resource ref="anonymous"/>
-        </resources>
-    </route>
-    <route method="DELETE" url="/V1/stock_art_cover">
-        <service class="DistributorTools\StockArtLibrary\Api\StockArtCoverRepositoryInterface" method="delete"/>
-        <resources>
-            <resource ref="DistributorTools_StockArtLibrary::manage"/>
         </resources>
     </route>
     <route method="DELETE" url="/V1/stock_art_cover/:stockArtCoverId">
@@ -40,18 +52,6 @@
         <service class="DistributorTools\StockArtLibrary\Api\StockArtImagesAttributeRepositoryInterface" method="deleteById"/>
         <resources>
             <resource ref="DistributorTools_StockArtLibrary::manage"/>
-        </resources>
-    </route>
-    <route method="GET" url="/V1/stock_art_cover">
-        <service class="DistributorTools\StockArtLibrary\Api\StockArtCoverRepositoryInterface" method="getList"/>
-        <resources>
-            <resource ref="anonymous"/>
-        </resources>
-    </route>
-    <route method="GET" url="/V1/stock_art_images">
-        <service class="DistributorTools\StockArtLibrary\Api\StockArtImagesAttributeRepositoryInterface" method="getList"/>
-        <resources>
-            <resource ref="anonymous"/>
         </resources>
     </route>
 </routes>

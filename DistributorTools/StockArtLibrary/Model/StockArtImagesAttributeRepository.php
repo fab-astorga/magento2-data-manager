@@ -82,9 +82,10 @@ class StockArtImagesAttributeRepository implements StockArtImagesAttributeReposi
     /**
      * @inheritdoc
      */
-    public function save($coverId, $name, $img)
+    public function save($id, $coverId, $name, $img)
     {
         $stockArtImagesAttribute = $this->_stockArtImagesAttributeFactory->create();
+        $stockArtImagesAttribute->setId($id);
         $stockArtImagesAttribute->setCoverId($coverId);
         $stockArtImagesAttribute->setName($name);
         $stockArtImagesAttribute->setImg($img);

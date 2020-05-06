@@ -12,7 +12,7 @@ interface StockArtCoverInterface extends CustomAttributesDataInterface
     const TABLE       = 'stock_art_cover_entity';
     const ID          = 'id';
     const NAME        = 'name';
-    const THUMBNAIL   = 'thumbnail';
+    const THUMBNAIL   = 'thumbnail';    
     const IMG         = 'img';
 
     /**

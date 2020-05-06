@@ -11,12 +11,13 @@ interface StockArtImagesAttributeRepositoryInterface
     /**
      * Save stock art images attribute
      *
+     * @param string $id
      * @param string $coverId
      * @param string $name
      * @param string $img
      * @return \DistributorTools\StockArtLibrary\Api\Data\StockArtImagesAttributeInterface
      */
-    public function save($coverId, $name, $img);
+    public function save($id, $coverId, $name, $img);
 
     /**
      * Retrieve stock art images attribute by id

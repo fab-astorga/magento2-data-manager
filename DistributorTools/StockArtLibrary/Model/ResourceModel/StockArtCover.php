@@ -10,6 +10,7 @@ use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
  */
 class StockArtCover extends AbstractDb
 {
+    protected $_isPkAutoIncrement = false;
     /**
      * Initialize resource model
      * @codingStandardsIgnoreStart
