@@ -1,0 +1,18 @@
+{
+    "pantone_list_entity": {
+        "column": {
+            "internal_id": true,
+            "name": true,
+            "hex_code": true,
+            "r": true,
+            "g": true,
+            "b": true
+        },
+        "index": {
+            "PANTONE_LIST_ENTITY_INTERNAL_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route method="POST" url="/V1/hot_chocolate/import">
+        <service class="HotChocolate\Manager\Api\HotChocolateManagementInterface" method="importHotChocolateFromCsv"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/hot_chocolate">
+        <service class="HotChocolate\Manager\Api\HotChocolateManagementInterface" method="getHotChocolate"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+</routes>

@@ -1,0 +1,33 @@
+{
+    "confetti_inserts": {
+        "column": {
+            "id": true,
+            "sku": true,
+            "name": true,
+            "img": true,
+            "subcategory": true
+        },
+        "index": {
+            "CONFETTI_INSERTS_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "confetti_inserts_prices": {
+        "column": {
+            "id": true,
+            "sku": true,
+            "currency": true,
+            "price_level": true,
+            "min_quantity": true,
+            "unit_price": true
+        },
+        "index": {
+            "CONFETTI_INSERTS_PRICES_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

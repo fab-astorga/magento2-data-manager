@@ -36,14 +36,13 @@ class ProductReviewsManagement implements ProductReviewsManagementInterface
         $this->_productRepository       = $productRepository;
         $this->_storeManager            = $storeManager;
         $this->_resourceConnection      = $resourceConnection;
-        $this->_logger                  = $logger;
     }
 
     /**
      * {@inheritdoc}
      * 
      */
-    public function createProductReview($productId,  $score, $nickname, $title, $detail)
+    public function createProductReview($productId, $score, $nickname, $title, $detail)
     {
         $reviewFinalData['ratings'][1] = $score;  //Quality
         $reviewFinalData['ratings'][2] = $score;  //Value
@@ -106,6 +105,19 @@ class ProductReviewsManagement implements ProductReviewsManagementInterface
                 WHERE " . self::REVIEW_ID . "=".$reviewId."" ; 
         $connection->query($sql);
         return true;
+    }
+
+    /**
+     * {@inheritdoc}
+     * 
+     */
+    public function getProductAmountReviews($productId)
+    {
+        $product = $this->_productRepository->getById($productId);
+        $this->_reviewFactory->create()->getEntitySummary($product, $this->_storeManager->getStore()->getId());
+        $reviewCount = $product->getRatingSummary()->getReviewsCount();
+
+        return $reviewCount;
     }
 
     /**

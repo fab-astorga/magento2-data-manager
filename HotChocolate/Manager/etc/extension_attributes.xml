@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <extension_attributes for="HotChocolate\Manager\Api\Data\HotChocolateInterface">
+        <attribute code="hot_chocolate_prices" type="HotChocolate\Manager\Api\Data\HotChocolatePricesInterface[]"/>
+    </extension_attributes>
+</config>

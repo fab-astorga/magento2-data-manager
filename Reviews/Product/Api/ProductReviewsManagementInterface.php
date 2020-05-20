@@ -7,7 +7,7 @@ interface ProductReviewsManagementInterface
     /**
      * Create a new review for some product
      * 
-     * @param string $productId  
+     * @param int $productId  
      * @param int $score
      * @param string $nickname
      * @param string $title
@@ -34,6 +34,14 @@ interface ProductReviewsManagementInterface
      * @return boolean
      */
     public function approveProductReview($reviewId, $status);
+
+    /**
+     * Get amount of reviews of a product
+     * 
+     * @param int $productId
+     * @return int
+     */
+    public function getProductAmountReviews($productId);
 
     /**
      * Get global rating of a product

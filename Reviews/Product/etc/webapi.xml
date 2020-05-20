@@ -1,11 +1,5 @@
 <?xml version="1.0"?>
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
-    <route method="GET" url="/V1/product_reviews/get/:productId">
-        <service class="Reviews\Product\Api\ProductReviewsManagementInterface" method="getProductReviews"/>
-        <resources>
-            <resource ref="anonymous"/>
-        </resources>
-    </route>
     <route method="POST" url="/V1/product_reviews/create/:productId/:score/:nickname/:title/:detail">
         <service class="Reviews\Product\Api\ProductReviewsManagementInterface" method="createProductReview"/>
         <resources>
@@ -16,6 +10,18 @@
         <service class="Reviews\Product\Api\ProductReviewsManagementInterface" method="approveProductReview"/>
         <resources>
             <resource ref="self"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/product_reviews/get/:productId">
+        <service class="Reviews\Product\Api\ProductReviewsManagementInterface" method="getProductReviews"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/product_reviews/amount/:productId">
+        <service class="Reviews\Product\Api\ProductReviewsManagementInterface" method="getProductAmountReviews"/>
+        <resources>
+            <resource ref="anonymous"/>
         </resources>
     </route>
     <route method="GET" url="/V1/product_reviews/rating/:productId">

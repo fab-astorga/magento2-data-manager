@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="hot_chocolate" resource="default" engine="innodb" comment="hot_chocolate">
+        <column xsi:type="int" name="id" padding="10" identity="true" unsigned="true" nullable="false" comment="id"/>
+        <column xsi:type="varchar" name="sku" nullable="false" length="255" comment="sku"/>
+        <column xsi:type="varchar" name="sales_description" nullable="true" length="255" comment="sales_description"/>
+        <column xsi:type="varchar" name="img" nullable="true" length="255" comment="img"/>
+        <column xsi:type="varchar" name="name" nullable="true" length="255" comment="name"/>
+        <column xsi:type="varchar" name="purchase_description" nullable="true" length="255" comment="purchase_description"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <index referenceId="HOT_CHOCOLATE_ID" indexType="btree">
+            <column name="id"/>
+        </index>
+    </table>
+    <table name="hot_chocolate_prices" resource="default" engine="innodb" comment="hot_chocolate_prices">
+        <column xsi:type="int" name="id" padding="10" identity="false" unsigned="true" nullable="false" comment="id"/>
+        <column xsi:type="varchar" name="sku" nullable="false" length="255" comment="sku"/>
+        <column xsi:type="varchar" name="currency" nullable="true" length="255" comment="currency"/>
+        <column xsi:type="varchar" name="price_level" nullable="true" length="255" comment="price_level"/>
+        <column xsi:type="int" name="min_quantity" padding="10" unsigned="true" nullable="false" comment="min_quantity"/>
+        <column xsi:type="float" name="unit_price" unsigned="true" nullable="false" comment="unit_price"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <index referenceId="HOT_CHOCOLATE_PRICES_ID" indexType="btree">
+            <column name="id"/>
+        </index>
+    </table>
+</schema>

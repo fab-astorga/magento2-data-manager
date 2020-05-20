@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <extension_attributes for="ConfettiInserts\Manager\Api\Data\ConfettiInsertsInterface">
+        <attribute code="confetti_inserts_prices" type="ConfettiInserts\Manager\Api\Data\ConfettiInsertsPricesInterface[]"/>
+    </extension_attributes>
+</config>
