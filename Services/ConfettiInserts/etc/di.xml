@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Services\ConfettiInserts\Api\Data\ConfettiInsertsInterface" type="Services\ConfettiInserts\Model\ConfettiInserts"/>
+    <preference for="Services\ConfettiInserts\Api\Data\ConfettiInsertsPricesInterface" type="Services\ConfettiInserts\Model\ConfettiInsertsPrices"/>
+    <preference for="Services\ConfettiInserts\Api\Data\ConfettiInsertsSearchResultsInterface" type="Services\ConfettiInserts\Model\ConfettiInsertsSearchResults"/>
+    <preference for="Services\ConfettiInserts\Api\Data\ConfettiInsertsPricesSearchResultsInterface" type="Services\ConfettiInserts\Model\ConfettiInsertsPricesSearchResults"/>
+    <preference for="Services\ConfettiInserts\Api\ConfettiInsertsRepositoryInterface" type="Services\ConfettiInserts\Model\ConfettiInsertsRepository"/>
+    <preference for="Services\ConfettiInserts\Api\ConfettiInsertsPricesRepositoryInterface" type="Services\ConfettiInserts\Model\ConfettiInsertsPricesRepository"/>
+    <preference for="Services\ConfettiInserts\Api\ConfettiInsertsManagementInterface" type="Services\ConfettiInserts\Model\ConfettiInsertsManagement"/>
+</config>

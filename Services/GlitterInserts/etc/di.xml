@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Services\GlitterInserts\Api\Data\GlitterInsertsInterface" type="Services\GlitterInserts\Model\GlitterInserts"/>
+    <preference for="Services\GlitterInserts\Api\Data\GlitterMetallicInsertsPricesInterface" type="Services\GlitterInserts\Model\GlitterMetallicInsertsPrices"/>
+    <preference for="Services\GlitterInserts\Api\Data\GlitterInsertsSearchResultsInterface" type="Services\GlitterInserts\Model\GlitterInsertsSearchResults"/>
+    <preference for="Services\GlitterInserts\Api\Data\GlitterMetallicInsertsPricesSearchResultsInterface" type="Services\GlitterInserts\Model\GlitterMetallicInsertsPricesSearchResults"/>
+    <preference for="Services\GlitterInserts\Api\GlitterInsertsRepositoryInterface" type="Services\GlitterInserts\Model\GlitterInsertsRepository"/>
+    <preference for="Services\GlitterInserts\Api\GlitterMetallicInsertsPricesRepositoryInterface" type="Services\GlitterInserts\Model\GlitterMetallicInsertsPricesRepository"/>
+    <preference for="Services\GlitterInserts\Api\GlitterInsertsManagementInterface" type="Services\GlitterInserts\Model\GlitterInsertsManagement"/>
+</config>

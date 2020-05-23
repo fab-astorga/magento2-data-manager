@@ -1,0 +1,35 @@
+{
+    "candy_options": {
+        "column": {
+            "id": true,
+            "sku": true,
+            "name": true,
+            "img": true,
+            "category": true,
+            "sales_description": true,
+            "purchase_description": true
+        },
+        "index": {
+            "CANDY_OPTIONS_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "candy_options_prices": {
+        "column": {
+            "id": true,
+            "sku": true,
+            "currency": true,
+            "price_level": true,
+            "min_quantity": true,
+            "unit_price": true
+        },
+        "index": {
+            "CANDY_OPTIONS_PRICES_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

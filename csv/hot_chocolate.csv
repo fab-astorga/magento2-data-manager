@@ -1,22 +1,22 @@
-sku,sales_description,img,name,purchase_description
-HCM : HCM-CCC,,http://www.gordonsinclair.com/site/images/FOOD_SETS_600x600/HCM/HCM-CB_CINNAMON_BUN_200px.jpg,HOT CHOCOLATE CINNAMON CHOCOLATE,Penguin Dark Chocolate Cocoa w/whisk 1 oz
-HCM : HCM-CCM,Retro Snowman Hot Chocolate,https://gordonsinclair.s3.amazonaws.com/extend/c5b2d7c0-9b19-11e8-a780-25be88c4dfdc/HCM-CCM.jpg,Retro Snowman Hot Chocolate,Retro Snowman Hot Chocolate Bulk Pack 288 per carton Additional stock 24 pcs per carton
-HCM : HCM-CMP,Campfire Hot Chocolate,https://gordonsinclair.s3.amazonaws.com/extend/0253f8c0-9b1b-11e8-a780-25be88c4dfdc/HCM-CMP.JPG,Campfire Hot Chocolate,Campfire Hot Chocolate Bulk Pack 288 pcs per carton Additional pcs 24 pcs per carton
-HCM : HCM-CMS,Salted Caramel Polka Dot Hot Chocolate,https://gordonsinclair.s3.amazonaws.com/extend/8122da00-9b1a-11e8-a780-25be88c4dfdc/HCM-CMS.JPG,Salted Caramel Polka Dot Hot Chocolate,Salted Caramel Polka Dot Hot Chocolate Bulk Pack 288 per carton Additional stock 24 pcs per carton
-HCM : HCM-CTR,White Chocolate Truffle Hot Chocolate,https://gordonsinclair.s3.amazonaws.com/extend/4d07c550-9b1a-11e8-a780-25be88c4dfdc/HCM-CTR.jpg,White Chocolate Truffle Hot Chocolate,White Chocolate Truffle Hot Chocolate
-HCM : HCM-DBC,Double Chocolate Hot Chocolate,https://gordonsinclair.s3.amazonaws.com/extend/68383850-9b1a-11e8-a780-25be88c4dfdc/HCM-DBC.jpg,Double Chocolate Hot Chocolate,Double Chocolate Hot Chocolate Bulk Pack 288 per carton Additional stock 24 pcs per carton
-HCM : HCM-DTR,Stag Hot Chocolate,https://gordonsinclair.s3.amazonaws.com/extend/30913dc0-9b1a-11e8-a780-25be88c4dfdc/HCM-DTR.JPG,Stag Hot Chocolate,Stag Hot Chocolate Bulk Pack 288 per carton Additional stock 24 pcs per carton
-HCM : HCM-EDC,,http://www.gordonsinclair.com/site/images/FOOD_SETS_600x600/HCM/HCM-EDC_EATDRINKBECOZY_200px.jpg,HOT CHOCOLATE EAT DRINK BE COZY,
-HCM : HCM-EDM,Hot Chocolate Eat Drink Be Merry,,HOT CHOCOLATE EAT DRINK & BE MERRY,
-HCM : HCM-GDC,3 oz. container of Ghirardelli Hot Cocoa,,HOT CHOCOLATE GHIRARDELLI CONTAINER,"Ghirardelli Chocolate Sweet Ground Chocolate & Cocoa Beverage Mix, 48-Ounce Canister"
-HCM : HCM-GDP,,,HOT CHOCOLATE GHIRARDELLI PACKET,"Ghirardelli Hot Cocoa, Premium Indulgence, 1.5-Ounce Envelopes, 15-Count"
-HCM : HCM-HDCC,,,HOT CHOCOLATE HAMMONDS,
-HCM : HCM-MCO,Mochaccino Hot Chocolate,https://gordonsinclair.s3.amazonaws.com/extend/7afda110-9b19-11e8-a780-25be88c4dfdc/HCM-MCO.jpg,Mochaccino Hot Chocolate,Mochaccino Hot Chocolate Bulk Pack 288 per carton Additional stock 24 pcs per carton
-HCM : HCM-NMDL,Never Met a chocolate i didn't like,http://www.gordonsinclair.com/site/images/FOOD_SETS_600x600/HCM/HCM-NMDL_NEVERMET_200px.jpg,HOT CHOCOLATE NEVER MET A CHOCOLATE I DIDN'T LIKE,
-HCM : HCM-SB,Starbucks Hot Chocolate Packet,http://www.gordonsinclair.com/site/images/FOOD_SETS_600x600/HCM/HCM-SB.jpg,Starbucks Hot Chocolate Packet,"Starbucks® Gourmet Hot Cocoa, 24 pack"
-HCM : HCM-SC,,,HOT CHOCOLATE,
-HCM : HCM-SM,Smores Hot Chocolate,https://gordonsinclair.s3.amazonaws.com/extend/aaefb010-9b1a-11e8-a780-25be88c4dfdc/HCM-SM.JPG,Smores Hot Chocolate,Smores Hot Chocolate Bulk Pack 288 per carton Additional stock 24 pcs per carton
-HCM : HCM-SNOW,HOT CHOCOLATE SNOWMAN POOP,,HOT CHOCOLATE SNOWMAN POOP,
-HCM : HCM-WCC,Candy Cane Hot Chocolate,https://gordonsinclair.s3.amazonaws.com/extend/e475cae0-9b1a-11e8-a780-25be88c4dfdc/HCM-WCC.jpg,Candy Cane Hot Chocolate,Candy Cane Hot Chocolate Bulk Pack 288 per carton Additional stock 24 pcs per carton
-HCM : HCM-WDC,White Double Chocolate Hot Chocolate,,White Double Chocolate Hot Chocolate,White Double Chocolate Hot Chocolate Bulk Pack 288 per carton Additional stock 24 pcs per carton
-HCM : HCM-WTR,,http://www.gordonsinclair.com/site/images/FOOD_SETS_600x600/HCM/HCM-WHC_WHITEHOTCHOCOLATE_200px.jpg,WHITE HOT CHOCOLATE TRUFFLE,
+sku,sales_description,img,name,purchase_description,id
+HCM : HCM-CCC,,http://www.gordonsinclair.com/site/images/FOOD_SETS_600x600/HCM/HCM-CB_CINNAMON_BUN_200px.jpg,HOT CHOCOLATE CINNAMON CHOCOLATE,Penguin Dark Chocolate Cocoa w/whisk 1 oz,0
+HCM : HCM-CCM,Retro Snowman Hot Chocolate,https://gordonsinclair.s3.amazonaws.com/extend/c5b2d7c0-9b19-11e8-a780-25be88c4dfdc/HCM-CCM.jpg,Retro Snowman Hot Chocolate,Retro Snowman Hot Chocolate Bulk Pack 288 per carton Additional stock 24 pcs per carton,1
+HCM : HCM-CMP,Campfire Hot Chocolate,https://gordonsinclair.s3.amazonaws.com/extend/0253f8c0-9b1b-11e8-a780-25be88c4dfdc/HCM-CMP.JPG,Campfire Hot Chocolate,Campfire Hot Chocolate Bulk Pack 288 pcs per carton Additional pcs 24 pcs per carton,2
+HCM : HCM-CMS,Salted Caramel Polka Dot Hot Chocolate,https://gordonsinclair.s3.amazonaws.com/extend/8122da00-9b1a-11e8-a780-25be88c4dfdc/HCM-CMS.JPG,Salted Caramel Polka Dot Hot Chocolate,Salted Caramel Polka Dot Hot Chocolate Bulk Pack 288 per carton Additional stock 24 pcs per carton,3
+HCM : HCM-CTR,White Chocolate Truffle Hot Chocolate,https://gordonsinclair.s3.amazonaws.com/extend/4d07c550-9b1a-11e8-a780-25be88c4dfdc/HCM-CTR.jpg,White Chocolate Truffle Hot Chocolate,White Chocolate Truffle Hot Chocolate,4
+HCM : HCM-DBC,Double Chocolate Hot Chocolate,https://gordonsinclair.s3.amazonaws.com/extend/68383850-9b1a-11e8-a780-25be88c4dfdc/HCM-DBC.jpg,Double Chocolate Hot Chocolate,Double Chocolate Hot Chocolate Bulk Pack 288 per carton Additional stock 24 pcs per carton,5
+HCM : HCM-DTR,Stag Hot Chocolate,https://gordonsinclair.s3.amazonaws.com/extend/30913dc0-9b1a-11e8-a780-25be88c4dfdc/HCM-DTR.JPG,Stag Hot Chocolate,Stag Hot Chocolate Bulk Pack 288 per carton Additional stock 24 pcs per carton,6
+HCM : HCM-EDC,,http://www.gordonsinclair.com/site/images/FOOD_SETS_600x600/HCM/HCM-EDC_EATDRINKBECOZY_200px.jpg,HOT CHOCOLATE EAT DRINK BE COZY,,7
+HCM : HCM-EDM,Hot Chocolate Eat Drink Be Merry,,HOT CHOCOLATE EAT DRINK & BE MERRY,,8
+HCM : HCM-GDC,3 oz. container of Ghirardelli Hot Cocoa,,HOT CHOCOLATE GHIRARDELLI CONTAINER,"Ghirardelli Chocolate Sweet Ground Chocolate & Cocoa Beverage Mix, 48-Ounce Canister",9
+HCM : HCM-GDP,,,HOT CHOCOLATE GHIRARDELLI PACKET,"Ghirardelli Hot Cocoa, Premium Indulgence, 1.5-Ounce Envelopes, 15-Count",10
+HCM : HCM-HDCC,,,HOT CHOCOLATE HAMMONDS,,11
+HCM : HCM-MCO,Mochaccino Hot Chocolate,https://gordonsinclair.s3.amazonaws.com/extend/7afda110-9b19-11e8-a780-25be88c4dfdc/HCM-MCO.jpg,Mochaccino Hot Chocolate,Mochaccino Hot Chocolate Bulk Pack 288 per carton Additional stock 24 pcs per carton,12
+HCM : HCM-NMDL,Never Met a chocolate i didn't like,http://www.gordonsinclair.com/site/images/FOOD_SETS_600x600/HCM/HCM-NMDL_NEVERMET_200px.jpg,HOT CHOCOLATE NEVER MET A CHOCOLATE I DIDN'T LIKE,,13
+HCM : HCM-SB,Starbucks Hot Chocolate Packet,http://www.gordonsinclair.com/site/images/FOOD_SETS_600x600/HCM/HCM-SB.jpg,Starbucks Hot Chocolate Packet,"Starbucks® Gourmet Hot Cocoa, 24 pack",14
+HCM : HCM-SC,,,HOT CHOCOLATE,,15
+HCM : HCM-SM,Smores Hot Chocolate,https://gordonsinclair.s3.amazonaws.com/extend/aaefb010-9b1a-11e8-a780-25be88c4dfdc/HCM-SM.JPG,Smores Hot Chocolate,Smores Hot Chocolate Bulk Pack 288 per carton Additional stock 24 pcs per carton,16
+HCM : HCM-SNOW,HOT CHOCOLATE SNOWMAN POOP,,HOT CHOCOLATE SNOWMAN POOP,,17
+HCM : HCM-WCC,Candy Cane Hot Chocolate,https://gordonsinclair.s3.amazonaws.com/extend/e475cae0-9b1a-11e8-a780-25be88c4dfdc/HCM-WCC.jpg,Candy Cane Hot Chocolate,Candy Cane Hot Chocolate Bulk Pack 288 per carton Additional stock 24 pcs per carton,18
+HCM : HCM-WDC,White Double Chocolate Hot Chocolate,,White Double Chocolate Hot Chocolate,White Double Chocolate Hot Chocolate Bulk Pack 288 per carton Additional stock 24 pcs per carton,19
+HCM : HCM-WTR,,http://www.gordonsinclair.com/site/images/FOOD_SETS_600x600/HCM/HCM-WHC_WHITEHOTCHOCOLATE_200px.jpg,WHITE HOT CHOCOLATE TRUFFLE,,20

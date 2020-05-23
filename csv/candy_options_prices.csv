@@ -1,0 +1,6 @@
+sku,currency,price_level,min_quantity,unit_price,id
+HKS,USA,EQP,0,1,1
+HKS,USA,Net Price,0,1,2
+HKS,USA,Online Price,0,1,3
+HKS,USA,Retail Price,0,1,4
+HKS,USA,Sample Price,0,1,5

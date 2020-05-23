@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Services\PmsColors\Api\Data\PantoneListInterface" type="Services\PmsColors\Model\PantoneList"/>
+    <preference for="Services\PmsColors\Api\Data\PantoneListSearchResultsInterface" type="Services\PmsColors\Model\PantoneListSearchResults"/>
+    <preference for="Services\PmsColors\Api\PantoneListRepositoryInterface" type="Services\PmsColors\Model\PantoneListRepository"/>
+    <preference for="Services\PmsColors\Api\PmsColorsManagementInterface" type="Services\PmsColors\Model\PmsColorsManagement"/>
+</config>

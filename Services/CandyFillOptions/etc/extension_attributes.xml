@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <extension_attributes for="Services\CandyFillOptions\Api\Data\CandyFillOptionsInterface">
+        <attribute code="candy_fill_options_prices" type="Services\CandyFillOptions\Api\Data\CandyFillOptionsPricesInterface[]"/>
+    </extension_attributes>
+</config>

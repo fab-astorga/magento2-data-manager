@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Services\MetallicInserts\Api\Data\MetallicInsertsInterface" type="Services\MetallicInserts\Model\MetallicInserts"/>
+    <preference for="Services\MetallicInserts\Api\Data\MetallicInsertsSearchResultsInterface" type="Services\MetallicInserts\Model\MetallicInsertsSearchResults"/>
+    <preference for="Services\MetallicInserts\Api\MetallicInsertsRepositoryInterface" type="Services\MetallicInserts\Model\MetallicInsertsRepository"/>
+    <preference for="Services\MetallicInserts\Api\MetallicInsertsManagementInterface" type="Services\MetallicInserts\Model\MetallicInsertsManagement"/>
+</config>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route method="POST" url="/V1/product_videos/import">
+        <service class="Services\ProductVideos\Api\ProductVideosManagementInterface" method="importProductVideosFromCsv"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/product_videos">
+        <service class="Services\ProductVideos\Api\ProductVideosManagementInterface" method="getProductVideos"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+</routes>

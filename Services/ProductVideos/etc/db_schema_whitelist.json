@@ -1,0 +1,16 @@
+{
+    "product_videos": {
+        "column": {
+            "id": true,
+            "name": true,
+            "img": true,
+            "video": true
+        },
+        "index": {
+            "PRODUCT_VIDEOS_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

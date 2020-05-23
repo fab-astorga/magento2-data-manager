@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <extension_attributes for="Services\MetallicInserts\Api\Data\MetallicInsertsInterface">
+        <attribute code="glitter_metallic_inserts_prices" type="Services\GlitterInserts\Api\Data\GlitterMetallicInsertsPricesInterface[]"/>
+    </extension_attributes>
+</config>

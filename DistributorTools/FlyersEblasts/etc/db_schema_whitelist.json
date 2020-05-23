@@ -1,0 +1,15 @@
+{
+    "flyers_eblasts": {
+        "column": {
+            "id": true,
+            "name": true,
+            "img": true
+        },
+        "index": {
+            "FLYERS_EBLASTS_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Services\CandyFillOptions\Api\Data\CandyFillOptionsInterface" type="Services\CandyFillOptions\Model\CandyFillOptions"/>
+    <preference for="Services\CandyFillOptions\Api\Data\CandyFillOptionsPricesInterface" type="Services\CandyFillOptions\Model\CandyFillOptionsPrices"/>
+    <preference for="Services\CandyFillOptions\Api\Data\CandyFillOptionsSearchResultsInterface" type="Services\CandyFillOptions\Model\CandyFillOptionsSearchResults"/>
+    <preference for="Services\CandyFillOptions\Api\Data\CandyFillOptionsPricesSearchResultsInterface" type="Services\CandyFillOptions\Model\CandyFillOptionsPricesSearchResults"/>
+    <preference for="Services\CandyFillOptions\Api\CandyFillOptionsRepositoryInterface" type="Services\CandyFillOptions\Model\CandyFillOptionsRepository"/>
+    <preference for="Services\CandyFillOptions\Api\CandyFillOptionsPricesRepositoryInterface" type="Services\CandyFillOptions\Model\CandyFillOptionsPricesRepository"/>
+    <preference for="Services\CandyFillOptions\Api\CandyFillOptionsManagementInterface" type="Services\CandyFillOptions\Model\CandyFillOptionsManagement"/>
+</config>

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="DistributorTools\FlyersEblasts\Api\Data\FlyersEblastsInterface" type="DistributorTools\FlyersEblasts\Model\FlyersEblasts"/>
+    <preference for="DistributorTools\FlyersEblasts\Api\Data\FlyersEblastsSearchResultsInterface" type="DistributorTools\FlyersEblasts\Model\FlyersEblastsSearchResults"/>
+    <preference for="DistributorTools\FlyersEblasts\Api\FlyersEblastsRepositoryInterface" type="DistributorTools\FlyersEblasts\Model\FlyersEblastsRepository"/>
+    <preference for="DistributorTools\FlyersEblasts\Api\FlyersEblastsManagementInterface" type="DistributorTools\FlyersEblasts\Model\FlyersEblastsManagement"/>
+</config>

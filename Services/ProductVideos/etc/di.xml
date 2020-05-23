@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Services\ProductVideos\Api\Data\ProductVideosInterface" type="Services\ProductVideos\Model\ProductVideos"/>
+    <preference for="Services\ProductVideos\Api\Data\ProductVideosSearchResultsInterface" type="Services\ProductVideos\Model\ProductVideosSearchResults"/>
+    <preference for="Services\ProductVideos\Api\ProductVideosRepositoryInterface" type="Services\ProductVideos\Model\ProductVideosRepository"/>
+    <preference for="Services\ProductVideos\Api\ProductVideosManagementInterface" type="Services\ProductVideos\Model\ProductVideosManagement"/>
+</config>

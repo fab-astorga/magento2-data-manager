@@ -1,13 +1,13 @@
-sku,img,name,subcategory
-CF : CF-BLHX,http://www.gordonsinclair.com/site/images/IMPRINT_METHODS/Confetti/CF-BLHX_100px.jpg,Blue Hexagon,Star Confetti
-CF : CF-GDHX,http://www.gordonsinclair.com/site/images/IMPRINT_METHODS/Confetti/CF-GDHX_100px.jpg,Gold Hexagon,Hexagon Confetti
-CF : CF-GDST,http://www.gordonsinclair.com/site/images/IMPRINT_METHODS/Confetti/CF-GDS_100px.jpg,Gold Stars,Star Confetti
-CF : CF-GNHX,http://www.gordonsinclair.com/site/images/IMPRINT_METHODS/Confetti/CF-GNHX_100px.jpg,Green Hexagon,Hexagon Confetti
-CF : CF-ORHX,http://www.gordonsinclair.com/site/images/IMPRINT_METHODS/Confetti/CF-ORHX_100px.jpg,Orange Hexagon,Hexagon Confetti
-CF : CF-PKHR,http://www.gordonsinclair.com/site/images/IMPRINT_METHODS/Confetti/CF-PKHR_100px.jpg,Pink Hearts,Heart Confetti
-CF : CF-PUHX,http://www.gordonsinclair.com/site/images/IMPRINT_METHODS/Confetti/CF-PUHX_100px.jpg,Purple Hexagon,Hexagon Confetti
-CF : CF-RDHT,http://www.gordonsinclair.com/site/images/IMPRINT_METHODS/Confetti/CF-RDHR_100px.jpg,Red Hearts,Heart Confetti
-CF : CF-RDHX,http://www.gordonsinclair.com/site/images/IMPRINT_METHODS/Confetti/CF-RDHX_100px.jpg,Red Hexagon,Hexagon Confetti
-CF : CF-RDST,http://www.gordonsinclair.com/site/images/IMPRINT_METHODS/Confetti/CF-RDS_100px.jpg,Red Stars,Star Confetti
-CF : CF-SLHX,http://www.gordonsinclair.com/site/images/IMPRINT_METHODS/Confetti/CF-SLHX_100px.jpg,Silver Hexagon,Hexagon Confetti
-CF : CF-SLST,http://www.gordonsinclair.com/site/images/IMPRINT_METHODS/Confetti/CF-SLS_100px.jpg,Silver Stars,Star Confetti
+sku,img,name,subcategory,id
+CF : CF-BLHX,http://www.gordonsinclair.com/site/images/IMPRINT_METHODS/Confetti/CF-BLHX_100px.jpg,Blue Hexagon,Star Confetti,0
+CF : CF-GDHX,http://www.gordonsinclair.com/site/images/IMPRINT_METHODS/Confetti/CF-GDHX_100px.jpg,Gold Hexagon,Hexagon Confetti,1
+CF : CF-GDST,http://www.gordonsinclair.com/site/images/IMPRINT_METHODS/Confetti/CF-GDS_100px.jpg,Gold Stars,Star Confetti,2
+CF : CF-GNHX,http://www.gordonsinclair.com/site/images/IMPRINT_METHODS/Confetti/CF-GNHX_100px.jpg,Green Hexagon,Hexagon Confetti,3
+CF : CF-ORHX,http://www.gordonsinclair.com/site/images/IMPRINT_METHODS/Confetti/CF-ORHX_100px.jpg,Orange Hexagon,Hexagon Confetti,4
+CF : CF-PKHR,http://www.gordonsinclair.com/site/images/IMPRINT_METHODS/Confetti/CF-PKHR_100px.jpg,Pink Hearts,Heart Confetti,5
+CF : CF-PUHX,http://www.gordonsinclair.com/site/images/IMPRINT_METHODS/Confetti/CF-PUHX_100px.jpg,Purple Hexagon,Hexagon Confetti,6
+CF : CF-RDHT,http://www.gordonsinclair.com/site/images/IMPRINT_METHODS/Confetti/CF-RDHR_100px.jpg,Red Hearts,Heart Confetti,7
+CF : CF-RDHX,http://www.gordonsinclair.com/site/images/IMPRINT_METHODS/Confetti/CF-RDHX_100px.jpg,Red Hexagon,Hexagon Confetti,8
+CF : CF-RDST,http://www.gordonsinclair.com/site/images/IMPRINT_METHODS/Confetti/CF-RDS_100px.jpg,Red Stars,Star Confetti,9
+CF : CF-SLHX,http://www.gordonsinclair.com/site/images/IMPRINT_METHODS/Confetti/CF-SLHX_100px.jpg,Silver Hexagon,Hexagon Confetti,10
+CF : CF-SLST,http://www.gordonsinclair.com/site/images/IMPRINT_METHODS/Confetti/CF-SLS_100px.jpg,Silver Stars,Star Confetti,11
