@@ -1,17 +1,17 @@
 <?xml version="1.0"?>
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
     <table name="pantone_list_entity" resource="default" engine="innodb" comment="Pantone List Entity">
-        <column xsi:type="int" name="internal_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Internal ID"/>
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="false" comment="ID"/>
         <column xsi:type="varchar" name="name" nullable="true" length="255" comment="Name"/>
         <column xsi:type="varchar" name="hex_code" nullable="true" length="255" comment="HEX Code"/>
         <column xsi:type="int" name="r" padding="10" unsigned="true" nullable="true" comment="r"/>
         <column xsi:type="int" name="g" padding="10" unsigned="true" nullable="true" comment="g"/>
         <column xsi:type="int" name="b" padding="10" unsigned="true" nullable="true" comment="b"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
-            <column name="internal_id"/>
+            <column name="id"/>
         </constraint>
-        <index referenceId="PANTONE_LIST_ENTITY_INTERNAL_ID" indexType="btree">
-            <column name="internal_id"/>
+        <index referenceId="PANTONE_LIST_ENTITY_ID" indexType="btree">
+            <column name="id"/>
         </index>
     </table>
 </schema>

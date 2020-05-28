@@ -11,7 +11,7 @@ interface PantoneListRepositoryInterface
     /**
      * Save pms color
      *
-     * @param int $internalId
+     * @param int $id
      * @param string $name
      * @param string $hexCode
      * @param int $r
@@ -19,7 +19,7 @@ interface PantoneListRepositoryInterface
      * @param int $b
      * @return \Services\PmsColors\Api\Data\PantoneListInterface
      */
-    public function save($internalId, $name, $hexCode, $r, $g, $b);
+    public function save($id, $name, $hexCode, $r, $g, $b);
 
     /**
      * Retrieve pms color by id

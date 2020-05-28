@@ -1,89 +1,27 @@
 <?php
 namespace Services\ConfettiInserts\Model;
 
-use Magento\Framework\Exception\CouldNotSaveException;
-
 class ConfettiInsertsManagement
 {
-    const CONFETTI_INSERTS_FILE        = 'csv/confetti_inserts.csv';
-    const CONFETTI_INSERTS_PRICES_FILE = 'csv/confetti_inserts_prices.csv';
-    const SKU                          = 0;
-    const IMG                          = 1;
-    const NAME                         = 2;
-    const SUBCATEGORY                  = 3;
-    const CI_ID                        = 4;
-    const CURRENCY                     = 1;
-    const PRICE_LEVEL                  = 2;
-    const MIN_QUANTITY                 = 3;
-    const UNIT_PRICE                   = 4;
-    const CIP_ID                       = 5;
-
-    protected $_confettiInsertsRepository;
     protected $_confettiInsertsPricesRepository;
     protected $_confettiInsertsCollection;
     protected $_confettiInsertsExtensionFactory;
     protected $_searchCriteriaBuilder;
     protected $_filterBuilder;
-    protected $_helper;
-    protected $_logger;
 
     public function __construct(
-        \Services\ConfettiInserts\Api\ConfettiInsertsRepositoryInterface $confettiInsertsRepository,
         \Services\ConfettiInserts\Api\ConfettiInsertsPricesRepositoryInterface $confettiInsertsPricesRepository,
         \Services\ConfettiInserts\Model\ResourceModel\ConfettiInserts\CollectionFactory $confettiInsertsCollection,
         \Services\ConfettiInserts\Api\Data\ConfettiInsertsExtensionFactory $confettiInsertsExtensionFactory,
         \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder,
-        \Magento\Framework\Api\FilterBuilder $filterBuilder,
-        \Services\PmsColors\Helper\Data $helper,
-        \File\CustomLog\Logger\Logger $logger
+        \Magento\Framework\Api\FilterBuilder $filterBuilder
     ) 
     {
-        $this->_confettiInsertsRepository       = $confettiInsertsRepository;
         $this->_confettiInsertsPricesRepository = $confettiInsertsPricesRepository;
         $this->_confettiInsertsCollection       = $confettiInsertsCollection;
         $this->_confettiInsertsExtensionFactory = $confettiInsertsExtensionFactory;
         $this->_searchCriteriaBuilder           = $searchCriteriaBuilder;
         $this->_filterBuilder                   = $filterBuilder;
-        $this->_helper                          = $helper;
-        $this->_logger                          = $logger;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function importConfettiInsertsFromCsv() 
-    {
-        try { 
-            $this->_confettiInsertsRepository->delete();  
-            $confettiInserts = $this->_helper->parseCsvFile(self::CONFETTI_INSERTS_FILE);
-            foreach ($confettiInserts as $confettiInsert) 
-            {                 
-                $this->_confettiInsertsRepository->save(
-                    $confettiInsert[self::CI_ID],
-                    $confettiInsert[self::SKU],
-                    $confettiInsert[self::NAME],
-                    $confettiInsert[self::IMG],
-                    $confettiInsert[self::SUBCATEGORY]
-                );
-            }
-            $this->_confettiInsertsPricesRepository->delete();  
-            $confettiInsertsPrices = $this->_helper->parseCsvFile(self::CONFETTI_INSERTS_PRICES_FILE);
-            foreach ($confettiInsertsPrices as $confettiInsertsPrice) 
-            { 
-                $this->_confettiInsertsPricesRepository->save(
-                    $confettiInsertsPrice[self::CIP_ID],
-                    $confettiInsertsPrice[self::SKU],
-                    $confettiInsertsPrice[self::CURRENCY],
-                    $confettiInsertsPrice[self::PRICE_LEVEL],
-                    $confettiInsertsPrice[self::MIN_QUANTITY],
-                    $confettiInsertsPrice[self::UNIT_PRICE]
-                );
-            }
-            return true;
-
-        } catch (\Exception $e) {
-            throw new CouldNotSaveException(__($e));
-        }
     }
 
     /**

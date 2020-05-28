@@ -18,6 +18,6 @@ class PantoneList extends AbstractDb
     protected function _construct()
     {
         // @codingStandardsIgnoreEnd
-        $this->_init(PantoneListInterface::TABLE, PantoneListInterface::INTERNAL_ID);
+        $this->_init(PantoneListInterface::TABLE, PantoneListInterface::ID);
     }
 }

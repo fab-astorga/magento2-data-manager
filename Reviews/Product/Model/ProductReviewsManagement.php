@@ -44,9 +44,13 @@ class ProductReviewsManagement implements ProductReviewsManagementInterface
      */
     public function createProductReview($productId, $score, $nickname, $title, $detail)
     {
-        $reviewFinalData['ratings'][1] = $score;  //Quality
-        $reviewFinalData['ratings'][2] = $score;  //Value
-        $reviewFinalData['ratings'][3] = $score;  //Price
+        $intScore = (int)round($score);
+
+        if ( $intScore>5 || $intScore<1 ) {
+            return "Score must be a number among 1 and 5";
+        }
+
+        $reviewFinalData['ratings'][1] = $intScore; // Score
         $reviewFinalData[self::NICKNAME] = $nickname;
         $reviewFinalData[self::TITLE] = $title;
         $reviewFinalData[self::DETAIL] = $detail;

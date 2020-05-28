@@ -4,4 +4,11 @@
     <preference for="Services\MetallicInserts\Api\Data\MetallicInsertsSearchResultsInterface" type="Services\MetallicInserts\Model\MetallicInsertsSearchResults"/>
     <preference for="Services\MetallicInserts\Api\MetallicInsertsRepositoryInterface" type="Services\MetallicInserts\Model\MetallicInsertsRepository"/>
     <preference for="Services\MetallicInserts\Api\MetallicInsertsManagementInterface" type="Services\MetallicInserts\Model\MetallicInsertsManagement"/>
+    <type name="Magento\ImportExport\Model\Import\SampleFileProvider">
+        <arguments>
+            <argument name="samples" xsi:type="array">
+                <item name="metallic_inserts" xsi:type="string">Services_MetallicInserts</item>
+            </argument>
+        </arguments>
+    </type>
 </config>

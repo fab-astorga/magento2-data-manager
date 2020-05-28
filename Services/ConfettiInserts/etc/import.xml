@@ -1,0 +1,7 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_ImportExport:etc/import.xsd">
+    <entity name="confetti_inserts" label="Confetti Inserts" model="Services\ConfettiInserts\Model\Import\ConfettiInserts"
+            behaviorModel="Magento\ImportExport\Model\Source\Import\Behavior\Basic" />
+     <entity name="confetti_inserts_prices" label="Confetti Inserts Prices" model="Services\ConfettiInserts\Model\Import\ConfettiInsertsPrices"
+            behaviorModel="Magento\ImportExport\Model\Source\Import\Behavior\Basic" />
+</config>

@@ -1,0 +1,5 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_ImportExport:etc/import.xsd">
+    <entity name="flyers_eblasts" label="Flyers and Eblasts" model="\DistributorTools\FlyersEblasts\Model\Import\FlyersEblasts"
+            behaviorModel="Magento\ImportExport\Model\Source\Import\Behavior\Basic" />
+</config>

@@ -8,7 +8,7 @@ interface ProductReviewsManagementInterface
      * Create a new review for some product
      * 
      * @param int $productId  
-     * @param int $score
+     * @param float $score
      * @param string $nickname
      * @param string $title
      * @param string $detail

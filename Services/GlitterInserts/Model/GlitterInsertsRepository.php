@@ -82,14 +82,15 @@ class GlitterInsertsRepository implements GlitterInsertsRepositoryInterface
     /**
      * @inheritdoc
      */
-    public function save($sku, $name, $img, $type)
+    public function save($id, $sku, $name, $img, $type)
     {
         $glitterInserts = $this->_glitterInsertsFactory->create();
         $glitterInserts = $glitterInserts->load($sku, 'sku');
         if (!$glitterInserts->getId()) {
             $glitterInserts = $this->_glitterInsertsFactory->create();
         }
-        $glitterInserts->setsku($sku);
+        $glitterInserts->setId($id);
+        $glitterInserts->setSku($sku);
         $glitterInserts->setName($name);
         $glitterInserts->setImg($img);
         $glitterInserts->setType($type);

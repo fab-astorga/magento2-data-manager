@@ -11,12 +11,13 @@ interface MetallicInsertsRepositoryInterface
     /**
      * Save metallic insert
      *
+     * @param int $id
      * @param string $sku
      * @param string $name
      * @param string $img
      * @return \Services\MetallicInserts\Api\Data\MetallicInsertsInterface
      */
-    public function save($sku, $name, $img);
+    public function save($id, $sku, $name, $img);
 
     /**
      * Retrieve metallic insert by id

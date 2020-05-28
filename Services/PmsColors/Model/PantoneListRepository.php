@@ -82,13 +82,13 @@ class PantoneListRepository implements PantoneListRepositoryInterface
     /**
      * @inheritdoc
      */
-    public function save($internalId, $name, $hexCode, $r, $g, $b)
+    public function save($id, $name, $hexCode, $r, $g, $b)
     {
         $pmsColor = $this->_pantoneListFactory->create();
         if (!$pmsColor->getId()) {
             $pmsColor = $this->_pantoneListFactory->create();
         }
-        $pmsColor->setInternalId($internalId);
+        $pmsColor->setId($id);
         $pmsColor->setName($name);
         $pmsColor->setHexCode($hexCode);
         $pmsColor->setR($r);

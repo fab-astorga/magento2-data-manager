@@ -7,13 +7,13 @@ namespace Services\PmsColors\Api\Data;
  */
 interface PantoneListInterface
 {
-    const TABLE    = 'pantone_list_entity';
-    const INTERNAL_ID = 'internal_id';
-    const NAME     = 'name';
-    const HEX_CODE = 'hex_code';    
-    const R        = 'r';
-    const G        = 'g';
-    const B        = 'b';
+    const TABLE       = 'pantone_list_entity';
+    const ID          = 'id';
+    const NAME        = 'name';
+    const HEX_CODE    = 'hex_code';    
+    const R           = 'r';
+    const G           = 'g';
+    const B           = 'b';
 
     /**
      * Retrieve the name

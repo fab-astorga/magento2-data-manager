@@ -82,14 +82,15 @@ class MetallicInsertsRepository implements MetallicInsertsRepositoryInterface
     /**
      * @inheritdoc
      */
-    public function save($sku, $name, $img)
+    public function save($id, $sku, $name, $img)
     {
         $metallicInserts = $this->_metallicInsertsFactory->create();
         $metallicInserts = $metallicInserts->load($sku, 'sku');
         if (!$metallicInserts->getId()) {
             $metallicInserts = $this->_metallicInsertsFactory->create();
         }
-        $metallicInserts->setsku($sku);
+        $metallicInserts->setId($id);
+        $metallicInserts->setSku($sku);
         $metallicInserts->setName($name);
         $metallicInserts->setImg($img);
         $this->_resourceModelMetallicInserts->save($metallicInserts);

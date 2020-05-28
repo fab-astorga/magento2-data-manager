@@ -4,4 +4,11 @@
     <preference for="DistributorTools\FlyersEblasts\Api\Data\FlyersEblastsSearchResultsInterface" type="DistributorTools\FlyersEblasts\Model\FlyersEblastsSearchResults"/>
     <preference for="DistributorTools\FlyersEblasts\Api\FlyersEblastsRepositoryInterface" type="DistributorTools\FlyersEblasts\Model\FlyersEblastsRepository"/>
     <preference for="DistributorTools\FlyersEblasts\Api\FlyersEblastsManagementInterface" type="DistributorTools\FlyersEblasts\Model\FlyersEblastsManagement"/>
+    <type name="Magento\ImportExport\Model\Import\SampleFileProvider">
+        <arguments>
+            <argument name="samples" xsi:type="array">
+                <item name="flyers_eblasts" xsi:type="string">DistributorTools_FlyersEblasts</item>
+            </argument>
+        </arguments>
+    </type>
 </config>

@@ -7,4 +7,11 @@
     <preference for="Services\ConfettiInserts\Api\ConfettiInsertsRepositoryInterface" type="Services\ConfettiInserts\Model\ConfettiInsertsRepository"/>
     <preference for="Services\ConfettiInserts\Api\ConfettiInsertsPricesRepositoryInterface" type="Services\ConfettiInserts\Model\ConfettiInsertsPricesRepository"/>
     <preference for="Services\ConfettiInserts\Api\ConfettiInsertsManagementInterface" type="Services\ConfettiInserts\Model\ConfettiInsertsManagement"/>
+    <type name="Magento\ImportExport\Model\Import\SampleFileProvider">
+        <arguments>
+            <argument name="samples" xsi:type="array">
+                <item name="confetti_inserts" xsi:type="string">Services_ConfettiInserts</item>
+            </argument>
+        </arguments>
+    </type>
 </config>

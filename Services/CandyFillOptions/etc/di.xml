@@ -7,4 +7,11 @@
     <preference for="Services\CandyFillOptions\Api\CandyFillOptionsRepositoryInterface" type="Services\CandyFillOptions\Model\CandyFillOptionsRepository"/>
     <preference for="Services\CandyFillOptions\Api\CandyFillOptionsPricesRepositoryInterface" type="Services\CandyFillOptions\Model\CandyFillOptionsPricesRepository"/>
     <preference for="Services\CandyFillOptions\Api\CandyFillOptionsManagementInterface" type="Services\CandyFillOptions\Model\CandyFillOptionsManagement"/>
+    <type name="Magento\ImportExport\Model\Import\SampleFileProvider">
+        <arguments>
+            <argument name="samples" xsi:type="array">
+                <item name="candy_options" xsi:type="string">Services_CandyFillOptions</item>
+            </argument>
+        </arguments>
+    </type>
 </config>

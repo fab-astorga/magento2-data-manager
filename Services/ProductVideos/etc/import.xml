@@ -1,0 +1,5 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_ImportExport:etc/import.xsd">
+    <entity name="product_videos" label="Product Videos" model="Services\ProductVideos\Model\Import\ProductVideos"
+            behaviorModel="Magento\ImportExport\Model\Source\Import\Behavior\Basic" />
+</config>

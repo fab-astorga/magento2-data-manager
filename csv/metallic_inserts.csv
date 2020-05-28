@@ -1,10 +1,10 @@
-sku,name,img
-FB : FB-MGD,Metallic Gold,http://www.gordonsinclair.com/site/images/DRINKWARE_600x600/Metallic_Inserts/MGD_SWATCH_356px.jpg
-FB : FB-MGN,Metallic Green,http://www.gordonsinclair.com/site/images/DRINKWARE_600x600/Metallic_Inserts/MGN_SWATCH_356px.jpg
-FB : FB-MPK,Metallic Pink,http://www.gordonsinclair.com/site/images/DRINKWARE_600x600/Metallic_Inserts/MPK_SWATCH_356px.jpg
-FB : FB-MPU,Metallic Purple,http://www.gordonsinclair.com/site/images/DRINKWARE_600x600/Metallic_Inserts/MPU_SWATCH_356px.jpg
-FB : FB-MRD,Metallic Red,http://www.gordonsinclair.com/site/images/DRINKWARE_600x600/Metallic_Inserts/MRD_SWATCH_356px.jpg
-FB : FB-MSL,Metallic Silver,http://www.gordonsinclair.com/site/images/DRINKWARE_600x600/Metallic_Inserts/MSL_SWATCH_356px.jpg
-FB : FB-MAQ,Metallic Aqua Blue,
-FB : FB-MBL,Metallic Blue,http://www.gordonsinclair.com/site/images/DRINKWARE_600x600/Metallic_Inserts/FB_MBL_SWATCH_356px.jpg
-FB : FB-MBR,Metallic Brown,http://www.gordonsinclair.com/site/images/DRINKWARE_600x600/Metallic_Inserts/MBR_SWATCH_356px.jpg
+sku,name,img,id
+FB : FB-MGD,Metallic Gold,http://www.gordonsinclair.com/site/images/DRINKWARE_600x600/Metallic_Inserts/MGD_SWATCH_356px.jpg,1
+FB : FB-MGN,Metallic Green,http://www.gordonsinclair.com/site/images/DRINKWARE_600x600/Metallic_Inserts/MGN_SWATCH_356px.jpg,2
+FB : FB-MPK,Metallic Pink,http://www.gordonsinclair.com/site/images/DRINKWARE_600x600/Metallic_Inserts/MPK_SWATCH_356px.jpg,3
+FB : FB-MPU,Metallic Purple,http://www.gordonsinclair.com/site/images/DRINKWARE_600x600/Metallic_Inserts/MPU_SWATCH_356px.jpg,4
+FB : FB-MRD,Metallic Red,http://www.gordonsinclair.com/site/images/DRINKWARE_600x600/Metallic_Inserts/MRD_SWATCH_356px.jpg,5
+FB : FB-MSL,Metallic Silver,http://www.gordonsinclair.com/site/images/DRINKWARE_600x600/Metallic_Inserts/MSL_SWATCH_356px.jpg,6
+FB : FB-MAQ,Metallic Aqua Blue,,7
+FB : FB-MBL,Metallic Blue,http://www.gordonsinclair.com/site/images/DRINKWARE_600x600/Metallic_Inserts/FB_MBL_SWATCH_356px.jpg,8
+FB : FB-MBR,Metallic Brown,http://www.gordonsinclair.com/site/images/DRINKWARE_600x600/Metallic_Inserts/MBR_SWATCH_356px.jpg,9

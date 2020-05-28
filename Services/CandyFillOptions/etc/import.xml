@@ -1,0 +1,7 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_ImportExport:etc/import.xsd">
+    <entity name="candy_options" label="Candy Fill Options" model="Services\CandyFillOptions\Model\Import\CandyFillOptions"
+            behaviorModel="Magento\ImportExport\Model\Source\Import\Behavior\Basic" />
+     <entity name="candy_options_prices" label="Candy Fill Options Prices" model="Services\CandyFillOptions\Model\Import\CandyFillOptionsPrices"
+            behaviorModel="Magento\ImportExport\Model\Source\Import\Behavior\Basic" />
+</config>

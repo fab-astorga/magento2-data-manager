@@ -4,4 +4,11 @@
     <preference for="Services\PmsColors\Api\Data\PantoneListSearchResultsInterface" type="Services\PmsColors\Model\PantoneListSearchResults"/>
     <preference for="Services\PmsColors\Api\PantoneListRepositoryInterface" type="Services\PmsColors\Model\PantoneListRepository"/>
     <preference for="Services\PmsColors\Api\PmsColorsManagementInterface" type="Services\PmsColors\Model\PmsColorsManagement"/>
+    <type name="Magento\ImportExport\Model\Import\SampleFileProvider">
+        <arguments>
+            <argument name="samples" xsi:type="array">
+                <item name="pantone_list_entity" xsi:type="string">Services_PmsColors</item>
+            </argument>
+        </arguments>
+    </type>
 </config>

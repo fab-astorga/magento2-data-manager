@@ -1,0 +1,7 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_ImportExport:etc/import.xsd">
+    <entity name="hot_chocolate" label="Hot Chocolate" model="Services\HotChocolate\Model\Import\HotChocolate"
+            behaviorModel="Magento\ImportExport\Model\Source\Import\Behavior\Basic" />
+     <entity name="hot_chocolate_prices" label="Hot Chocolate Prices" model="Services\HotChocolate\Model\Import\HotChocolatePrices"
+            behaviorModel="Magento\ImportExport\Model\Source\Import\Behavior\Basic" />
+</config>

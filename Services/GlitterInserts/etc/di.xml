@@ -7,4 +7,11 @@
     <preference for="Services\GlitterInserts\Api\GlitterInsertsRepositoryInterface" type="Services\GlitterInserts\Model\GlitterInsertsRepository"/>
     <preference for="Services\GlitterInserts\Api\GlitterMetallicInsertsPricesRepositoryInterface" type="Services\GlitterInserts\Model\GlitterMetallicInsertsPricesRepository"/>
     <preference for="Services\GlitterInserts\Api\GlitterInsertsManagementInterface" type="Services\GlitterInserts\Model\GlitterInsertsManagement"/>
+    <type name="Magento\ImportExport\Model\Import\SampleFileProvider">
+        <arguments>
+            <argument name="samples" xsi:type="array">
+                <item name="glitter_inserts" xsi:type="string">Services_GlitterInserts</item>
+            </argument>
+        </arguments>
+    </type>
 </config>

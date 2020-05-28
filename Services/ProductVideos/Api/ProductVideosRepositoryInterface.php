@@ -10,7 +10,7 @@ interface ProductVideosRepositoryInterface
     /**
      * Save product video
      *
-     * @param string $id
+     * @param int $id
      * @param string $name
      * @param string $img
      * @param string $video
