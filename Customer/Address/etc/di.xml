@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Customer\Address\Api\Data\AddressExtraAttributesInterface" type="Customer\Address\Model\AddressExtraAttributes"/>
+    <preference for="Customer\Address\Api\Data\AddressExtraAttributesSearchResultsInterface" type="Customer\Address\Model\AddressExtraAttributesSearchResults"/>
+    <preference for="Customer\Address\Api\AddressExtraAttributesRepositoryInterface" type="Customer\Address\Model\AddressExtraAttributesRepository"/>
+</config>

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="customer_company" resource="default" engine="innodb" comment="customer_company">
+        <column xsi:type="int" name="netsuite_id" padding="10" identity="true" unsigned="true" nullable="false" comment="netsuite_id"/>
+        <column xsi:type="varchar" name="company_name" nullable="true" length="255" comment="company_name"/>
+        <column xsi:type="varchar" name="price_level" nullable="true" length="255" comment="price_level"/>
+        <column xsi:type="varchar" name="invoice_email" nullable="true" length="255" comment="invoice_email"/>
+        <column xsi:type="varchar" name="phone" nullable="true" length="255" comment="phone"/>
+        <column xsi:type="varchar" name="alt_phone" nullable="true" length="255" comment="alt_phone"/>
+        <column xsi:type="varchar" name="fax" nullable="true" length="255" comment="fax"/>
+        <column xsi:type="varchar" name="additional_invoice_email_recipient" nullable="true" length="255" comment="additional_invoice_email_recipient"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="netsuite_id"/>
+        </constraint>
+    </table>
+    <table name="address_company" resource="default" engine="innodb" comment="address_company">
+    <column xsi:type="int" name="id" padding="10" identity="true" unsigned="true" nullable="false" comment="id"/>
+        <column xsi:type="int" name="company_id" padding="10" unsigned="true" nullable="false" comment="company_id"/>
+        <column xsi:type="varchar" name="address" nullable="false" length="255" comment="address"/>
+        <column xsi:type="varchar" name="apt_suite" nullable="true" length="255" comment="apt_suite"/>
+        <column xsi:type="varchar" name="city" nullable="false" length="255" comment="city"/>
+        <column xsi:type="varchar" name="state" nullable="false" length="255" comment="state"/>
+        <column xsi:type="varchar" name="zip" nullable="false" length="255" comment="zip"/>
+        <column xsi:type="varchar" name="country" nullable="false" length="255" comment="country"/>
+        <column xsi:type="boolean" name="set_is_default_my_address" nullable="false" comment="set_is_default_my_address"/>
+        <column xsi:type="boolean" name="set_is_default_shipping" nullable="false" comment="set_is_default_shipping"/>
+        <column xsi:type="boolean" name="set_is_default_billing" nullable="false" comment="set_is_default_billing"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <index referenceId="ADDRESS_COMPANY_COMPANY_ID" indexType="btree">
+            <column name="company_id"/>
+        </index>
+        <constraint xsi:type="foreign" referenceId="ADDRESS_COMPANY_COMPANY_ID_CUSTOMER_COMPANY_NETSUITE_ID" table="address_company" column="company_id"
+                    referenceTable="customer_company" referenceColumn="netsuite_id" onDelete="CASCADE"/>
+    </table>
+</schema>

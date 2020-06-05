@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Customer\Manager\Api\CustomerManagementInterface" type="Customer\Manager\Model\CustomerManagement"/>
+    <preference for="Customer\Manager\Api\Data\CustomerExtraAttributesInterface" type="Customer\Manager\Model\CustomerExtraAttributes"/>
+    <preference for="Customer\Manager\Api\Data\CustomerExtraAttributesSearchResultsInterface" type="Customer\Manager\Model\CustomerExtraAttributesSearchResults"/>
+    <preference for="Customer\Manager\Api\CustomerExtraAttributesRepositoryInterface" type="Customer\Manager\Model\CustomerExtraAttributesRepository"/>
+    <type name="Customer\Manager\Api\CustomerManagementInterface">
+        <plugin name="customer_manager_customerget" type="Customer\Manager\Plugin\CustomerGet"/>
+    </type>
+</config>

@@ -1,0 +1,19 @@
+{
+    "address_extra_attributes": {
+        "column": {
+            "id": true,
+            "address_id": true,
+            "address": true,
+            "apt_suite": true,
+            "state": true,
+            "set_is_default_my_address": true
+        },
+        "index": {
+            "ADDRESS_EXTRA_ATTRIBUTES_ADDRESS_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ADDR_EXTRA_ATTRS_ADDR_ID_CSTR_ADDR_ENTT_ENTT_ID": true
+        }
+    }
+}

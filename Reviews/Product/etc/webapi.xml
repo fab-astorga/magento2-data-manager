@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
-    <route method="POST" url="/V1/product_reviews/create/:productId/:score/:nickname/:title/:detail">
+    <route method="POST" url="/V1/product_reviews/create/:productId/:score">
         <service class="Reviews\Product\Api\ProductReviewsManagementInterface" method="createProductReview"/>
         <resources>
-            <resource ref="self"/>
+            <resource ref="anonymous"/>
         </resources>
     </route>
     <route method="POST" url="/V1/product_reviews/approve/:reviewId/:status">
@@ -26,6 +26,12 @@
     </route>
     <route method="GET" url="/V1/product_reviews/rating/:productId">
         <service class="Reviews\Product\Api\ProductReviewsManagementInterface" method="getProductRating"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/product_reviews/best_sellers">
+        <service class="Reviews\Product\Api\ProductReviewsManagementInterface" method="getBestSellers"/>
         <resources>
             <resource ref="anonymous"/>
         </resources>

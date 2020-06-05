@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Customer\Company\Api\CustomerCompanyManagementInterface" type="Customer\Company\Model\CustomerCompanyManagement"/>
+    <preference for="Customer\Company\Api\Data\CustomerCompanyInterface" type="Customer\Company\Model\CustomerCompany"/>
+    <preference for="Customer\Company\Api\Data\CustomerCompanySearchResultsInterface" type="Customer\Company\Model\CustomerCompanySearchResults"/>
+    <preference for="Customer\Company\Api\CustomerCompanyRepositoryInterface" type="Customer\Company\Model\CustomerCompanyRepository"/>
+    <preference for="Customer\Company\Api\Data\AddressCompanyInterface" type="Customer\Company\Model\AddressCompany"/>
+    <preference for="Customer\Company\Api\Data\AddressCompanySearchResultsInterface" type="Customer\Company\Model\AddressCompanySearchResults"/>
+    <preference for="Customer\Company\Api\AddressCompanyRepositoryInterface" type="Customer\Company\Model\AddressCompanyRepository"/>
+    <type name="Customer\Company\Api\CustomerCompanyRepositoryInterface">
+        <plugin name="customer_company" type="Customer\Company\Plugin\CompanyCustomersGet"/>
+    </type>
+</config>

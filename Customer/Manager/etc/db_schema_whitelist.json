@@ -1,0 +1,19 @@
+{
+    "customer_extra_attributes": {
+        "column": {
+            "id": true,
+            "customer_id": true,
+            "netsuite_id": true,
+            "role": true,
+            "job_title": true,
+            "permission": true
+        },
+        "index": {
+            "CUSTOMER_EXTRA_ATTRIBUTES_CUSTOMER_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "CUSTOMER_EXTRA_ATTRIBUTES_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID": true
+        }
+    }
+}

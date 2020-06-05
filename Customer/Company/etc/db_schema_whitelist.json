@@ -1,0 +1,39 @@
+{
+    "customer_company": {
+        "column": {
+            "netsuite_id": true,
+            "company_name": true,
+            "price_level": true,
+            "invoice_email": true,
+            "phone": true,
+            "alt_phone": true,
+            "fax": true,
+            "additional_invoice_email_recipient": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "address_company": {
+        "column": {
+            "id": true,
+            "company_id": true,
+            "address": true,
+            "apt_suite": true,
+            "city": true,
+            "state": true,
+            "zip": true,
+            "country": true,
+            "set_is_default_my_address": true,
+            "set_is_default_shipping": true,
+            "set_is_default_billing": true
+        },
+        "index": {
+            "ADDRESS_COMPANY_COMPANY_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ADDRESS_COMPANY_COMPANY_ID_CUSTOMER_COMPANY_NETSUITE_ID": true
+        }
+    }
+}

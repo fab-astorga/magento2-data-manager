@@ -1,0 +1,5 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <extension_attributes for="Magento\Customer\Api\Data\AddressInterface">
+        <attribute code="address_extra_attributes" type="\Customer\Address\Api\Data\AddressExtraAttributesInterface" />
+    </extension_attributes>
+</config>

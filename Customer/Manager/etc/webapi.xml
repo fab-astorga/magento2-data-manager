@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route method="POST" url="/V1/customer/create">
+        <service class="Customer\Manager\Api\CustomerManagementInterface" method="registerCustomerTest"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/customer/get/:email">
+        <service class="Customer\Manager\Api\CustomerManagementInterface" method="getCustomer"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/customer/get/all">
+        <service class="Customer\Manager\Api\CustomerManagementInterface" method="getAllCustomers"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="DELETE" url="/V1/customer/delete/:email">
+        <service class="Customer\Manager\Api\CustomerManagementInterface" method="deleteCustomer"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="POST" url="/V1/customer/update/:email/:firstname/:lastname">
+        <service class="Customer\Manager\Api\CustomerManagementInterface" method="updateCustomer"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="POST" url="/V1/customer/login/:email/:password">
+        <service class="Customer\Manager\Api\CustomerManagementInterface" method="loginCustomer"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="POST" url="/V1/customer/logout">
+        <service class="Customer\Manager\Api\CustomerManagementInterface" method="logoutCustomer"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="POST" url="/V1/customer/change_password/:email/:actualPassword/:newPassword">
+        <service class="Customer\Manager\Api\CustomerManagementInterface" method="changePasswordCustomer"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+</routes>

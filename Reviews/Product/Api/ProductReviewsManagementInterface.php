@@ -9,12 +9,9 @@ interface ProductReviewsManagementInterface
      * 
      * @param int $productId  
      * @param float $score
-     * @param string $nickname
-     * @param string $title
-     * @param string $detail
      * @return boolean
      */
-    public function createProductReview($productId, $score, $nickname, $title, $detail);
+    public function createProductReview($productId, $score);
 
     /**
      * Get product reviews
@@ -50,4 +47,11 @@ interface ProductReviewsManagementInterface
      * @return int
      */
     public function getProductRating($productId);
+
+    /**
+     * Get products best sellers
+     * 
+     * @return array
+     */
+    public function getBestSellers();
 }

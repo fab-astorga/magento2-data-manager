@@ -1,9 +1,16 @@
 <?php
 
-namespace Customers\Manager\Api;
+namespace Customer\Manager\Api;
 
-interface CustomersManagementInterface 
+interface CustomerManagementInterface 
 { 
+    /**
+     * Test function for register customer
+     * 
+     * @return boolean
+     */
+    public function registerCustomerTest();
+
     /**
      * Create new customer
      * 
@@ -11,9 +18,24 @@ interface CustomersManagementInterface
      * @param string $firstname
      * @param string $lastname
      * @param string $password
+     * @param int $netsuiteId
+     * @param string $role
+     * @param string $jobTitle
+     * @param boolean $permission
+     * @param array $addresses
      * @return boolean
      */
-    public function createCustomer($email, $firstname, $lastname, $password);
+    public function registerCustomer(
+        $email, 
+        $firstname, 
+        $lastname, 
+        $password,  
+        $netsuiteId, 
+        $role, 
+        $jobTitle, 
+        $permission,
+        $addresses
+    );
 
     /**
      * Get customer by email
@@ -22,6 +44,13 @@ interface CustomersManagementInterface
      * @return \Magento\Customer\Api\Data\CustomerInterface
      */
     public function getCustomer($email);
+
+    /**
+     * Get all customers
+     * 
+     * @return \Magento\Customer\Api\Data\CustomerInterface[]
+     */
+    public function getAllCustomers();
 
     /**
      * Delete customer by email
@@ -50,20 +79,22 @@ interface CustomersManagementInterface
      * @return boolean
      */
     public function changePasswordCustomer($email, $actualPassword, $newPassword);
-    
+
+
+    /*****************************  SESSION MANAGEMENT ****************************************/    
     /**
      * Login customer
      * 
      * @param string $email
      * @param string $password
-     * @return string
+     * @return \Magento\Customer\Api\Data\CustomerInterface
      */
     public function loginCustomer($email, $password);
 
     /**
      * Logout customer
      * 
-     * @return int
+     * @return string
      */
     public function logoutCustomer();
 }

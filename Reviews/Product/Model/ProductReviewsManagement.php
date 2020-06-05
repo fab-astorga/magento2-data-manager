@@ -1,18 +1,22 @@
 <?php
 namespace Reviews\Product\Model;
 
+use Exception;
 use Reviews\Product\Api\ProductReviewsManagementInterface;
 
 class ProductReviewsManagement implements ProductReviewsManagementInterface 
 {
     const REVIEW_TABLE = 'review';
-    const REVIEW_ID = 'review_id';
-    const RATINGS = 'ratings';
-    const NICKNAME = 'nickname';
-    const TITLE = 'title';
-    const DETAIL = 'detail';
-    const STATUS_ID = 'status_id';
-    const PRODUCT = 'product';
+    const REVIEW_ID    = 'review_id';
+    const RATINGS      = 'ratings';
+    const NICKNAME     = 'nickname';
+    const TITLE        = 'title';
+    const DETAIL       = 'detail';
+    const STATUS_ID    = 'status_id';
+    const PRODUCT      = 'product';
+    const STARS        = 5;
+    const ERROR        = -1;
+    const NO_REVIEWS   = 0;
 
     protected $_reviewFactory;
     protected $_reviewCollectionFactory;
@@ -20,6 +24,8 @@ class ProductReviewsManagement implements ProductReviewsManagementInterface
     protected $_productRepository;
     protected $_storeManager;
     protected $_resourceConnection;
+    protected $_productCollection;
+    protected $_logger;
 
     public function __construct(
         \Magento\Review\Model\ReviewFactory $reviewFactory,
@@ -27,7 +33,10 @@ class ProductReviewsManagement implements ProductReviewsManagementInterface
         \Magento\Review\Model\RatingFactory $ratingFactory,
         \Magento\Catalog\Api\ProductRepositoryInterface $productRepository,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \Magento\Framework\App\ResourceConnection $resourceConnection
+        \Magento\Framework\App\ResourceConnection $resourceConnection,
+        \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollection,
+        \File\CustomLog\Logger\Logger $logger
+
     ) 
     {
         $this->_reviewFactory           = $reviewFactory;
@@ -36,13 +45,16 @@ class ProductReviewsManagement implements ProductReviewsManagementInterface
         $this->_productRepository       = $productRepository;
         $this->_storeManager            = $storeManager;
         $this->_resourceConnection      = $resourceConnection;
+        $this->_productCollection       = $productCollection;
+        $this->_logger                  = $logger;
+        
     }
 
     /**
      * {@inheritdoc}
      * 
      */
-    public function createProductReview($productId, $score, $nickname, $title, $detail)
+    public function createProductReview($productId, $score)
     {
         $intScore = (int)round($score);
 
@@ -51,9 +63,9 @@ class ProductReviewsManagement implements ProductReviewsManagementInterface
         }
 
         $reviewFinalData['ratings'][1] = $intScore; // Score
-        $reviewFinalData[self::NICKNAME] = $nickname;
-        $reviewFinalData[self::TITLE] = $title;
-        $reviewFinalData[self::DETAIL] = $detail;
+        $reviewFinalData[self::NICKNAME] = "";
+        $reviewFinalData[self::TITLE] = "";
+        $reviewFinalData[self::DETAIL] = "";
         $review = $this->_reviewFactory->create()->setData($reviewFinalData);
         $review->unsetData(self::REVIEW_ID);
         $review->setEntityId($review->getEntityIdByCode(\Magento\Review\Model\Review::ENTITY_PRODUCT_CODE))
@@ -117,11 +129,21 @@ class ProductReviewsManagement implements ProductReviewsManagementInterface
      */
     public function getProductAmountReviews($productId)
     {
-        $product = $this->_productRepository->getById($productId);
+        try {
+            $product = $this->_productRepository->getById($productId);
+
+        } catch (Exception $exception) {
+                return self::ERROR;
+        }
+
+        if ( empty($this->getProductReviews($productId)) ) {
+            return self::NO_REVIEWS;
+        }
+
         $this->_reviewFactory->create()->getEntitySummary($product, $this->_storeManager->getStore()->getId());
         $reviewCount = $product->getRatingSummary()->getReviewsCount();
 
-        return $reviewCount;
+        return (int)$reviewCount;
     }
 
     /**
@@ -129,11 +151,67 @@ class ProductReviewsManagement implements ProductReviewsManagementInterface
      * 
      */
     public function getProductRating($productId)
+
     {
-        $product = $this->_productRepository->getById($productId);
+        try {
+            $product = $this->_productRepository->getById($productId);
+
+        } catch (Exception $exception) {
+                return self::ERROR;
+        }
+
+        if ( empty($this->getProductReviews($productId)) ) {
+            return self::STARS;
+        }
+
         $this->_reviewFactory->create()->getEntitySummary($product, $this->_storeManager->getStore()->getId());
         $ratingSummary = $product->getRatingSummary()->getRatingSummary();
+        $ratingStars = (int)round( ($ratingSummary/100) * self::STARS );
 
-        return $ratingSummary;
+        return $ratingStars;
+    }
+
+    /**
+     * {@inheritdoc}
+     * 
+     */
+    public function getBestSellers()
+    {
+        $products = $this->_productCollection->create();
+        $productRating = array();
+        $response = array();
+
+        /** Calculates rating of each product */
+        foreach ($products as $product)
+        {
+            $product = $this->_productRepository->getById($product->getId());
+
+            if ( empty($this->getProductReviews($product->getId())) ) 
+            {
+                $productRating[] = array("product_id"=>$product->getId(), "average"=>100);
+            } 
+            else 
+            {
+                $this->_reviewFactory->create()->getEntitySummary($product, $this->_storeManager->getStore()->getId());
+                $ratingSummary = $product->getRatingSummary()->getRatingSummary();
+                $productRating[] = array("product_id"=>$product->getId(),"average"=>(int)$ratingSummary);
+            }
+        }
+
+        /** Sort products by rating */
+        foreach ($productRating as $key => $value) {
+            $average[$key] = $value['average'];
+        }
+        array_multisort($average, SORT_DESC, $productRating);
+
+        /** Create an array with product object and amount of stars of each product */
+        foreach ($productRating as $pr)
+        {
+            $product = $this->_productRepository->getById($pr['product_id']);
+            $ratingStars = (int)round(($pr['average']/100) * self::STARS);
+            $response[] = array("product"=>$product,"rating"=>$ratingStars);
+        }
+
+        return $response;
     }
 }
