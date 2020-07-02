@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="company_customer" resource="default" engine="innodb" comment="customer_company">
+        <column xsi:type="int" name="id" padding="10" identity="true" unsigned="true" nullable="false" comment="id"/>
+        <column xsi:type="int" name="customer_id" padding="10" unsigned="true" nullable="true" comment="customer_id"/>
+        <column xsi:type="int" name="netsuite_id" padding="10" unsigned="true" nullable="true" comment="netsuite_id"/>
+        <column xsi:type="varchar" name="company_name" nullable="false" length="255" comment="company_name"/>
+        <column xsi:type="varchar" name="username" nullable="false" length="255" comment="username"/>
+        <column xsi:type="varchar" name="password" nullable="false" length="255" comment="password"/>
+        <column xsi:type="varchar" name="primary_contact" nullable="false" length="255" comment="primary_contact"/>
+        <column xsi:type="varchar" name="job_title" nullable="true" length="255" comment="job_title"/>
+        <column xsi:type="varchar" name="invoice_email" nullable="false" length="255" comment="invoice_email"/>
+        <column xsi:type="varchar" name="business_phone" nullable="true" length="255" comment="business_phone"/>
+        <column xsi:type="varchar" name="extension" nullable="true" length="255" comment="extension"/>
+        <column xsi:type="varchar" name="state_sales_tax_license" nullable="false" length="255" comment="state_sales_tax_license"/>
+        <column xsi:type="varchar" name="website_address" nullable="true" length="255" comment="website_address"/>
+        <column xsi:type="varchar" name="preferred_mode_of_delivery" nullable="true" length="255" comment="preferred_mode_of_delivery"/>
+        <column xsi:type="varchar" name="how_did_you_hear_about_us" nullable="true" length="255" comment="how_did_you_hear_about_us"/>
+        <column xsi:type="varchar" name="alt_phone" nullable="true" length="255" comment="alt_phone"/>
+        <column xsi:type="varchar" name="fax" nullable="true" length="255" comment="fax"/>
+        <column xsi:type="varchar" name="price_level" nullable="true" length="255" comment="price_level"/>
+        <column xsi:type="varchar" name="role" nullable="true" length="255" comment="role"/>
+        <column xsi:type="varchar" name="additional_invoice_email_recipient" nullable="true" length="255" comment="additional_invoice_email_recipient"/>
+        <column xsi:type="boolean" name="permission" nullable="true" comment="permission"/>
+        <column xsi:type="boolean" name="exists_in_netsuite" nullable="true" comment="exists_in_netsuite"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <index referenceId="COMPANY_CUSTOMER__CUSTOMER_ID" indexType="btree">
+            <column name="customer_id"/>
+        </index>
+        <constraint xsi:type="foreign" referenceId="COMPANY_CUSTOMER__CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID" table="company_customer" column="customer_id"
+                    referenceTable="customer_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+</schema>

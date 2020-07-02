@@ -1,0 +1,35 @@
+{
+    "company_customer": {
+        "column": {
+            "id": true,
+            "customer_id": true,
+            "netsuite_id": true,
+            "company_name": true,
+            "username": true,
+            "password": true,
+            "primary_contact": true,
+            "job_title": true,
+            "invoice_email": true,
+            "business_phone": true,
+            "extension": true,
+            "state_sales_tax_license": true,
+            "website_address": true,
+            "preferred_mode_of_delivery": true,
+            "how_did_you_hear_about_us": true,
+            "alt_phone": true,
+            "fax": true,
+            "price_level": true,
+            "role": true,
+            "additional_invoice_email_recipient": true,
+            "permission": true,
+            "exists_in_netsuite": true
+        },
+        "index": {
+            "COMPANY_CUSTOMER_CUSTOMER_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "COMPANY_CUSTOMER_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID": true
+        }
+    }
+}

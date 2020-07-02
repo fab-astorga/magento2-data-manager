@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Customers\Contact\Api\ContactManagementInterface" type="Customers\Contact\Model\ContactManagement"/>
+    <preference for="Customers\Contact\Api\Data\ContactInterface" type="Customers\Contact\Model\Contact"/>
+    <preference for="Customers\Contact\Api\Data\ContactSearchResultsInterface" type="Customers\Contact\Model\ContactSearchResults"/>
+    <preference for="Customers\Contact\Api\ContactRepositoryInterface" type="Customers\Contact\Model\ContactRepository"/>
+    <preference for="Customers\Contact\Api\Data\CustomerDataInterface" type="Customers\Contact\Model\CustomerData"/>
+    <preference for="Customers\Contact\Api\Data\CustomerDataSearchResultsInterface" type="Customers\Contact\Model\CustomerDataSearchResults"/>
+    <preference for="Customers\Contact\Api\CustomerDataRepositoryInterface" type="Customers\Contact\Model\CustomerDataRepository"/>
+    <type name="Customers\Contact\Api\ContactManagementInterface">
+        <plugin name="customers_contact_contactget" type="Customers\Contact\Plugin\ContactGet"/>
+    </type>
+</config>

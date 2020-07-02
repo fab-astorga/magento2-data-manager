@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Customers\Address\Api\Data\AddressDataInterface" type="Customers\Address\Model\AddressData"/>
+    <preference for="Customers\Address\Api\Data\AddressDataSearchResultsInterface" type="Customers\Address\Model\AddressDataSearchResults"/>
+    <preference for="Customers\Address\Api\AddressDataRepositoryInterface" type="Customers\Address\Model\AddressDataRepository"/>
+</config>

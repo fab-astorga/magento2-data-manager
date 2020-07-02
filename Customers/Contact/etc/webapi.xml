@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route method="POST" url="/V1/contact/create">
+        <service class="Customers\Contact\Api\ContactManagementInterface" method="registerContactTest"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/contact/get/:email">
+        <service class="Customers\Contact\Api\ContactManagementInterface" method="getContact"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/contact/get/all">
+        <service class="Customers\Contact\Api\ContactManagementInterface" method="getAllContacts"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="DELETE" url="/V1/contact/delete/:email">
+        <service class="Customers\Contact\Api\ContactManagementInterface" method="deleteContact"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <route method="POST" url="/V1/contact/update/:email/:firstname/:lastname">
+        <service class="Customers\Contact\Api\ContactManagementInterface" method="updateContact"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <route method="POST" url="/V1/contact/login/:email/:password">
+        <service class="Customers\Contact\Api\ContactManagementInterface" method="loginContact"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <route method="POST" url="/V1/contact/logout">
+        <service class="Customers\Contact\Api\ContactManagementInterface" method="logoutContact"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <route method="POST" url="/V1/contact/change_password/:email/:actualPassword/:newPassword">
+        <service class="Customers\Contact\Api\ContactManagementInterface" method="changePasswordContact"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+</routes>
