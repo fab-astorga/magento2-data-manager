@@ -100,11 +100,11 @@ class CompanyCreation
                         'state_sales_tax_license'            => $company->getStateSalesTaxLicense(),
                         'website_address'                    => $company->getWebsiteAddress(),
                         'preferred_mode_of_delivery'         => $company->getPreferredModeOfDelivery(),
-                        'alt_phone'                          => $company->getAltPhone(),
-                        'fax'                                => $company->getFax(),
-                        'price_level'                        => $company->getPriceLevel(),
-                        'additional_invoice_email_recipient' => $company->getAdditionalInvoiceEmailRecipient(),
-                        'permission'                         => (boolean) $company->getPermission(),
+                 //       'alt_phone'                          => $company->getAltPhone(),
+                //        'fax'                                => $company->getFax(),
+                //        'price_level'                        => $company->getPriceLevel(),
+                //        'additional_invoice_email_recipient' => $company->getAdditionalInvoiceEmailRecipient(),
+                //        'permission'                         => (boolean) $company->getPermission(),
                         'job_title'                          => $company->getJobTitle(),
                         'addresses'                          => $addresses
                     ];     

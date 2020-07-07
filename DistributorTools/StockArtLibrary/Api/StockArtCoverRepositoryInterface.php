@@ -11,7 +11,7 @@ interface StockArtCoverRepositoryInterface
     /**
      * Save stock art cover
      *
-     * @param string $id
+     * @param int $id
      * @param string $name
      * @param string $thumbnail
      * @param string $img
@@ -29,6 +29,13 @@ interface StockArtCoverRepositoryInterface
     public function getById($stockArtCoverId);
 
     /**
+     * Retrieve all stock art library
+     *
+     * @return \DistributorTools\StockArtLibrary\Api\Data\StockArtCoverInterface[]
+     */
+    public function getAll();
+
+    /**
      * Retrieve stock art cover by attribute
      *
      * @param $value
@@ -41,11 +48,10 @@ interface StockArtCoverRepositoryInterface
     /**
      * Delete $stockArtCover.
      *
-     * @param \DistributorTools\StockArtLibrary\Api\Data\StockArtCoverInterface $stockArtCover
      * @return boolean
      * @throws \Magento\Framework\Exception\CouldNotDeleteException
      */
-    public function delete(\DistributorTools\StockArtLibrary\Api\Data\StockArtCoverInterface $stockArtCover);
+    public function delete();
 
     /**
      * Delete stock art cover by ID.

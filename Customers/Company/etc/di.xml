@@ -4,7 +4,14 @@
     <preference for="Customers\Company\Api\Data\CompanyInterface" type="Customers\Company\Model\Company"/>
     <preference for="Customers\Company\Api\Data\CompanySearchResultsInterface" type="Customers\Company\Model\CompanySearchResults"/>
     <preference for="Customers\Company\Api\CompanyRepositoryInterface" type="Customers\Company\Model\CompanyRepository"/>
+    <!-- Plugins for company -->
     <type name="Customers\Company\Api\CompanyManagementInterface">
         <plugin name="customers_company_getcompany" type="Customers\Company\Plugin\CompanyContactsGet"/>
     </type>
-</config>
+    <!-- Proxy pattern -->
+    <type name="Customers\Company\Model\Company"> 
+        <arguments>        
+            <argument name="companyManagement" xsi:type="object">Customers\Company\Model\CompanyManagement\Proxy</argument>            
+        </arguments>    
+    </type>
+</config>   

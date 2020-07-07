@@ -1,19 +1,21 @@
 <?xml version="1.0"?>
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+   <!-- INTEGRATION API -->
     <route method="PUT" url="/V1/gordon-customers">
-        <service class="Customers\Company\Api\CompanyManagementInterface" method="updateCompanyFromNetsuite"/>
+        <service class="Customers\Company\Api\CompanyManagementInterface" method="updateCompanyNetsuite"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <!-- TESTING -->
+    <route method="POST" url="/V1/gordon-customers">
+        <service class="Customers\Company\Api\CompanyManagementInterface" method="registerCompanyTest"/>
         <resources>
             <resource ref="self"/>
         </resources>
     </route>
     <route method="POST" url="/V1/gordon-customers/:netsuiteId/:contactId">
         <service class="Customers\Company\Api\CompanyManagementInterface" method="deleteCompany"/>
-        <resources>
-            <resource ref="self"/>
-        </resources>
-    </route>
-    <route method="POST" url="/V1/gordon-customers">
-        <service class="Customers\Company\Api\CompanyManagementInterface" method="registerCompanyTest"/>
         <resources>
             <resource ref="self"/>
         </resources>

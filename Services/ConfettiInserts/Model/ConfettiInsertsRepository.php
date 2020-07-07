@@ -82,13 +82,14 @@ class ConfettiInsertsRepository implements ConfettiInsertsRepositoryInterface
     /**
      * @inheritdoc
      */
-    public function save($sku, $name, $img, $subcategory)
+    public function save($id, $sku, $name, $img, $subcategory)
     {
         $confettiInserts = $this->_confettiInsertsFactory->create();
         $confettiInserts = $confettiInserts->load($sku, 'sku');
         if (!$confettiInserts->getId()) {
             $confettiInserts = $this->_confettiInsertsFactory->create();
         }
+        $confettiInserts->setId($id);
         $confettiInserts->setsku($sku);
         $confettiInserts->setName($name);
         $confettiInserts->setImg($img);

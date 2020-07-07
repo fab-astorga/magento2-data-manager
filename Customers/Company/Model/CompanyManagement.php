@@ -32,6 +32,8 @@ class CompanyManagement implements CompanyManagementInterface
     protected $_logger;
     protected $_integration;
     protected $_customerDataRepository;
+    protected $_passwordGenerator;
+    protected $_emailCourier;
 
     public function __construct(
         \Magento\Store\Model\StoreManagerInterface $storeManager,
@@ -55,6 +57,8 @@ class CompanyManagement implements CompanyManagementInterface
         \Customers\Contact\Api\ContactManagementInterface $contactManagement,
         \Customers\Integration\Api\CustomerInterface $integration,  //cambiar
         \Customers\Contact\Api\CustomerDataRepositoryInterface $customerDataRepository,
+        \Customers\Company\Helper\PasswordGenerator $passwordGenerator,
+        \Customers\Company\Helper\EmailCourier $emailCourier,
         \File\CustomLog\Logger\Logger $logger
     ) 
     {
@@ -80,6 +84,8 @@ class CompanyManagement implements CompanyManagementInterface
         $this->_logger                            = $logger;
         $this->_integration                       = $integration;
         $this->_customerDataRepository            = $customerDataRepository;
+        $this->_passwordGenerator                 = $passwordGenerator;
+        $this->_emailCourier                      = $emailCourier;
     }
 
     /**
@@ -87,28 +93,35 @@ class CompanyManagement implements CompanyManagementInterface
      */
     public function registerCompanyTest()
     {
-        $companyName = "Dos Pinos";
-        $username = "2pinos";
-        $password = "heladitosricos"; // El password viene de netsuite
-        $primaryContact = "Jose Astorga";                                    
-        $jobTitle = "my title"; 
-        $invoiceEmail = "dospinos@gmail.com"; 
-        $businessPhone = "758685588";
+        $companyName = "Midware";
+        $username = "midwr";
+        $primaryContact = "Pablo Vela";                                    
+        $jobTitle = "CEO"; 
+        $invoiceEmail = "astorgafabian6@gmail.com"; 
+        $businessPhone = "88546993";
         $extension = "+506";            
-        $stateSalesTaxLicense = "my dp license";
-        $websiteAddress = "https://www.dospinos.com";
+        $stateSalesTaxLicense = "MIDWR license";
+        $websiteAddress = "https://www.midware.net";
         $preferredModeOfDelivery = "ups";                             
-        $howDidYouHearAboutUs = "i hear from other people";
-        $altPhone = "88779944";
-        $fax = "55546658";
+        $howDidYouHearAboutUs = "i hear from other customers";
+        $altPhone = "84333333";
+        $fax = "2223365";
         $priceLevel = "";
-        $role = "my role";                           
-        $additionalInvoiceEmailRecipient = "jastorga@gmail.com";
+        $role = "developer";                           
+        $additionalInvoiceEmailRecipient = "astorgafabian6@gmail.com";
         $permission = false;
-        
-        /*$myAddress = array("address"=>"Cartago", "aptSuite"=>"47", 
-                                "city"=>"Los Angeles", "state"=>"whatever", "zip"=>"445", 
-                                "country"=>"CR", "isDefaultMyAddress"=>1, "isDefaultShipping"=>0, "isDefaultBilling"=>0);*/
+
+        $myAddress = array(
+            "zip"=>33101, 
+            "country"=>"US",
+            "address"=>"Near to Ozarks lake", 
+            "city"=>"Utah", 
+            "apt_suite"=>"43",                                
+            "state"=>"cant remember",                               
+            "set_is_default_my_address"=>true,
+            "set_is_default_billing"=>false, 
+            "set_is_default_shipping"=>false
+        );                        
 
         $shippingAddress = array(
             "zip"=>33101, 
@@ -134,12 +147,11 @@ class CompanyManagement implements CompanyManagementInterface
             "set_is_default_shipping"=>true
         );
         
-        $addresses = array( /*$myAddress,*/ $shippingAddress, $billingAddress);
+        $addresses = array($myAddress, $shippingAddress, $billingAddress);
 
         $result = $this->registerCompany(
             $companyName, 
             $username, 
-            $password, 
             $primaryContact,                                    
             $jobTitle, 
             $invoiceEmail, 
@@ -166,167 +178,224 @@ class CompanyManagement implements CompanyManagementInterface
      */
     public function registerCompany(
         $companyName, 
-        $username, 
-        $password, 
+        $username,    //
         $primaryContact,                                    
         $jobTitle, 
         $invoiceEmail, 
         $businessPhone, 
-        $extension,            
+        $extension,        //    
         $stateSalesTaxLicense, 
         $websiteAddress, 
         $preferredModeOfDelivery,                             
-        $howDidYouHearAboutUs, 
+        $howDidYouHearAboutUs, //
         $altPhone, 
         $fax, 
         $priceLevel, 
-        $role,                            
+        $role,     //                       
         $additionalInvoiceEmailRecipient, 
         $permission, 
         $addresses
     )
     {
-        $existsInNetsuite = false;
-        $contactCredentials = explode(" ", $primaryContact); 
+        $data = [
+            'company_name'                       => $companyName,
+            'primary_contact'                    => $primaryContact,
+            'email_address'                      => $invoiceEmail,
+            'business_phone'                     => $businessPhone,
+            'state_sales_tax_license'            => $stateSalesTaxLicense,
+            'website_address'                    => $websiteAddress,
+            'preferred_mode_of_delivery'         => $preferredModeOfDelivery,
+     //       'alt_phone'                          => $company->getAltPhone(),
+    //        'fax'                                => $company->getFax(),
+    //        'price_level'                        => $company->getPriceLevel(),
+    //        'additional_invoice_email_recipient' => $company->getAdditionalInvoiceEmailRecipient(),
+    //        'permission'                         => (boolean) $company->getPermission(),
+            'job_title'                          => $jobTitle,
+            'addresses'                          => $addresses
+        ];     
 
-        $storeId = $this->_storeManager->getStore()->getId();
-        $websiteId = $this->_storeManager->getStore($storeId)->getWebsiteId();
-
-        /* Store company data in Magento entitites */
+        /* Send request to Netsuite in order to make a registration */
         try {
-
-            $customer = $this->_customerInterface->create();
-            $customer->setWebsiteId($websiteId);
-            $customer->setEmail($invoiceEmail);
-            $customer->setFirstname($companyName);
-            $customer->setLastname($companyName);
-            $hashedPassword = $this->_encryptor->getHash($password, true);
-
-            $this->_customerRepository->save($customer, $hashedPassword);
-            $customer = $this->_customerFactory->create();
-            $customer->setWebsiteId($websiteId)->loadByEmail($invoiceEmail);
-
-            $this->_customerDataRepository->save(
-                $customer->getId(),
-                self::COMPANY
-            );
-
-            $company = $this->_companyRepository->save(
-                            $customer->getId(),
-                            null, // netsuite ID
-                            $companyName, 
-                            $username, 
-                            $password,  //deberia venir de netsuite
-                            $primaryContact,  //  $contact['name']                             
-                            $jobTitle,  // $contact['job_title']
-                            $invoiceEmail,   // $contact['email']
-                            $businessPhone, 
-                            $extension,            
-                            $stateSalesTaxLicense, 
-                            $websiteAddress, 
-                            $preferredModeOfDelivery,                             
-                            $howDidYouHearAboutUs, 
-                            $altPhone, 
-                            $fax, 
-                            $priceLevel, 
-                            $role,                            
-                            $additionalInvoiceEmailRecipient, 
-                            $permission,
-                            $existsInNetsuite
-                    );
-
-            foreach ($addresses as $tmpAddress)
-            {
-                $address = $this->_addressDataFactory->create();
-                // Required values for entity
-                $address->setFirstname($companyName);
-                $address->setLastname($companyName);
-                $address->setTelephone(self::DEFAULT);
-                $street[] = self::DEFAULT;
-                $address->setStreet($street);
-                $address->setCity($tmpAddress['city']);
-                $address->setCountryId($tmpAddress['country']);
-                $address->setPostcode($tmpAddress['zip']);
-                $address->setIsDefaultShipping($tmpAddress['set_is_default_shipping']);
-                $address->setIsDefaultBilling($tmpAddress['set_is_default_billing']);
-                $address->setCustomerId($customer->getId());
-                $this->_addressRepository->save($address);
-                
-                $addressData = $this->_addressDataRepository->save(
-                                            $address->getId(),
-                                            null,
-                                            $tmpAddress['address'],
-                                            $tmpAddress['apt_suite'],
-                                            $tmpAddress['state'],
-                                            $tmpAddress['set_is_default_my_address']
-                                        ); 
-            }   
-            
-            /*  Create contact */
-            $this->_contactManagement->registerContact(
-                $additionalInvoiceEmailRecipient, 
-                $contactCredentials[0], //firstname 
-                $contactCredentials[1], //lastname
-                $password,  // ?????
-                null,   // netsuite ID viene en el json desde netsuite: $response['contact']['netsuite_id']
-                $customer->getId(),
-                $jobTitle, 
-                $addresses
-            );
-
-            return $company;
-        
-        } catch (Exception $exception) {
-            throw new Exception($exception->getMessage());
+            $response = $this->_integration->postCompanyRegistration($data);
+        } catch (\Exception $e) {
+            $this->_logger->info('error message: '. $e->getMessage());
         }
- 
+        
+        $this->_logger->info('netsuite response: ' . $response);
+
+        $result = json_decode($response, true);
+
+        /* If there's no error */
+        if( (empty($result["error"])) ) 
+        {
+            $storeId = $this->_storeManager->getStore()->getId();
+            $websiteId = $this->_storeManager->getStore($storeId)->getWebsiteId();
+            $contactCredentials = explode(" ", $primaryContact); 
+
+            try {
+                /* Create customer */
+                $customer = $this->_customerInterface->create();
+                $customer->setWebsiteId($websiteId);
+                $customer->setEmail($invoiceEmail);
+                $customer->setFirstname($companyName);
+                $customer->setLastname($companyName);
+    
+                $this->_customerRepository->save($customer);
+                $customer = $this->_customerFactory->create();
+                $customer->setWebsiteId($websiteId)->loadByEmail($invoiceEmail);
+    
+                $company = $this->_companyRepository->save(
+                                $customer->getId(),
+                                null, // netsuite ID
+                                $companyName, 
+                                $username, 
+                                $primaryContact,  //  $contact['name']                             
+                                $jobTitle,  // $contact['job_title']
+                                $invoiceEmail,   // $contact['email']
+                                $businessPhone, 
+                                $extension,            
+                                $stateSalesTaxLicense, 
+                                $websiteAddress, 
+                                $preferredModeOfDelivery,                             
+                                $howDidYouHearAboutUs, 
+                                $altPhone, 
+                                $fax, 
+                                $priceLevel, 
+                                $role,                            
+                                $additionalInvoiceEmailRecipient, 
+                                $permission
+                        );
+                
+                /* Create customer addresses */
+                foreach ($addresses as $tmpAddress)
+                {
+                    $address = $this->_addressDataFactory->create();
+                    // Required values for entity
+                    $address->setFirstname($companyName);
+                    $address->setLastname($companyName);
+                    $address->setTelephone(self::DEFAULT);
+                    $street[] = self::DEFAULT;
+                    $address->setStreet($street);
+                    $address->setCity($tmpAddress['city']);
+                    $address->setCountryId($tmpAddress['country']);
+                    $address->setPostcode($tmpAddress['zip']);
+                    $address->setIsDefaultShipping($tmpAddress['set_is_default_shipping']);
+                    $address->setIsDefaultBilling($tmpAddress['set_is_default_billing']);
+                    $address->setCustomerId($customer->getId());
+                    $this->_addressRepository->save($address);
+                    
+                    $addressData = $this->_addressDataRepository->save(
+                                                $address->getId(),
+                                                null,
+                                                $tmpAddress['address'],
+                                                $tmpAddress['apt_suite'],
+                                                $tmpAddress['state'],
+                                                $tmpAddress['set_is_default_my_address']
+                                            ); 
+                }   
+                
+                /*  Create company primary contact entity */
+                $this->_contactManagement->registerContact(
+                    $additionalInvoiceEmailRecipient, 
+                    $contactCredentials[0], //firstname 
+                    $contactCredentials[1], //lastname
+                    $password,  // ?????
+                    null,   // netsuite ID viene en el json desde netsuite: $response['contact']['netsuite_id']
+                    $customer->getId(),
+                    $jobTitle, 
+                    $addresses
+                );
+
+                return true; 
+
+            } catch (Exception $exception) {
+                throw new Exception($exception->getMessage());
+            }
+        }
+
+        return false;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function updateCompanyFromNetsuite()
+    public function updateCompanyNetsuite()
     {
         $data = (array) json_decode(file_get_contents('php://input'), true);
 
+        /* Retrieves customer entity with Netsuite info */
         try {
-            $company = $this->_companyRepository->get($data["netsuite_id"], 'netsuite_id');
+            $customer = $this->_customerRepository->get($data["email_address"]);
         } catch (\Exception $e) {
-            return false;
+            return $e->getMessage();
         }
-        $company->setCompanyName($data["company_name"]);
-        $company->setInvoiceEmail($data["email_address"]);
-        $company->setBusinessPhone($data["business_phone"]);
-        $company->setStateSalesTaxLicense($data["state_sales_tax_license"]);
-        $company->setWebsiteAddress($data["website_address"]);
-        $company->setPreferredModeOfDelivery($data["preferred_mode_of_delivery"]);
-        $company->setAltPhone($data["alt_phone"]);
-        $company->setFax($data["fax"]);
-        $company->setPriceLevel($data["price_level"]);
-        $company->setRole($data["role"]);
-        $company->setAdditionalInvoiceEmailRecipient($data["additional_invoice_email_recipient"]);
-        $company->setPermission($data["permission"]);
 
+        /* Store customer type */
+        $this->_customerDataRepository->save(
+            $customer->getId(),
+            self::COMPANY
+        );
+
+        /* Password is generated automatically */
+        $password = $this->_passwordGenerator->generatePassword();
+        $this->_logger->info('password generated: ' . $password );
+        $hashedPassword = $this->_encryptor->getHash($password, true);
+        $this->_customerRepository->save($customer, $hashedPassword);
+
+        // Send password by email and change permission flag !!!!
+
+        /* Update company data */
+        $company = $this->_companyRepository->get($customer->getId(), 'customer_id');
+
+        $company->setNetsuiteId( $data['netsuite_id'] );
+        $company->setCompanyName( $data['company_name'] );
+        $company->setPrimaryContact( $data[''] );
+        $company->setInvoiceEmail( $data['email_address'] );
+        $company->setBusinessPhone( $data['business_phone'] );
+        $company->setStateSalesTaxLicense( $data['state_sales_tax_license'] );
+        $company->setWebsiteAddress( $data['website_address'] );
+        $company->setPreferredModeOfDelivery( $data['preferred_mode_of_delivery'] );
+        $company->setAltPhone( $data['alt_phone'] );
+        $company->setFax( $data['fax'] );
+        $company->setPriceLevel( $data['price_level'] );
+        $company->setAdditionalInvoiceEmailRecipient( $data['additional_invoice_email_recipient'] );
+        $company->setPermission( $data['permission'] );
+        $company->setRole( $data['role'] );
         $this->_resourceModelCompany->save($company);
 
-      /*  foreach ($data["addresses"] as $address)
-        {
-            try {
-                $addressCompany = $this->_addressCompanyRepository->get($address["netsuite_id"], 'netsuite_id');
-            } catch (\Exception $e) {
-                return false;
-            }               
-            $addressCompany->setZip($address["zip"]);
-            $addressCompany->setCountry($address["country"]);
-            $addressCompany->setAddress($address["address"]);
-            $addressCompany->setCity($address["city"]);
-            $addressCompany->setAptSuite($address["apt_suite"]);
-            $addressCompany->setState($address["state"]);
-            $addressCompany->setIsDefaultBilling($address["set_is_default_billing"]);
-            $addressCompany->setIsDefaultShipping($address["set_is_default_shipping"]);
-        }  */
+        /* Update customer addresses with netsuite info */        
+        $index = 0;
 
-        return $company;
+        foreach ($customer->getAddresses() as $addr)
+        {
+            $addressData = $this->_addressDataRepository->get($addr->getId(),'address_id');
+
+            $addressData->setNetsuiteId( $data["addresses"][$index]["netsuite_id"] );
+            $addressData->setNetsuiteId( $data["addresses"][$index]["address"] );
+            $addressData->setNetsuiteId( $data["addresses"][$index]["apt_suite"] );
+            $addressData->setNetsuiteId( $data["addresses"][$index]["state"] );
+            $this->_resourceModelAddressData->save($addressData);
+
+            $addr->setCity( $data["addresses"][$index]["city"] );
+            $addr->setCountryId( $data["addresses"][$index]["country"] );
+            $addr->setPostcode( $data["addresses"][$index]["zip"] );
+            $addr->setIsDefaultShipping( $data["addresses"][$index]["set_is_default_shipping"] );
+            $addr->setIsDefaultBilling( $data["addresses"][$index]["set_is_default_billing"] );
+            $this->_addressRepository->save($addr);
+
+            $index++;
+        }
+        
+        /* Store contact netsuite ID */
+        $contact = $this->_contactRepository->get(
+            $customer->getId(), 
+            'company_id'
+        );
+        $contact->setNetsuiteId($result["contacts"]["netsuite_id"]);
+        $this->_logger->info('netsuite id contact: ' . $result["contacts"]["netsuite_id"]);
+        $this->_resourceModelContact->save($contact); 
+                        
+        return $customer;
     }
 
     /**
@@ -440,6 +509,8 @@ class CompanyManagement implements CompanyManagementInterface
     public function loginCompany($email, $password)
     {
         $customer = $this->_accountManagement->authenticate($email, $password);
+        $this->_logger->info('customer id: ' . $customer->getId() );
+    
 
         if($customer->getId())
         {
@@ -455,9 +526,8 @@ class CompanyManagement implements CompanyManagementInterface
                 return "Customer is already logged in";
             }
 
-            $customer = $this->getCompany($email);
             $customerSession->setCustomerDataAsLoggedIn($customer);
-            return $customer;
+            return "Customer logged in successfully";
         } 
         else {
             return "Customer could not login";

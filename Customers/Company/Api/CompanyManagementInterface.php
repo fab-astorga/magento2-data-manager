@@ -2,12 +2,16 @@
 
 namespace Customers\Company\Api;
 
+/**
+ * Interface CompanyManagementInterface
+ * @api
+ */
 interface CompanyManagementInterface 
 { 
     /**
-     * Testing register customer company
+     * Testing registration
      * 
-     * @return \Customers\Company\Api\Data\CompanyInterface
+     * @return boolean
      */
     public function registerCompanyTest();
 
@@ -16,7 +20,6 @@ interface CompanyManagementInterface
      * 
      * @param string $companyName
      * @param string $username
-     * @param string $password
      * @param string $primaryContact
      * @param string $jobTitle
      * @param string $invoiceEmail
@@ -33,12 +36,11 @@ interface CompanyManagementInterface
      * @param string $additionalInvoiceEmailRecipient
      * @param boolean $permission 
      * @param array $addresses
-     * @return \Customers\Company\Api\Data\CompanyInterface
+     * @return boolean
      */
     public function registerCompany(
         $companyName, 
         $username, 
-        $password, 
         $primaryContact,                                    
         $jobTitle, 
         $invoiceEmail, 
@@ -62,7 +64,7 @@ interface CompanyManagementInterface
      * 
      * @return \Customers\Company\Api\Data\CompanyInterface
      */
-    public function updateCompanyFromNetsuite();
+    public function updateCompanyNetsuite();
 
     /**
      * Get company by email
@@ -114,7 +116,7 @@ interface CompanyManagementInterface
      * 
      * @param string $email
      * @param string $password
-     * @return \Customers\Company\Api\Data\CompanyInterface
+     * @return \Customers\Company\Api\Data\CompanyInterface|string
      */
     public function loginCompany($email, $password);
 

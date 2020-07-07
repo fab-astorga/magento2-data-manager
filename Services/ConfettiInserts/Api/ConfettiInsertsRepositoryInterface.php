@@ -7,17 +7,17 @@ namespace Services\ConfettiInserts\Api;
  */
 interface ConfettiInsertsRepositoryInterface
 {
-
     /**
      * Save confetti insert
      *
+     * @param int $id
      * @param string $sku
      * @param string $name
      * @param string $img
      * @param string $subcategory
      * @return \Services\ConfettiInserts\Api\Data\ConfettiInsertsInterface
      */
-    public function save($sku, $name, $img, $subcategory);
+    public function save($id, $sku, $name, $img, $subcategory);
 
     /**
      * Retrieve confetti insert by id

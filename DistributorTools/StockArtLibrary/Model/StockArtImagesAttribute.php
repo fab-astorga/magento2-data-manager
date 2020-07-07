@@ -10,7 +10,7 @@ class StockArtImagesAttribute extends \Magento\Framework\Model\AbstractModel imp
     {
         $this->_init('DistributorTools\StockArtLibrary\Model\ResourceModel\StockArtImagesAttribute');
     }
-
+    
     /**
      * @inheritdoc
      */

@@ -104,6 +104,22 @@ class StockArtCoverRepository implements StockArtCoverRepositoryInterface
     /**
      * @inheritdoc
      */
+    public function getAll()
+    {
+        $collection = $this->_stockArtCoverCollectionFactory->create();
+        $stockArtLibrary = array();
+
+        foreach ($collection as $stockArtCover)
+        {
+            $stockArtLibrary[] = $this->getById($stockArtCover->getId());
+        }
+
+        return $stockArtLibrary;
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function get($value, $attributeCode = null)
     {
         /** @var StockArtCover $stockArtCover */
@@ -119,20 +135,18 @@ class StockArtCoverRepository implements StockArtCoverRepositoryInterface
     /**
      * @inheritdoc
      */
-    public function delete(StockArtCoverInterface $stockArtCover)
+    public function delete()
     {
+        try { 
+            $collection = $this->_stockArtCoverCollectionFactory->create();
+            if($collection->getSize() ) {
+                $collection->walk('delete');
+            }
+            return true;
 
-        $stockArtCoverId = $stockArtCover->getId();
-
-        try {
-            $this->_resourceModelStockArtCover->delete($stockArtCover);
-        } catch (Exception $e) {
-            throw new CouldNotDeleteException(
-                __('Unable to remove entity %1', $stockArtCoverId)
-            );
+        } catch (\Exception $e) {
+            throw new NoSuchEntityException(__($e));
         }
-
-        return true;
     }
 
     /**

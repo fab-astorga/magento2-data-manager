@@ -14,7 +14,6 @@ interface CompanyRepositoryInterface
      * @param int $netsuiteId
      * @param string $companyName
      * @param string $username
-     * @param string $password
      * @param string $primaryContact
      * @param string $jobTitle
      * @param string $invoiceEmail
@@ -30,7 +29,6 @@ interface CompanyRepositoryInterface
      * @param string $role
      * @param string $additionalInvoiceEmailRecipient
      * @param boolean $permission 
-     * @param boolean $existsInNetsuite
      * @return \Customers\Company\Api\Data\CompanyInterface
      */
     public function save(
@@ -38,7 +36,6 @@ interface CompanyRepositoryInterface
         $netsuiteId, 
         $companyName, 
         $username, 
-        $password, 
         $primaryContact,                                    
         $jobTitle, 
         $invoiceEmail, 
@@ -53,8 +50,7 @@ interface CompanyRepositoryInterface
         $priceLevel, 
         $role,                            
         $additionalInvoiceEmailRecipient, 
-        $permission,
-        $existsInNetsuite
+        $permission
     );
 
     /**

@@ -72,21 +72,6 @@ interface CompanyInterface extends CustomAttributesDataInterface
     public function setUsername($username);
 
     /**
-     * Retrieve the password
-     *
-     * @return string
-     */
-    public function getPassword();
-
-    /**
-     * Set password
-     * 
-     * @param string $password
-     * @return $this
-     */
-    public function setPassword($password);
-
-    /**
      * Retrieve the primary contact
      *
      * @return string
@@ -310,21 +295,6 @@ interface CompanyInterface extends CustomAttributesDataInterface
      * @return $this
      */
     public function setPermission($permission);
-
-    /**
-     * Retrieve exists in netsuite flag
-     *
-     * @return boolean
-     */
-    public function getExistsInNetsuite();
-
-    /**
-     * Set exists in netsuite flag
-     *
-     * @param boolean $existsInNetsuite
-     * @return $this
-     */
-    public function setExistsInNetsuite($existsInNetsuite);
 
     /**
      * Retrieve existing extension attributes object or create a new one.

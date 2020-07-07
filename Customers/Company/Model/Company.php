@@ -99,22 +99,6 @@ class Company extends AbstractExtensibleModel implements CompanyInterface, Ident
     /**
      * @inheritdoc
      */
-    public function getPassword()
-    {
-        return $this->getData('password');
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function setPassword($password)
-    {
-        return $this->setData('password', $password);
-    }
-
-    /**
-     * @inheritdoc
-     */
     public function getPrimaryContact()
     {
         return $this->getData('primary_contact');
@@ -350,22 +334,6 @@ class Company extends AbstractExtensibleModel implements CompanyInterface, Ident
     public function setPermission($permission)
     {
         return $this->setData('permission', $permission);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getExistsInNetsuite()
-    {
-        return $this->getData('exists_in_netsuite');
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function setExistsInNetsuite($existsInNetsuite)
-    {
-        return $this->setData('exists_in_netsuite', $existsInNetsuite);
     }
 
     /**

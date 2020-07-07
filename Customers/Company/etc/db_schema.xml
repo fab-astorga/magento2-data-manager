@@ -6,7 +6,6 @@
         <column xsi:type="int" name="netsuite_id" padding="10" unsigned="true" nullable="true" comment="netsuite_id"/>
         <column xsi:type="varchar" name="company_name" nullable="false" length="255" comment="company_name"/>
         <column xsi:type="varchar" name="username" nullable="false" length="255" comment="username"/>
-        <column xsi:type="varchar" name="password" nullable="false" length="255" comment="password"/>
         <column xsi:type="varchar" name="primary_contact" nullable="false" length="255" comment="primary_contact"/>
         <column xsi:type="varchar" name="job_title" nullable="true" length="255" comment="job_title"/>
         <column xsi:type="varchar" name="invoice_email" nullable="false" length="255" comment="invoice_email"/>
@@ -22,7 +21,6 @@
         <column xsi:type="varchar" name="role" nullable="true" length="255" comment="role"/>
         <column xsi:type="varchar" name="additional_invoice_email_recipient" nullable="true" length="255" comment="additional_invoice_email_recipient"/>
         <column xsi:type="boolean" name="permission" nullable="true" comment="permission"/>
-        <column xsi:type="boolean" name="exists_in_netsuite" nullable="true" comment="exists_in_netsuite"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="id"/>
         </constraint>

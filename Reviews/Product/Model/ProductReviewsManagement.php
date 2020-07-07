@@ -47,7 +47,6 @@ class ProductReviewsManagement implements ProductReviewsManagementInterface
         $this->_resourceConnection      = $resourceConnection;
         $this->_productCollection       = $productCollection;
         $this->_logger                  = $logger;
-        
     }
 
     /**
@@ -186,7 +185,9 @@ class ProductReviewsManagement implements ProductReviewsManagementInterface
         {
             $product = $this->_productRepository->getById($product->getId());
 
-            if ( empty($this->getProductReviews($product->getId())) ) 
+            $this->_logger->info('product sku: ' . $product->getSku());
+
+            if (empty($this->getProductReviews($product->getId()))) 
             {
                 $productRating[] = array("product_id"=>$product->getId(), "average"=>100);
             } 
@@ -209,7 +210,7 @@ class ProductReviewsManagement implements ProductReviewsManagementInterface
         {
             $product = $this->_productRepository->getById($pr['product_id']);
             $ratingStars = (int)round(($pr['average']/100) * self::STARS);
-            $response[] = array("product"=>$product,"rating"=>$ratingStars);
+            $response[] = array("product"=>$product, "rating"=>$ratingStars);
         }
 
         return $response;

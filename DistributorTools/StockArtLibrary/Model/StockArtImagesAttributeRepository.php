@@ -82,10 +82,9 @@ class StockArtImagesAttributeRepository implements StockArtImagesAttributeReposi
     /**
      * @inheritdoc
      */
-    public function save($id, $coverId, $name, $img)
+    public function save($coverId, $name, $img)
     {
         $stockArtImagesAttribute = $this->_stockArtImagesAttributeFactory->create();
-        $stockArtImagesAttribute->setId($id);
         $stockArtImagesAttribute->setCoverId($coverId);
         $stockArtImagesAttribute->setName($name);
         $stockArtImagesAttribute->setImg($img);
@@ -119,20 +118,18 @@ class StockArtImagesAttributeRepository implements StockArtImagesAttributeReposi
     /**
      * @inheritdoc
      */
-    public function delete(StockArtImagesAttributeInterface $stockArtImagesAttribute)
+    public function delete()
     {
+        try { 
+            $collection = $this->_stockArtImagesAttributeCollectionFactory->create();
+            if($collection->getSize() ) {
+                $collection->walk('delete');
+            }
+            return true;
 
-        $stockArtImagesAttributeId = $stockArtImagesAttribute->getId();
-
-        try {
-            $this->_resourceModelStockArtImagesAttribute->delete($stockArtImagesAttribute);
-        } catch (Exception $e) {
-            throw new CouldNotDeleteException(
-                __('Unable to remove entity %1', $stockArtImagesAttributeId)
-            );
+        } catch (\Exception $e) {
+            throw new NoSuchEntityException(__($e));
         }
-
-        return true;
     }
 
     /**

@@ -90,7 +90,6 @@ class CompanyRepository implements CompanyRepositoryInterface
         $netsuiteId, 
         $companyName, 
         $username, 
-        $password, 
         $primaryContact,                                    
         $jobTitle, 
         $invoiceEmail, 
@@ -105,8 +104,7 @@ class CompanyRepository implements CompanyRepositoryInterface
         $priceLevel, 
         $role,                            
         $additionalInvoiceEmailRecipient, 
-        $permission,
-        $existsInNetsuite
+        $permission
     )
     {
         $company = $this->_companyFactory->create();
@@ -114,7 +112,6 @@ class CompanyRepository implements CompanyRepositoryInterface
         $company->setNetsuiteId($netsuiteId);
         $company->setCompanyName($companyName);
         $company->setUsername($username);
-        $company->setPassword($password);
         $company->setPrimaryContact($primaryContact);
         $company->setJobTitle($jobTitle);
         $company->setInvoiceEmail($invoiceEmail);
@@ -130,7 +127,6 @@ class CompanyRepository implements CompanyRepositoryInterface
         $company->setRole($role);
         $company->setAdditionalInvoiceEmailRecipient($additionalInvoiceEmailRecipient);
         $company->setPermission($permission);
-        $company->setExistsInNetsuite($existsInNetsuite);
         $this->_resourceModelCompany->save($company);
         return $company;
     }

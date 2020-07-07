@@ -11,13 +11,12 @@ interface StockArtImagesAttributeRepositoryInterface
     /**
      * Save stock art images attribute
      *
-     * @param string $id
-     * @param string $coverId
+     * @param int $coverId
      * @param string $name
      * @param string $img
      * @return \DistributorTools\StockArtLibrary\Api\Data\StockArtImagesAttributeInterface
      */
-    public function save($id, $coverId, $name, $img);
+    public function save($coverId, $name, $img);
 
     /**
      * Retrieve stock art images attribute by id
@@ -41,11 +40,10 @@ interface StockArtImagesAttributeRepositoryInterface
     /**
      * Delete $stockArtImagesAttribute.
      *
-     * @param \DistributorTools\StockArtLibrary\Api\Data\StockArtImagesAttributeInterface $stockArtImagesAttribute
      * @return boolean
      * @throws \Magento\Framework\Exception\CouldNotDeleteException
      */
-    public function delete(\DistributorTools\StockArtLibrary\Api\Data\StockArtImagesAttributeInterface $stockArtImagesAttribute);
+    public function delete();
 
     /**
      * Delete stock art ImagesAttribute by ID.
