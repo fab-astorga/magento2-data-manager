@@ -1,0 +1,24 @@
+{
+    "general_imprint_method_entity": {
+        "column": {
+            "imprint_method_id": true,
+            "name": true,
+            "page_title": true,
+            "number": true,
+            "description_title": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "general_imprint_methods_image": {
+        "column": {
+            "imprint_method_id": true,
+            "imprint_method_image": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_5CE6C1BD8534D9DA5E8F6712FD09BFCD": true
+        }
+    }
+}

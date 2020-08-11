@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Items\ImprintMethods\Api\Data\ImprintMethodInterface" type="Items\ImprintMethods\Model\ImprintMethod"/>
+    <preference for="Items\ImprintMethods\Api\Data\ImprintMethodGroupInterface" type="Items\ImprintMethods\Model\ImprintMethodGroup"/>
+    <preference for="Items\ImprintMethods\Api\Data\ImprintMethodSearchResultsInterface" type="Items\ImprintMethods\Model\ImprintMethodSearchResults"/>
+    <preference for="Items\ImprintMethods\Api\Data\ImprintMethodGroupSearchResultsInterface" type="Items\ImprintMethods\Model\ImprintMethodGroupSearchResults"/>
+    <preference for="Items\ImprintMethods\Api\ImprintMethodsManagementInterface" type="Items\ImprintMethods\Model\ImprintMethodsManagement"/>
+    <preference for="Items\ImprintMethods\Api\ImprintMethodsRepositoryInterface" type="Items\ImprintMethods\Model\ImprintMethodsRepository"/>
+    <preference for="Items\ImprintMethods\Api\ImprintMethodsGroupRepositoryInterface" type="Items\ImprintMethods\Model\ImprintMethodGroupRepository"/>
+    <type name="Magento\ImportExport\Model\Import\SampleFileProvider">
+        <arguments>
+            <argument name="samples" xsi:type="array">
+                <item name="imprint_methods" xsi:type="string">Items_ImprintMethods</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

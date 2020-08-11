@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <extension_attributes for="Items\ImprintMethods\Api\Data\ImprintMethodGroupInterface">
+        <attribute code="imprint_methods" type="Items\ImprintMethods\Api\Data\ImprintMethodInterface[]"/>
+    </extension_attributes>
+    <extension_attributes for="Items\ImprintMethods\Api\Data\ImprintMethodInterface">
+        <attribute code="max_colors" type="string[]"/>
+    </extension_attributes>
+</config>

@@ -1,0 +1,53 @@
+
+<?php foreach ($block->getSafetyDetails() as $key=>$k): ?>
+    <?php if ($key=="Prop 65 Warning"): ?> 
+        <?php if ($k): ?> 
+        <div id="openModal" class="modalDialog">
+            <div>
+            <a id="close" title="Close" class="close">X</a>
+            <div class="row">
+                <img class="col-2" src='<?php echo $this->getViewFileUrl('images/warning.svg'); ?>'/>
+                <h5 class="col-10">California Proposition 65 Warning</h5>
+            </div>
+            <div class="row">
+                <span class="col-12">This product may contain chemicals known to the State of California to cause cancer. For more information, go to www.P65Warnings.ca.gov.</span>
+            </div>
+            </div>
+        </div>
+        <?php endif; ?>
+    <?php endif; ?>
+<?php endforeach; ?>
+
+<?php if ($block->getPrices()): ?>
+<h4 class="mt-5">PRICE</h4>
+ <table>
+    <tr class="borderButton"> 
+    <td class="font-weight-bold">Qty</td>
+    <?php foreach ($block->getPrices() as $key=>$k): ?>  
+        <?php if ($k["min_quantity"]!=0): ?> 
+            <td><?= $block->escapeHtmlAttr($k["min_quantity"]) ?></td>
+        <?php endif; ?>
+    <?php endforeach; ?>
+    </tr>
+    <tr> 
+    <td class="font-weight-bold">Price R*</td>
+    <?php foreach ($block->getPrices() as $key=>$k): ?> 
+        <?php if ($k["min_quantity"]!=0): ?>  
+            <td><?= $block->escapeHtmlAttr($k["unit_price"]) ?></td>
+        <?php endif; ?>
+    <?php endforeach; ?>
+    </tr>
+</table>
+<?php endif; ?>
+
+<script>
+
+        let close = document.getElementById("close");
+        let modalDialog = document.querySelector(".modalDialog");
+        close.addEventListener("click", closeP);
+        function closeP() {
+            modalDialog.style.display = "none";
+        }
+
+</script>
+

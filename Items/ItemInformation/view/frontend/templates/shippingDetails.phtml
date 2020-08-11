@@ -1,0 +1,10 @@
+
+<?php foreach ($block->getShippingDetails() as $key=>$k): ?>
+    <?php if ($k): ?> 
+        <?php if ($k == 1): ?> 
+            <p class="col-lg-5"><strong><?=$key?>:</strong> Yes</p>
+        <?php else: ?> 
+            <p class="col-lg-5"><strong><?=$key?>: </strong><?= $block->escapeHtmlAttr($k) ?> </p>
+        <?php endif; ?>
+    <?php endif; ?>
+<?php endforeach; ?>

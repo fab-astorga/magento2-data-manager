@@ -1,0 +1,323 @@
+{
+    "item_shipping_details": {
+        "column": {
+            "item_id": true,
+            "schedule_b_number": true,
+            "individual_item_weight_oz": true,
+            "gift_box_weight_oz": true,
+            "total_item_weight": true,
+            "total_item_weight_unit": true,
+            "items_per_carton": true,
+            "gift_box_color": true,
+            "package": true,
+            "carton_size": true,
+            "carton_weight_oz": true,
+            "total_carton_weight_lbs": true,
+            "shipping_data_verified": true,
+            "total_cartons_per_pallet": true,
+            "pack_out_quantity": true,
+            "ice_pack_required": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ITEM_SHIPPING_DETAILS_ITEM_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID": true
+        }
+    },
+    "item_details": {
+        "column": {
+            "item_id": true,
+            "sales_description": true,
+            "item_pms_color": true,
+            "item_packaging": true,
+            "item_material": true,
+            "patent_number": true,
+            "recycle_number": true,
+            "mah": true,
+            "item_gusset": true,
+            "item_handle_length": true,
+            "item_volume_in_oz": true,
+            "item_depth": true,
+            "item_width": true,
+            "item_height": true,
+            "item_top_diameter": true,
+            "item_bottom_diameter": true,
+            "item_length": true,
+            "item_diameter": true,
+            "fits_car_cup_holder": true,
+            "microwave_safe": true,
+            "top_rack_dishwasher_safe": true,
+            "carabiner_included": true,
+            "spill_proof": true,
+            "spill_persistant": true,
+            "handwash_only": true,
+            "batteries_included": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ITEM_DETAILS_ITEM_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID": true
+        }
+    },
+    "safety_details": {
+        "column": {
+            "item_id": true,
+            "safety_details_name": true,
+            "safety_details_link": true,
+            "safety_details_name_2": true,
+            "safety_details_link_2": true,
+            "safety_details_name_3": true,
+            "safety_test_link": true,
+            "fda_test_link": true,
+            "safety_test_date": true,
+            "prop65_warning": true,
+            "safety_test_available": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "SAFETY_DETAILS_ITEM_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID": true
+        }
+    },
+    "item_net_price_usa": {
+        "column": {
+            "item_id": true,
+            "min_quantity": true,
+            "unit_price": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ITEM_NET_PRICE_USA_ITEM_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID": true
+        }
+    },
+    "item_eqp_usa": {
+        "column": {
+            "item_id": true,
+            "min_quantity": true,
+            "unit_price": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ITEM_EQP_USA_ITEM_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID": true
+        }
+    },
+    "item_promotion_usa": {
+        "column": {
+            "item_id": true,
+            "min_quantity": true,
+            "unit_price": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ITEM_PROMOTION_USA_ITEM_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID": true
+        }
+    },
+    "item_retail_price_usa": {
+        "column": {
+            "item_id": true,
+            "min_quantity": true,
+            "unit_price": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ITEM_RETAIL_PRICE_USA_ITEM_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID": true
+        }
+    },
+    "item_sale_price_usa": {
+        "column": {
+            "item_id": true,
+            "min_quantity": true,
+            "unit_price": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ITEM_SALE_PRICE_USA_ITEM_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID": true
+        }
+    },
+    "item_sale_price_online_usa": {
+        "column": {
+            "item_id": true,
+            "min_quantity": true,
+            "unit_price": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ITEM_SALE_PRICE_ONLINE_USA_ITEM_ID_CAT_PRD_ENTT_ENTT_ID": true
+        }
+    },
+    "item_sample_price_usa": {
+        "column": {
+            "item_id": true,
+            "min_quantity": true,
+            "unit_price": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ITEM_SAMPLE_PRICE_USA_ITEM_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID": true
+        }
+    },
+    "item_online_price_usa": {
+        "column": {
+            "item_id": true,
+            "min_quantity": true,
+            "unit_price": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ITEM_ONLINE_PRICE_USA_ITEM_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID": true
+        }
+    },
+    "item_net_price_canada": {
+        "column": {
+            "item_id": true,
+            "min_quantity": true,
+            "unit_price": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ITEM_NET_PRICE_CANADA_ITEM_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID": true
+        }
+    },
+    "item_eqp_canada": {
+        "column": {
+            "item_id": true,
+            "min_quantity": true,
+            "unit_price": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ITEM_EQP_CANADA_ITEM_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID": true
+        }
+    },
+    "item_promotion_canada": {
+        "column": {
+            "item_id": true,
+            "min_quantity": true,
+            "unit_price": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ITEM_PROMOTION_CANADA_ITEM_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID": true
+        }
+    },
+    "item_retail_price_canada": {
+        "column": {
+            "item_id": true,
+            "min_quantity": true,
+            "unit_price": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ITEM_RETAIL_PRICE_CANADA_ITEM_ID_CAT_PRD_ENTT_ENTT_ID": true
+        }
+    },
+    "item_sale_price_canada": {
+        "column": {
+            "item_id": true,
+            "min_quantity": true,
+            "unit_price": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ITEM_SALE_PRICE_CANADA_ITEM_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID": true
+        }
+    },
+    "item_sale_price_online_canada": {
+        "column": {
+            "item_id": true,
+            "min_quantity": true,
+            "unit_price": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ITEM_SALE_PRICE_ONLINE_CANADA_ITEM_ID_CAT_PRD_ENTT_ENTT_ID": true
+        }
+    },
+    "item_sample_price_canada": {
+        "column": {
+            "item_id": true,
+            "min_quantity": true,
+            "unit_price": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ITEM_SAMPLE_PRICE_CANADA_ITEM_ID_CAT_PRD_ENTT_ENTT_ID": true
+        }
+    },
+    "item_online_price_canada": {
+        "column": {
+            "item_id": true,
+            "min_quantity": true,
+            "unit_price": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ITEM_ONLINE_PRICE_CANADA_ITEM_ID_CAT_PRD_ENTT_ENTT_ID": true
+        }
+    },
+    "item_web_store_configuration": {
+        "column": {
+            "item_id": true,
+            "page_title": true,
+            "item_number_for_webstore": true,
+            "summary_store_description": true,
+            "detailed_description": true,
+            "summary_description_for_imprint_methods": true,
+            "create_virtual_link": true,
+            "create_flyer": true,
+            "parent_summary_store_description": true,
+            "out_of_stock_behavior": true,
+            "out_of_stock_message": true,
+            "no_price_message": true,
+            "select_color_for_pricing": true,
+            "coupon_code": true,
+            "color_disclaimer": true,
+            "price_includes": true,
+            "item_notes_for_web": true,
+            "video_link": true,
+            "video_name": true,
+            "maximum_variable_amount": true,
+            "display_in_webstore": true,
+            "override_web_inventory": true,
+            "variable_amount": true,
+            "show_default_amount": true,
+            "do_not_show_price": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ITEM_WEB_STORE_CONFIGURATION_ITEM_ID_CAT_PRD_ENTT_ENTT_ID": true
+        }
+    },
+    "item_main_shots": {
+        "column": {
+            "item_id": true,
+            "item_group_shot": true,
+            "item_glamour_shot": true,
+            "glamour_shot_alt_1": true,
+            "group_shot_alt_1": true,
+            "group_shot_alt_2": true,
+            "lid_1_shot": true,
+            "lid_2_shot": true,
+            "gift_box_alt_1": true,
+            "gift_box_alt_2": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ITEM_MAIN_SHOTS_ITEM_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID": true
+        }
+    },
+    "item_matrix_shots": {
+        "column": {
+            "item_id": true,
+            "web_Store_color_order": true,
+            "matrix_image": true,
+            "alternate_image_1": true,
+            "alternate_image_2": true,
+            "alternate_image_3": true,
+            "alternate_image_4": true,
+            "blank_image_high_res": true,
+            "logo_image_high_res": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ITEM_MATRIX_SHOTS_ITEM_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID": true
+        }
+    }
+}

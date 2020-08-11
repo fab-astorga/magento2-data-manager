@@ -1,0 +1,383 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+<!-- SHIPPING DETAILS -->
+    <table name="item_shipping_details" resource="default" engine="innodb" comment="Item Shipping Details">
+        <column xsi:type="int" name="item_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Item ID"/>
+        <column xsi:type="varchar" name="schedule_b_number" nullable="true" length="255" comment="Schedule B Number"/>
+        <column xsi:type="float" name="individual_item_weight_oz" nullable="true" comment="Individual Item Weight in oz"/>
+        <column xsi:type="float" name="gift_box_weight_oz" nullable="true" comment="Gift Box Weight in oz"/>
+        <column xsi:type="float" name="total_item_weight" nullable="true" comment="Total Item Weight"/>
+        <column xsi:type="varchar" name="total_item_weight_unit" nullable="true" length="255" comment="Total Item Weight Unit (oz, kg, g...)"/>
+        <column xsi:type="int" name="items_per_carton" padding="10" nullable="true" comment="Items Per Carton"/>
+        <column xsi:type="varchar" name="gift_box_color" nullable="true" length="255" comment="Gift Box Color"/>
+        <column xsi:type="varchar" name="package" nullable="true" length="255" comment="Package Dimentions"/>
+        <column xsi:type="varchar" name="carton_size" nullable="true" length="255" comment="Carton Dimentions"/>
+        <column xsi:type="varchar" name="additional_shipping_costs" nullable="true" length="255" comment="Aditional Shipping Cost"/>
+        <column xsi:type="float" name="carton_weight_oz" nullable="true" comment="Carton Weight in oz"/>
+        <column xsi:type="float" name="total_carton_weight_lbs" nullable="true" comment="Total Carton Weight in lbs"/>
+        <column xsi:type="boolean" name="shipping_data_verified" nullable="true" comment="Is shipping data verified?"/>
+        <column xsi:type="int" name="total_cartons_per_pallet" padding="10" nullable="true" comment="Total cartons per pallet"/>
+        <column xsi:type="int" name="pack_out_quantity" padding="10" nullable="true" comment="Pack Out Quantity"/>
+        <column xsi:type="boolean" name="ice_pack_required" nullable="true"  comment="Is ice pack required?"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="item_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ITEM_SHIPPING_DETAILS" table="item_shipping_details" column="item_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+<!-- ITEM DETAILS -->
+    <table name="item_details" resource="default" engine="innodb" comment="Item Details">
+        <column xsi:type="int" name="item_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Item ID"/>
+        <column xsi:type="varchar" name="sales_description" nullable="true" length="255" comment="Sales description"/>
+        <column xsi:type="varchar" name="item_pms_color" nullable="true" length="255" comment="PMS color"/>
+        <column xsi:type="varchar" name="item_packaging" nullable="true" length="255" comment="Packaging"/>
+        <column xsi:type="varchar" name="item_material" nullable="true" length="255" comment="material"/>
+        <column xsi:type="varchar" name="patent_number" nullable="true" length="255" comment="Patent Number"/>
+        <column xsi:type="varchar" name="recycle_number" nullable="true" length="255" comment="Recycle Number"/>
+        <column xsi:type="varchar" name="mah" nullable="true" length="255" comment="MAH"/>
+        <column xsi:type="int" name="item_gusset" padding="10" nullable="true" comment="Gusset"/>
+        <column xsi:type="int" name="item_handle_length" padding="10" nullable="true" comment="Handle Length"/>
+        <column xsi:type="float" name="item_volume_in_oz" nullable="true" comment="Volume in oz"/>
+        <column xsi:type="float" name="item_depth" nullable="true" comment="Depth"/>
+        <column xsi:type="float" name="item_width" nullable="true" comment="Width"/>
+        <column xsi:type="float" name="item_height" nullable="true" comment="Height"/>
+        <column xsi:type="float" name="item_top_diameter" nullable="true" comment="Top Diameter"/>
+        <column xsi:type="float" name="item_bottom_diameter" nullable="true" comment="Bottom Diameter"/>
+        <column xsi:type="float" name="item_length" nullable="true" comment="Length"/>
+        <column xsi:type="float" name="item_diameter" nullable="true" comment="Diameter"/>
+        <column xsi:type="boolean" name="fits_car_cup_holder" nullable="true"  comment="Fits car cup holder?"/>
+        <column xsi:type="boolean" name="microwave_safe" nullable="true"  comment="Microwave safe?"/>
+        <column xsi:type="boolean" name="top_rack_dishwasher_safe" nullable="true"  comment="Top rack dishwasher safe?"/>
+        <column xsi:type="boolean" name="carabiner_included" nullable="true"  comment="Carabiner included?"/>
+        <column xsi:type="boolean" name="spill_proof" nullable="true"  comment="Spill proof?"/>
+        <column xsi:type="boolean" name="spill_persistant" nullable="true"  comment="Spill persistant?"/>
+        <column xsi:type="boolean" name="handwash_only" nullable="true"  comment="Handwash only?"/>
+        <column xsi:type="boolean" name="batteries_included" nullable="true"  comment="Bateries included?"/>
+        <constraint xsi:type="primary" referenceId="ITEM_DETAILS_PRIMARY_KEY">
+            <column name="item_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ITEM_DETAILS_PRODUCT" table="item_details" column="item_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+<!-- SAFETY DETAILS -->
+    <table name="safety_details" resource="default" engine="innodb" comment="Safety Details">
+        <column xsi:type="int" name="item_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Item ID"/>
+        <column xsi:type="varchar" name="safety_details_name" nullable="true" length="1000" comment="Safety Details Name"/>
+        <column xsi:type="varchar" name="safety_details_link" nullable="true" length="1000" comment="Safety Details Link"/>
+        <column xsi:type="varchar" name="safety_details_name_2" nullable="true" length="1000" comment="Safety Details Name Two"/>
+        <column xsi:type="varchar" name="safety_details_link_2" nullable="true" length="1000" comment="Safety Details Link Two"/>
+        <column xsi:type="varchar" name="safety_details_name_3" nullable="true" length="1000" comment="Safety Details Name Three"/>
+        <column xsi:type="varchar" name="safety_test_link" nullable="true" length="1000" comment="Safety Test Link?"/>
+        <column xsi:type="varchar" name="fda_test_link" nullable="true" length="1000" comment="FDA Test Link"/>
+        <column xsi:type="datetime" name="safety_test_date" nullable="true" comment="Value"/>
+        <column xsi:type="boolean" name="prop65_warning" nullable="true"  comment="Porp 65 Warning?"/>
+        <column xsi:type="boolean" name="safety_test_available" nullable="true"  comment="Safety Test Available?"/>
+        <constraint xsi:type="primary" referenceId="SAFETY_DETAILS_PRIMARY_KEY">
+            <column name="item_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="SAFETY_DETAILS_PRODUCT" table="safety_details" column="item_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+
+<!-- Pricing -->
+    <!-- USA -->
+    <table name="item_net_price_usa" resource="default" engine="innodb" comment="Net Price USA">
+        <column xsi:type="int" name="item_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Item ID"/>
+        <column xsi:type="int" name="min_quantity" padding="10" nullable="false" comment="Min Quantity"/>
+        <column xsi:type="float" name="unit_price" nullable="true" comment="Unit Price"/>
+        <constraint xsi:type="primary" referenceId="ITEM_NET_PRICE_USA_PRIMARY_KEY">
+            <column name="item_id"/>
+            <column name="min_quantity"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ITEM_NET_PRICE_USA_PRODUCT" table="item_net_price_usa" column="item_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+
+    <table name="item_eqp_usa" resource="default" engine="innodb" comment="EQP USA">
+        <column xsi:type="int" name="item_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Item ID"/>
+        <column xsi:type="int" name="min_quantity" padding="10" nullable="false" comment="Min Quantity"/>
+        <column xsi:type="float" name="unit_price" nullable="true" comment="Unit Price"/>
+        <constraint xsi:type="primary" referenceId="ITEM_EQP_USA_PRIMARY_KEY">
+            <column name="item_id"/>
+            <column name="min_quantity"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ITEM_EQP_USA_PRODUCT" table="item_eqp_usa" column="item_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+
+    <table name="item_promotion_usa" resource="default" engine="innodb" comment="Promotion USA">
+        <column xsi:type="int" name="item_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Item ID"/>
+        <column xsi:type="int" name="min_quantity" padding="10" nullable="false" comment="Min Quantity"/>
+        <column xsi:type="float" name="unit_price" nullable="true" comment="Unit Price"/>
+        <constraint xsi:type="primary" referenceId="ITEM_PROMOTION_USA_PRIMARY_KEY">
+            <column name="item_id"/>
+            <column name="min_quantity"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ITEM_PROMOTION_USA_PRODUCT" table="item_promotion_usa" column="item_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+
+    <table name="item_retail_price_usa" resource="default" engine="innodb" comment="Retail Price USA">
+        <column xsi:type="int" name="item_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Item ID"/>
+        <column xsi:type="int" name="min_quantity" padding="10" nullable="false" comment="Min Quantity"/>
+        <column xsi:type="float" name="unit_price" nullable="true" comment="Unit Price"/>
+        <constraint xsi:type="primary" referenceId="ITEM_RETAIL_PRICE_USA_PRIMARY_KEY">
+            <column name="item_id"/>
+            <column name="min_quantity"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ITEM_RETAIL_PRICE_USA_PRODUCT" table="item_retail_price_usa" column="item_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+
+    <table name="item_sale_price_usa" resource="default" engine="innodb" comment="Sale Price USA">
+        <column xsi:type="int" name="item_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Item ID"/>
+        <column xsi:type="int" name="min_quantity" padding="10" nullable="false" comment="Min Quantity"/>
+        <column xsi:type="float" name="unit_price" nullable="true" comment="Unit Price"/>
+        <constraint xsi:type="primary" referenceId="ITEM_SALE_PRICE_USA_PRIMARY_KEY">
+            <column name="item_id"/>
+            <column name="min_quantity"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ITEM_SALE_PRICE_USA_PRODUCT" table="item_sale_price_usa" column="item_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+
+    <table name="item_sale_price_online_usa" resource="default" engine="innodb" comment="Sale Price Online USA">
+        <column xsi:type="int" name="item_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Item ID"/>
+        <column xsi:type="int" name="min_quantity" padding="10" nullable="false" comment="Min Quantity"/>
+        <column xsi:type="float" name="unit_price" nullable="true" comment="Unit Price"/>
+        <constraint xsi:type="primary" referenceId="ITEM_SALE_PRICE_ONLINE_USA_PRIMARY_KEY">
+            <column name="item_id"/>
+            <column name="min_quantity"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ITEM_SALE_PRICE_ONLINE_USA_PRODUCT" table="item_sale_price_online_usa" column="item_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+
+    <table name="item_sample_price_usa" resource="default" engine="innodb" comment="Sample Price USA">
+        <column xsi:type="int" name="item_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Item ID"/>
+        <column xsi:type="int" name="min_quantity" padding="10" nullable="false" comment="Min Quantity"/>
+        <column xsi:type="float" name="unit_price" nullable="true" comment="Unit Price"/>
+        <constraint xsi:type="primary" referenceId="ITEM_SAMPLE_PRICE_USA_PRIMARY_KEY">
+            <column name="item_id"/>
+            <column name="min_quantity"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ITEM_SAMPLE_PRICE_USA_PRODUCT" table="item_sample_price_usa" column="item_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+
+    <table name="item_online_price_usa" resource="default" engine="innodb" comment="Online Price USA">
+        <column xsi:type="int" name="item_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Item ID"/>
+        <column xsi:type="int" name="min_quantity" padding="10" nullable="false" comment="Min Quantity"/>
+        <column xsi:type="float" name="unit_price" nullable="true" comment="Unit Price"/>
+        <constraint xsi:type="primary" referenceId="ITEM_ONLINE_PRICE_USA_PRIMARY_KEY">
+            <column name="item_id"/>
+            <column name="min_quantity"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ITEM_ONLINE_PRICE_USA_PRODUCT" table="item_online_price_usa" column="item_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+
+    <!-- CANADA -->
+        <table name="item_net_price_canada" resource="default" engine="innodb" comment="Net Price CANADA">
+        <column xsi:type="int" name="item_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Item ID"/>
+        <column xsi:type="int" name="min_quantity" padding="10" nullable="false" comment="Min Quantity"/>
+        <column xsi:type="float" name="unit_price" nullable="true" comment="Unit Price"/>
+        <constraint xsi:type="primary" referenceId="ITEM_NET_PRICE_CANADA_PRIMARY_KEY">
+            <column name="item_id"/>
+            <column name="min_quantity"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ITEM_NET_PRICE_CANADA_PRODUCT" table="item_net_price_canada" column="item_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+
+    <table name="item_eqp_canada" resource="default" engine="innodb" comment="EQP CANADA">
+        <column xsi:type="int" name="item_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Item ID"/>
+        <column xsi:type="int" name="min_quantity" padding="10" nullable="false" comment="Min Quantity"/>
+        <column xsi:type="float" name="unit_price" nullable="true" comment="Unit Price"/>
+        <constraint xsi:type="primary" referenceId="ITEM_EQP_CANADA_PRIMARY_KEY">
+            <column name="item_id"/>
+            <column name="min_quantity"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ITEM_EQP_CANADA_PRODUCT" table="item_eqp_canada" column="item_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+
+    <table name="item_promotion_canada" resource="default" engine="innodb" comment="Promotion CANADA">
+        <column xsi:type="int" name="item_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Item ID"/>
+        <column xsi:type="int" name="min_quantity" padding="10" nullable="false" comment="Min Quantity"/>
+        <column xsi:type="float" name="unit_price" nullable="true" comment="Unit Price"/>
+        <constraint xsi:type="primary" referenceId="ITEM_PROMOTION_CANADA_PRIMARY_KEY">
+            <column name="item_id"/>
+            <column name="min_quantity"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ITEM_PROMOTION_CANADA_PRODUCT" table="item_promotion_canada" column="item_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+
+    <table name="item_retail_price_canada" resource="default" engine="innodb" comment="Retail Price CANADA">
+        <column xsi:type="int" name="item_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Item ID"/>
+        <column xsi:type="int" name="min_quantity" padding="10" nullable="false" comment="Min Quantity"/>
+        <column xsi:type="float" name="unit_price" nullable="true" comment="Unit Price"/>
+        <constraint xsi:type="primary" referenceId="ITEM_RETAIL_PRICE_CANADA_PRIMARY_KEY">
+            <column name="item_id"/>
+            <column name="min_quantity"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ITEM_RETAIL_PRICE_CANADA_PRODUCT" table="item_retail_price_canada" column="item_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+
+    <table name="item_sale_price_canada" resource="default" engine="innodb" comment="Sale Price CANADA">
+        <column xsi:type="int" name="item_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Item ID"/>
+        <column xsi:type="int" name="min_quantity" padding="10" nullable="false" comment="Min Quantity"/>
+        <column xsi:type="float" name="unit_price" nullable="true" comment="Unit Price"/>
+        <constraint xsi:type="primary" referenceId="ITEM_SALE_PRICE_CANADA_PRIMARY_KEY">
+            <column name="item_id"/>
+            <column name="min_quantity"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ITEM_SALE_PRICE_CANADA_PRODUCT" table="item_sale_price_canada" column="item_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+
+    <table name="item_sale_price_online_canada" resource="default" engine="innodb" comment="Sale Price Online CANADA">
+        <column xsi:type="int" name="item_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Item ID"/>
+        <column xsi:type="int" name="min_quantity" padding="10" nullable="false" comment="Min Quantity"/>
+        <column xsi:type="float" name="unit_price" nullable="true" comment="Unit Price"/>
+        <constraint xsi:type="primary" referenceId="ITEM_SALE_PRICE_ONLINE_CANADA_PRIMARY_KEY">
+            <column name="item_id"/>
+            <column name="min_quantity"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ITEM_SALE_PRICE_ONLINE_CANADA_PRODUCT" table="item_sale_price_online_canada" column="item_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+
+    <table name="item_sample_price_canada" resource="default" engine="innodb" comment="Sample Price CANADA">
+        <column xsi:type="int" name="item_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Item ID"/>
+        <column xsi:type="int" name="min_quantity" padding="10" nullable="false" comment="Min Quantity"/>
+        <column xsi:type="float" name="unit_price" nullable="true" comment="Unit Price"/>
+        <constraint xsi:type="primary" referenceId="ITEM_SAMPLE_PRICE_CANADA_PRIMARY_KEY">
+            <column name="item_id"/>
+            <column name="min_quantity"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ITEM_SAMPLE_PRICE_CANADA_PRODUCT" table="item_sample_price_canada" column="item_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+
+    <table name="item_online_price_canada" resource="default" engine="innodb" comment="Online Price CANADA">
+        <column xsi:type="int" name="item_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Item ID"/>
+        <column xsi:type="int" name="min_quantity" padding="10" nullable="false" comment="Min Quantity"/>
+        <column xsi:type="float" name="unit_price" nullable="true" comment="Unit Price"/>
+        <constraint xsi:type="primary" referenceId="ITEM_ONLINE_PRICE_CANADA_PRIMARY_KEY">
+            <column name="item_id"/>
+            <column name="min_quantity"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ITEM_ONLINE_PRICE_CANADA_PRODUCT" table="item_online_price_canada" column="item_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+
+<!-- WebStore -->
+    <table name="item_web_store_configuration" resource="default" engine="innodb" comment="Web Store Configuration Details">
+        <column xsi:type="int" name="item_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Item ID"/>
+        <column xsi:type="varchar" name="page_title" nullable="true" length="1000" comment="Page Title"/>
+        <column xsi:type="varchar" name="item_number_for_webstore" nullable="true" length="255" comment="Item Number To Display"/>
+        <column xsi:type="varchar" name="summary_store_description" nullable="true" length="255" comment="Summary Description"/>
+        <column xsi:type="varchar" name="detailed_description" nullable="true" length="510" comment="Detailed Description"/>
+        <column xsi:type="varchar" name="summary_description_for_imprint_methods" nullable="true" length="255" comment="Summary Description For Imprint Methods"/>
+        <column xsi:type="varchar" name="create_virtual_link" nullable="true" length="255" comment="Virtual Link"/>
+        <column xsi:type="varchar" name="create_flyer" nullable="true" length="255" comment="Flyer"/>
+        <column xsi:type="varchar" name="parent_summary_store_description" nullable="true" length="255" comment="Parent summary store description"/>
+        <column xsi:type="varchar" name="out_of_stock_behavior" nullable="true" length="255" comment="Out of stock behavoir"/>
+        <column xsi:type="varchar" name="out_of_stock_message" nullable="true" length="255" comment="Out of stock message"/>
+        <column xsi:type="varchar" name="no_price_message" nullable="true" length="255" comment="No price message"/>
+        <column xsi:type="varchar" name="select_color_for_pricing" nullable="true" length="255" comment="Select color for pricing"/>
+        <column xsi:type="varchar" name="coupon_code" nullable="true" length="255" comment="Color Disclaimer"/>
+        <column xsi:type="varchar" name="color_disclaimer" nullable="true" length="255" comment="Select color for pricing"/>
+        <column xsi:type="varchar" name="price_includes" nullable="true" length="255" comment="Price Includes"/>
+        <column xsi:type="varchar" name="item_notes_for_web" nullable="true" length="255" comment="Item notes for web"/>
+        <column xsi:type="varchar" name="video_link" nullable="true" length="255" comment="Video Link"/>
+        <column xsi:type="varchar" name="video_name" nullable="true" length="255" comment="Item notes for web"/>
+        <column xsi:type="varchar" name="esp_item_keywords" nullable="true" length="510" comment="Item Keywords"/>
+        <column xsi:type="float" name="maximum_variable_amount" nullable="true" comment="Maximun variable amount"/>
+        <column xsi:type="boolean" name="display_in_webstore" nullable="true"  comment="Display in WebStore?"/>
+        <column xsi:type="boolean" name="override_web_inventory" nullable="true"  comment="Override Web Inventory?"/>
+        <column xsi:type="boolean" name="variable_amount" nullable="true"  comment="Variable amount?"/>
+        <column xsi:type="boolean" name="show_default_amount" nullable="true"  comment="Show Default Amount?"/>
+        <column xsi:type="boolean" name="do_not_show_price" nullable="true"  comment="Do not show price?"/>
+        <column xsi:type="boolean" name="always_available" nullable="true"  comment="Always available?"/>
+        <constraint xsi:type="primary" referenceId="ITEM_WEB_STORE_CONFIGURATION_PRIMARY_KEY">
+            <column name="item_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ITEM_WEB_STORE_CONFIGURATION_PRODUCT" table="item_web_store_configuration" column="item_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+
+<!-- Gallery -->
+    <!-- Main Shots -->
+    <table name="item_main_shots" resource="default" engine="innodb" comment="Item main shots">
+        <column xsi:type="int" name="item_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Item ID"/>
+        <column xsi:type="varchar" name="item_group_shot" nullable="true" length="510" comment="Group Shot"/>
+        <column xsi:type="varchar" name="item_glamour_shot" nullable="true" length="510" comment="Glamour Shot"/>
+        <column xsi:type="varchar" name="glamour_shot_alt_1" nullable="true" length="510" comment="Alt Glamour Shot"/>
+        <column xsi:type="varchar" name="group_shot_alt_1" nullable="true" length="510" comment="Alt Group Shot"/>
+        <column xsi:type="varchar" name="group_shot_alt_2" nullable="true" length="510" comment="Alt Group Shot 2"/>
+        <column xsi:type="varchar" name="lid_1_shot" nullable="true" length="510" comment="Lid shot"/>
+        <column xsi:type="varchar" name="lid_2_shot" nullable="true" length="510" comment="Lid shot 2"/>
+        <column xsi:type="varchar" name="gift_box_alt_1" nullable="true" length="510" comment="Gift box alt"/>
+        <column xsi:type="varchar" name="gift_box_alt_2" nullable="true" length="510" comment="Gift box alt 2"/>
+        <constraint xsi:type="primary" referenceId="ITEM_MAIN_SHOTS_PRIMARY_KEY">
+            <column name="item_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ITEM_MAIN_SHOTS_PRODUCT" table="item_main_shots" column="item_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+
+    <!-- Matrix Shots -->
+    <table name="item_matrix_shots" resource="default" engine="innodb" comment="Item matrix shots">
+        <column xsi:type="int" name="item_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Item ID"/>
+        <column xsi:type="int" name="web_Store_color_order" padding="10" unsigned="true" nullable="true" identity="false" comment="Web store color order"/>
+        <column xsi:type="varchar" name="matrix_image" nullable="true" length="510" comment="Matrix Image"/>
+        <column xsi:type="varchar" name="alternate_image_1" nullable="true" length="510" comment="Alt image 1"/>
+        <column xsi:type="varchar" name="alternate_image_2" nullable="true" length="510" comment="Alt image 2"/>
+        <column xsi:type="varchar" name="alternate_image_3" nullable="true" length="510" comment="Alt image 3"/>
+        <column xsi:type="varchar" name="alternate_image_4" nullable="true" length="510" comment="Alt image 4"/>
+        <column xsi:type="varchar" name="blank_image_high_res" nullable="true" length="510" comment="Blank image high resolution"/>
+        <column xsi:type="varchar" name="logo_image_high_res" nullable="true" length="510" comment="Logo image high resolution"/>
+        <column xsi:type="boolean" name="new_color_added" nullable="true"  comment="New color added?"/>
+        <column xsi:type="varchar" name="matrix_item_option_color" nullable="true" length="500" comment="Matrix item option color"/>
+        <constraint xsi:type="primary" referenceId="ITEM_MATRIX_SHOTS_PRIMARY_KEY">
+            <column name="item_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ITEM_MATRIX_SHOTS_PRODUCT" table="item_matrix_shots" column="item_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+
+    <!--  DOWNLOADS -->
+    <table name="item_additional_downloads" resource="default" engine="innodb" comment="Item additional downloads">
+        <column xsi:type="int" name="item_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Item ID"/>
+        <column xsi:type="varchar" name="tt_downloads_documents_link_1" nullable="true" length="510" comment="Download Document Link 1"/>
+        <column xsi:type="varchar" name="tt_downloads_documents_link_2" nullable="true" length="510" comment="Download Document Link 2"/>
+        <column xsi:type="varchar" name="tt_downloads_documents_link_3" nullable="true" length="510" comment="Download Document Link 3"/>
+        <column xsi:type="varchar" name="tt_downloads_documents_name_1" nullable="true" length="255" comment="Download Document Name 1"/>
+        <column xsi:type="varchar" name="tt_downloads_documents_name_2" nullable="true" length="255" comment="Download Document Name 2"/>
+        <column xsi:type="varchar" name="tt_downloads_documents_name_3" nullable="true" length="255" comment="Download Document Name 3"/>
+        <column xsi:type="varchar" name="tt_download_image_1" nullable="true" length="510" comment="Download Image 1"/>
+        <column xsi:type="varchar" name="tt_download_image_2" nullable="true" length="510" comment="Download Image 2"/>
+        <column xsi:type="varchar" name="tt_download_image_3" nullable="true" length="510" comment="Download Image 3"/>
+        <column xsi:type="varchar" name="tt_download_image_4" nullable="true" length="510" comment="Download Image 4"/>
+        <column xsi:type="varchar" name="tt_download_image_5" nullable="true" length="510" comment="Download Image 5"/>
+        <column xsi:type="varchar" name="tt_download_image_6" nullable="true" length="510" comment="Download Image 6"/>
+        <column xsi:type="varchar" name="tt_download_image_7" nullable="true" length="510" comment="Download Image 7"/>
+        <column xsi:type="varchar" name="tt_download_image_8" nullable="true" length="510" comment="Download Image 8"/>
+        <column xsi:type="varchar" name="tt_download_image_name_1" nullable="true" length="255" comment="Download Image Name 1"/>
+        <column xsi:type="varchar" name="tt_download_image_name_2" nullable="true" length="255" comment="Download Image Name 2"/>
+        <column xsi:type="varchar" name="tt_download_image_name_3" nullable="true" length="255" comment="Download Image Name 3"/>
+        <column xsi:type="varchar" name="tt_download_image_name_4" nullable="true" length="255" comment="Download Image Name 4"/>
+        <column xsi:type="varchar" name="tt_download_image_name_5" nullable="true" length="255" comment="Download Image Name 5"/>
+        <column xsi:type="varchar" name="tt_download_image_name_6" nullable="true" length="255" comment="Download Image Name 6"/>
+        <column xsi:type="varchar" name="tt_download_image_name_7" nullable="true" length="255" comment="Download Image Name 7"/>
+        <column xsi:type="varchar" name="tt_download_image_name_8" nullable="true" length="255" comment="Download Image Name 8"/>
+        <constraint xsi:type="primary" referenceId="ITEM_ADDITIONAL_DOWNLOADS_PRIMARY_KEY">
+            <column name="item_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ITEM_ADDITIONAL_DOWNLOADS_PRODUCT" table="item_additional_downloads" column="item_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+
+
+    <!--  NETSUITE CATEGORY -->
+    <table name="netsuite_category" resource="default" engine="innodb" comment="NetSuite Category">
+        <column xsi:type="int" name="netsuite_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Netsuite Category ID"/>
+        <column xsi:type="int" name="category_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Category ID"/>
+        <constraint xsi:type="primary" referenceId="NETSUITE_CATEGORY_PRIMARY_KEY">
+            <column name="netsuite_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="NETSUITE_CATEGORY" table="netsuite_category" column="category_id" referenceTable="catalog_category_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+
+    <!--  NETSUITE ITEM -->
+    <table name="netsuite_item" resource="default" engine="innodb" comment="NetSuite Item">
+        <column xsi:type="int" name="netsuite_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Netsuite Item ID"/>
+        <column xsi:type="int" name="item_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Item ID"/>
+        <constraint xsi:type="primary" referenceId="NETSUITE_ITEM_PRIMARY_KEY">
+            <column name="netsuite_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="NETSUITE_ITEM" table="netsuite_item" column="item_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+</schema>

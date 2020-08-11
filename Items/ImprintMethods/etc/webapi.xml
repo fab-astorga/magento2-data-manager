@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route method="POST" url="/V1/items/imprint-methods">
+    <service class="Items\ImprintMethods\Api\ImprintMethodsManagementInterface" method="saveImprintMethods"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <route method="DELETE" url="/V1/items/imprint-methods">
+    <service class="Items\ImprintMethods\Api\ImprintMethodsManagementInterface" method="deleteImprintMethod"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+
+    <route method="POST" url="/V1/algo/imprint_methods_test">
+        <service class="Items\ImprintMethods\Api\ImprintMethodsRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="PUT" url="/V1/algo/imprint_methods_test">
+        <service class="Items\ImprintMethods\Api\ImprintMethodsRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/algo/imprint_methods_test/:imprintMethodsId">
+        <service class="Items\ImprintMethods\Api\ImprintMethodsRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/algo/imprint_methods_test/:value/:attributeCode/">
+        <service class="Items\ImprintMethods\Api\ImprintMethodsRepositoryInterface" method="get"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="DELETE" url="/V1/algo/imprint_methods_test">
+        <service class="Items\ImprintMethods\Api\ImprintMethodsRepositoryInterface" method="delete"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="DELETE" url="/V1/algo/imprint_methods_test/:imprintMethodsId">
+        <service class="Items\ImprintMethods\Api\ImprintMethodsRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/algo/imprint_methods_test">
+        <service class="Items\ImprintMethods\Api\ImprintMethodsRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    
+</routes>

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <extension_attributes for="Magento\Catalog\Api\Data\ProductInterface">
+        <attribute code="shipping_details" type="Items\ItemInformation\Api\Data\ShippingDetailsInterface"/>
+        <attribute code="item_details" type="Items\ItemInformation\Api\Data\ItemDetailsInterface"/>
+        <attribute code="safety_details" type="Items\ItemInformation\Api\Data\SafetyDetailsInterface"/>
+        <attribute code="web_store_configuration" type="Items\ItemInformation\Api\Data\WebStoreConfigurationInterface"/>
+        <attribute code="prices" type="Items\ItemInformation\Api\Data\PricesInterface[]"/>
+    </extension_attributes>
+</config>

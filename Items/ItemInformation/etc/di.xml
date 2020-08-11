@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Catalog\Block\Product\View" type="Items\ItemInformation\Block\Product\View" />
+    <preference for="Items\ItemInformation\Api\ItemManagementInterface" type="Items\ItemInformation\Model\ItemManagement"/>
+    <preference for="Items\ItemInformation\Api\ShippingDetailsRepositoryInterface" type="Items\ItemInformation\Model\ShippingDetailsRepository"/>
+    <preference for="Items\ItemInformation\Api\ShippingDetailsManagementInterface" type="Items\ItemInformation\Model\ShippingDetailsManagement"/>
+    <preference for="Items\ItemInformation\Api\Data\ShippingDetailsInterface" type="Items\ItemInformation\Model\ShippingDetails"/>
+    <preference for="Items\ItemInformation\Api\PricesManagementInterface" type="Items\ItemInformation\Model\PricesManagement"/>
+    <preference for="Items\ItemInformation\Api\ItemDetailsRepositoryInterface" type="Items\ItemInformation\Model\ItemDetailsRepository"/>
+    <preference for="Items\ItemInformation\Api\ItemDetailsManagementInterface" type="Items\ItemInformation\Model\ItemDetailsManagement"/>
+    <preference for="Items\ItemInformation\Api\SafetyDetailsRepositoryInterface" type="Items\ItemInformation\Model\SafetyDetailsRepository"/>
+    <preference for="Items\ItemInformation\Api\SafetyDetailsManagementInterface" type="Items\ItemInformation\Model\SafetyDetailsManagement"/>
+    <preference for="Items\ItemInformation\Api\Data\ItemDetailsInterface" type="Items\ItemInformation\Model\ItemDetails"/> 
+    <preference for="Items\ItemInformation\Api\Data\SafetyDetailsInterface" type="Items\ItemInformation\Model\SafetyDetails"/>
+    <preference for="Items\ItemInformation\Api\Data\PricesInterface" type="Items\ItemInformation\Model\Prices"/>
+    <preference for="Items\ItemInformation\Api\Data\WebStoreConfigurationInterface" type="Items\ItemInformation\Model\WebStoreConfiguration"/>
+    <preference for="Items\ItemInformation\Api\WebStoreConfigurationRepositoryInterface" type="Items\ItemInformation\Model\WebStoreConfigurationRepository"/>
+    <preference for="Items\ItemInformation\Api\WebStoreConfigurationManagementInterface" type="Items\ItemInformation\Model\WebStoreConfigurationManagement"/>
+    <preference for="Items\ItemInformation\Api\Data\ItemMainShotsInterface" type="Items\ItemInformation\Model\ItemMainShots"/>
+    <preference for="Items\ItemInformation\Api\ItemMainShotsRepositoryInterface" type="Items\ItemInformation\Model\ItemMainShotsRepository"/>
+    <preference for="Items\ItemInformation\Api\ItemShotsManagementInterface" type="Items\ItemInformation\Model\ItemShotsManagement"/>
+    <preference for="Items\ItemInformation\Api\Data\ItemMatrixShotsInterface" type="Items\ItemInformation\Model\ItemMatrixShots"/>
+    <preference for="Items\ItemInformation\Api\ItemMatrixShotsRepositoryInterface" type="Items\ItemInformation\Model\ItemMatrixShotsRepository"/>
+    <preference for="Items\ItemInformation\Api\Data\AdditionalDownloadsInterface" type="Items\ItemInformation\Model\AdditionalDownloads"/>
+    <preference for="Items\ItemInformation\Api\AdditionalDownloadsRepositoryInterface" type="Items\ItemInformation\Model\AdditionalDownloadsRepository"/>
+    <preference for="Items\ItemInformation\Api\AdditionalDownloadsManagementInterface" type="Items\ItemInformation\Model\AdditionalDownloadsManagement"/>
+    <preference for="Items\ItemInformation\Api\Data\NetSuiteCategoryInterface" type="Items\ItemInformation\Model\NetSuiteCategory"/>
+    <preference for="Items\ItemInformation\Api\NetSuiteCategoryRepositoryInterface" type="Items\ItemInformation\Model\NetSuiteCategoryRepository"/>
+    <preference for="Items\ItemInformation\Api\Data\NetSuiteItemInterface" type="Items\ItemInformation\Model\NetSuiteItem"/>
+    <preference for="Items\ItemInformation\Api\NetSuiteItemRepositoryInterface" type="Items\ItemInformation\Model\NetSuiteItemRepository"/>
+    <preference for="Items\ItemInformation\Api\FiltersManagementInterface" type="Items\ItemInformation\Model\FiltersManagement"/>
+
+    <type name="Magento\Catalog\Api\ProductRepositoryInterface">
+        <plugin name="GetShippingDetails" type="Items\ItemInformation\Plugin\ShippingDetails\GetShippingDetails" sortOrder="1" />
+        <plugin name="SetShippingDetails" type="Items\ItemInformation\Plugin\ShippingDetails\SetShippingDetails" sortOrder="1" />
+        <plugin name="GetItemDetails" type="Items\ItemInformation\Plugin\ItemDetails\GetItemDetails" sortOrder="1" />
+        <plugin name="SetItemDetails" type="Items\ItemInformation\Plugin\ItemDetails\SetItemDetails" sortOrder="1" />
+        <plugin name="GetSafetyDetails" type="Items\ItemInformation\Plugin\SafetyDetails\GetSafetyDetails" sortOrder="1" />
+        <plugin name="SetSafetyDetails" type="Items\ItemInformation\Plugin\SafetyDetails\SetSafetyDetails" sortOrder="1" />
+        <plugin name="GetPrices" type="Items\ItemInformation\Plugin\Prices\GetPrices" sortOrder="1" />
+        <plugin name="GetWebStoreConfiguration" type="Items\ItemInformation\Plugin\WebStoreConfiguration\GetWebStoreConfiguration" sortOrder="1" />
+        <plugin name="SetWebStoreConfiguration" type="Items\ItemInformation\Plugin\WebStoreConfiguration\SetWebStoreConfiguration" sortOrder="1" />
+    </type>
+</config>

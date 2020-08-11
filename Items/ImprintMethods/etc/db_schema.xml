@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="imc_group_entity" resource="default" engine="innodb" comment="imc_group_entity">
+        <column xsi:type="int" name="netsuite_id" padding="10" identity="false" unsigned="true" nullable="false" comment="id"/>
+        <column xsi:type="varchar" name="name" nullable="true" length="255" comment="name"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="netsuite_id"/>
+        </constraint>
+        <index referenceId="IMC_GROUP_ENTITY_NETSUITE_ID" indexType="btree">
+            <column name="netsuite_id"/>
+        </index>
+    </table>
+    <table name="imc_entity" resource="default" engine="innodb" comment="Imprint Methods">
+        <column xsi:type="int" name="id" padding="10" identity="true" unsigned="true" nullable="false" comment="id"/>
+        <column xsi:type="int" name="netsuite_id" padding="10" unsigned="true" nullable="false" comment="netsuite_id"/>
+        <column xsi:type="int" name="imc_group_id" padding="10" unsigned="true" nullable="false" comment="imc_group_id"/>
+        <column xsi:type="int" name="imc_setup_item_id" padding="10" unsigned="true" nullable="true" comment="imc_setup_item_id"/>
+        <column xsi:type="int" name="imc_first_run_item_id" padding="10" unsigned="true" nullable="true" comment="imc_first_run_item_id"/>
+        <column xsi:type="int" name="imc_add_run_item_id" padding="10" unsigned="true" nullable="true" comment="imc_add_run_item_id"/>
+        <column xsi:type="int" name="imc_reset_up_item_id" padding="10" unsigned="true" nullable="true" comment="imc_reset_up_item_id"/>
+        <column xsi:type="int" name="imc_exact_plac_item_id" padding="10" unsigned="true" nullable="true" comment="imc_exact_plac_item_id"/>
+        <column xsi:type="int" name="imc_pms_online_item_id" padding="10" unsigned="true" nullable="true" comment="imc_pms_online_item_id"/>
+        <column xsi:type="int" name="imc_ink_change_item_id" padding="10" unsigned="true" nullable="true" comment="imc_ink_change_item_id"/>
+        <column xsi:type="int" name="imc_ltm_item_id" padding="10" unsigned="true" nullable="true" comment="imc_ltm_item_id"/>
+        <column xsi:type="varchar" name="imc_location_name" nullable="false" length="255" comment="imc_location_name"/>
+        <column xsi:type="varchar" name="imc_imprint_width" nullable="false" length="255" comment="imc_imprint_width"/>
+        <column xsi:type="varchar" name="imc_imprint_height" nullable="false" length="255" comment="imc_imprint_height"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <index referenceId="IMC_ENTITY_IMC_GROUP_ID" indexType="btree">
+            <column name="imc_group_id"/>
+        </index>
+        <constraint xsi:type="foreign" referenceId="IMC_ENTITY_IMC_GROUP_ID_IMC_GROUP_ENTITY_NETSUITE_ID" table="imc_entity" column="imc_group_id" 
+                    referenceTable="imc_group_entity" referenceColumn="netsuite_id" onDelete="CASCADE"/>
+    </table>
+</schema>
