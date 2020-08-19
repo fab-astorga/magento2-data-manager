@@ -1,21 +1,24 @@
 <?php
 namespace Items\ItemInformation\Api;
 
-interface ItemManagementInterface {
-    
+interface ItemManagementInterface 
+{    
     // Incoming JSON fields mapping
     const ITEM_MAIN_INFORMATION = "drinkware_type";
     const PRICES                = "prices";
     const RELATED_ITEMS         = "related_items";
     const SUB_ITEM_OF           = 'sub_item_of';
     const CATEGORY              = 'category';
+    const NON_INVENTORY         = 'non inventory';
+    const NETSUITE_ID           = 'netsuite_id';
+    const SKU                   = 'sku';
     const DEFAULT_STORE_ID      = 0;
     const DEFAULT_QUANTITY      = 100;
     
     /**
      * POST or PUT from NetSuite with item information
      * Works for updating or creating an item
-     * @return boolean
+     * @return string
      */
     public function saveOrUpdateItem();
 
@@ -23,31 +26,29 @@ interface ItemManagementInterface {
      * Save item related items
      * @param \Magento\Catalog\Api\Data\ProductInterface $product
      * @param array $relatedItems
-     * 
-     * @return boolean
+     * @return string
      */
     public function saveRelatedItems($product, $relatedItems);
 
     /**
      * Save categories
      * POST from NetSuite with categories Information
-     * @return boolean
+     * @return string
      */
     public function saveCategories();
 
     /**
      * Delete category
      * POST from NetSuite in order to delete an specific category
-     * @return boolean
+     * @return string
      */
     public function deleteCategory();
 
     /**
-     * DELETE from NetSuite with Item Id (SKU)
-     * @param string $itemId
-     * @return boolean
+     * DELETE item from Netsuite with the netsuite ID
+     * @return string
      */
-    public function deleteItem($itemId);
+    public function deleteItem();
 
     /**
      * Save item main information
@@ -101,9 +102,18 @@ interface ItemManagementInterface {
     /**
      * Check inventory from Magento to Netsuite
      * 
-     * @param int $netsuiteId
+     * @param int $itemId
      * @param int $quantity
      * @return boolean
      */
-    public function checkInventory($netsuiteId, $quantity);
+    public function checkInventory($itemId, $quantity);
+
+    /**
+     * Check total estimate shipping
+     * 
+     * @param int $zipCode
+     * @param int $requestedQuantity
+     * @return void
+     */
+    public function estimateShipping($zipCode, $requestedQuantity);
 }

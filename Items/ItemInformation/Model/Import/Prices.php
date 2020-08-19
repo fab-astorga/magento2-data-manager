@@ -160,7 +160,7 @@ class Prices extends AbstractEntity
             $this->addRowError('SKU required', $rowNum);
         }
 
-        if (!$minQuantity) {
+        if (!empty($minQuantity)) {
             $this->addRowError('Min quantity required', $rowNum);
         }
 

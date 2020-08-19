@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="company_register_success">
+        <observer name="email_company_register" instance="Customers\Company\Observer\CustomerRegisterObserver"/>
+    </event>
+</config>

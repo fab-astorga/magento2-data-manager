@@ -11,6 +11,23 @@ class Contact extends \Magento\Framework\Model\AbstractModel implements \Custome
         $this->_init('Customers\Contact\Model\ResourceModel\Contact');
     }
 
+
+    /**
+     * @inheritdoc
+     */
+    public function setEmail($email)
+    {
+        return $this->setData('email', $email);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getEmail()
+    {
+        return $this->getData('email');
+    }
+
     /**
      * @inheritdoc
      */
@@ -73,5 +90,37 @@ class Contact extends \Magento\Framework\Model\AbstractModel implements \Custome
     public function getJobTitle()
     {
         return $this->getData('job_title');
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setPhone($phone)
+    {
+        return $this->setData('phone', $phone);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getPhone()
+    {
+        return $this->getData('phone');
+    }
+
+     /**
+     * @inheritdoc
+     */
+    public function getAccess()
+    {
+        return $this->getData('permission');
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setAccess($access)
+    {
+        return $this->setData('access', $access);
     }
 }

@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <!-- TESTING -->
+    <route method="POST" url="/V1/custom-wishlist/add-item/:wishlistId/:productId">
+        <service class="Customers\Wishlist\Api\WishlistManagementInterface" method="saveItem"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="POST" url="/V1/custom-wishlist/add-wishlist/:name">
+        <service class="Customers\Wishlist\Api\WishlistRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/custom-wishlist/get">
+        <service class="Customers\Wishlist\Api\WishlistItemRepositoryInterface" method="getCollection"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="DELETE" url="/V1/custom-wishlist/delete/:productId">
+        <service class="Customers\Wishlist\Api\WishlistManagementInterface" method="deleteItem"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="DELETE" url="/V1/custom-wishlist/delete-wihslist/:wishlistId">
+        <service class="Customers\Wishlist\Api\WishlistManagementInterface" method="deleteWishlist"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="POST" url="/V1/custom-wishlist/create-wishlist/:wishlistId/:customerId">
+        <service class="Customers\Wishlist\Api\WishlistManagementInterface" method="createWishlist"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="POST" url="/V1/custom-wishlist/send-email/:distributorEmail/:wishlistId">
+        <service class="Customers\Wishlist\Api\WishlistManagementInterface" method="sendEmail"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+</routes>

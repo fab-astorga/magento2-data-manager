@@ -29,7 +29,7 @@
     <preference for="Items\ItemInformation\Api\Data\NetSuiteItemInterface" type="Items\ItemInformation\Model\NetSuiteItem"/>
     <preference for="Items\ItemInformation\Api\NetSuiteItemRepositoryInterface" type="Items\ItemInformation\Model\NetSuiteItemRepository"/>
     <preference for="Items\ItemInformation\Api\FiltersManagementInterface" type="Items\ItemInformation\Model\FiltersManagement"/>
-
+    <preference for="Items\ItemInformation\Api\NonInventoryManagementInterface" type="Items\ItemInformation\Model\NonInventoryManagement"/>
     <type name="Magento\Catalog\Api\ProductRepositoryInterface">
         <plugin name="GetShippingDetails" type="Items\ItemInformation\Plugin\ShippingDetails\GetShippingDetails" sortOrder="1" />
         <plugin name="SetShippingDetails" type="Items\ItemInformation\Plugin\ShippingDetails\SetShippingDetails" sortOrder="1" />
@@ -40,5 +40,16 @@
         <plugin name="GetPrices" type="Items\ItemInformation\Plugin\Prices\GetPrices" sortOrder="1" />
         <plugin name="GetWebStoreConfiguration" type="Items\ItemInformation\Plugin\WebStoreConfiguration\GetWebStoreConfiguration" sortOrder="1" />
         <plugin name="SetWebStoreConfiguration" type="Items\ItemInformation\Plugin\WebStoreConfiguration\SetWebStoreConfiguration" sortOrder="1" />
+    </type>
+    <!-- Proxy pattern -->
+    <type name="Items\ItemInformation\Model\Import\Items"> 
+        <arguments>        
+            <argument name="importItems" xsi:type="object">Items\ItemInformation\Model\Import\Items\Proxy</argument>            
+        </arguments>    
+    </type>
+    <type name="Items\ItemInformation\Model\ItemManagement"> 
+        <arguments>        
+            <argument name="itemManagement" xsi:type="object">Items\ItemInformation\Model\ItemManagement\Proxy</argument>            
+        </arguments>    
     </type>
 </config>

@@ -1,0 +1,27 @@
+{
+    "custom_wishlist": {
+        "column": {
+            "wishlist_id": true,
+            "name": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "custom_wishlist_item": {
+        "column": {
+            "wishlist_item_id": true,
+            "wishlist_id": true,
+            "product_id": true
+        },
+        "index": {
+            "CUSTOM_WISHLIST_ITEM_WISHLIST_ID": true,
+            "CUSTOM_WISHLIST_ITEM_PRODUCT_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "CUSTOM_WISHLIST_ITEM_WISHLIST_ID_CUSTOM_WISHLIST_WISHLIST_ID": true,
+            "CUSTOM_WISHLIST_ITEM_PRODUCT_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID": true
+        }
+    }
+}

@@ -13,6 +13,16 @@ interface NetSuiteItemRepositoryInterface
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
     public function getByNetSuiteItemId($netsuiteId);
+
+    /**
+     * Retrieve netsuite item by attribute and value
+     *
+     * @param $value
+     * @param string|null $attributeCode
+     * @return \Customer\Company\Api\Data\NetSuiteItemInterface
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
+    public function get($value, $attributeCode);
     
     /**
      * @param \Items\ItemInformation\Api\Data\NetSuiteItemInterface $netsuiteItem

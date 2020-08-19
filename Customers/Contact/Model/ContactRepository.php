@@ -82,15 +82,18 @@ class ContactRepository implements ContactRepositoryInterface
     /**
      * @inheritdoc
      */
-    public function save($netsuiteId, $customerId, $companyId, $jobTitle)
+    public function save($email, $netsuiteId, $customerId, $companyId, $jobTitle, $phone, $access)
     {
         $contact = $this->_contactFactory->create();
+        $contact->setEmail($email);
         $contact->setNetsuiteId($netsuiteId);
         $contact->setCustomerId($customerId);
         $contact->setCompanyId($companyId);
         $contact->setJobTitle($jobTitle);
+        $contact->setPhone($phone);
+        $contact->setAccess($access);
         $this->_resourceModelContact->save($contact);
-        return $contact;
+        return $contact; 
     }
 
     /**
@@ -98,7 +101,7 @@ class ContactRepository implements ContactRepositoryInterface
      */
     public function getById($contactId)
     {
-        return $this->get($contactId);
+        return $this->get($contactId,null);
     }
 
     /**
@@ -142,6 +145,22 @@ class ContactRepository implements ContactRepositoryInterface
         $contact = $this->getById($contactId);
         return $this->delete($contact);
     }
+
+    /**
+    * @inheritdoc
+    */
+    public function getCollection()
+    {
+        $collection = $this->_contactCollectionFactory->create();
+        $itemsArray = array();
+
+        foreach ($collection as $item){
+
+            $itemsArray [] = $this->getById($item->getId());
+        }
+        return $itemsArray;
+    }
+
 
     /**
      * @inheritdoc

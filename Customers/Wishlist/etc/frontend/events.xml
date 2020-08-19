@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="wishlist_guest_success">
+        <observer name="ha_email_wishlist_email" instance="Customers\Wishlist\Observer\CustomerRegisterObserver"/>
+    </event>
+</config>

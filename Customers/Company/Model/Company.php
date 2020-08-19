@@ -80,53 +80,6 @@ class Company extends AbstractExtensibleModel implements CompanyInterface, Ident
         return $this->setData('company_name', $companyName);
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function getUsername()
-    {
-        return $this->getData('username');
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function setUsername($username)
-    {
-        return $this->setData('username', $username);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getPrimaryContact()
-    {
-        return $this->getData('primary_contact');
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function setPrimaryContact($primaryContact)
-    {
-        return $this->setData('primary_contact', $primaryContact);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getJobTitle()
-    {
-        return $this->getData('job_title');
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function setJobTitle($jobTitle)
-    {
-        return $this->setData('job_title', $jobTitle);
-    }
 
     /**
      * @inheritdoc
@@ -158,22 +111,6 @@ class Company extends AbstractExtensibleModel implements CompanyInterface, Ident
     public function setBusinessPhone($businessPhone)
     {
         return $this->setData('business_phone', $businessPhone);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getExtension()
-    {
-        return $this->getData('extension');
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function setExtension($extension)
-    {
-        return $this->setData('extension', $extension);
     }
 
     /**
@@ -224,21 +161,6 @@ class Company extends AbstractExtensibleModel implements CompanyInterface, Ident
         return $this->setData('preferred_mode_of_delivery', $preferredModeOfDelivery);
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function getHowDidYouHearAboutUs()
-    {
-        return $this->getData('how_did_you_hear_about_us');
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function setHowDidYouHearAboutUs($howDidYouHearAboutUs)
-    {
-        return $this->setData('how_did_you_hear_about_us', $howDidYouHearAboutUs);
-    }
 
     /**
      * @inheritdoc
@@ -288,21 +210,6 @@ class Company extends AbstractExtensibleModel implements CompanyInterface, Ident
         return $this->setData('price_level', $priceLevel);
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function getRole()
-    {
-        return $this->getData('role');
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function setRole($role)
-    {
-        return $this->setData('role', $role);
-    }
 
     /**
      * @inheritdoc
@@ -320,20 +227,21 @@ class Company extends AbstractExtensibleModel implements CompanyInterface, Ident
         return $this->setData('additional_invoice_email_recipient', $additionalInvoiceEmailRecipient);
     }
 
+
     /**
      * @inheritdoc
      */
-    public function getPermission()
+    public function getAccess()
     {
-        return $this->getData('permission');
+        return $this->getData('access');
     }
 
     /**
      * @inheritdoc
      */
-    public function setPermission($permission)
+    public function setAccess($access)
     {
-        return $this->setData('permission', $permission);
+        return $this->setData('access', $access);
     }
 
     /**

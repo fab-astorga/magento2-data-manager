@@ -9,14 +9,16 @@ interface ContactRepositoryInterface
 {
     /**
      * Save customer extra attributes
-     * 
+     * @param string $email
      * @param int $netsuiteId
      * @param int $customerId
      * @param int $companyId
      * @param string $jobTitle
+     * @param string $phone
+     * @param boolean $access
      * @return \Customers\Contact\Api\Data\ContactInterface
      */
-    public function save($netsuiteId, $customerId, $companyId, $jobTitle);
+    public function save($email, $netsuiteId, $customerId, $companyId, $jobTitle, $phone, $access);
 
     /**
      * Retrieve customer extra attributes by id
@@ -55,6 +57,12 @@ interface ContactRepositoryInterface
      * @throws \Magento\Framework\Exception\CouldNotDeleteException
      */
     public function deleteById($contactId);
+
+    /**
+     * @return \Customers\Contact\Api\Data\ContactInterface[]
+     */
+    public function getCollection();
+
 
     /**
      * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria

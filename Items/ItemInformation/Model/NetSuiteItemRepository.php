@@ -1,7 +1,7 @@
 <?php
- 
+
 namespace Items\ItemInformation\Model;
- 
+
 use Items\ItemInformation\Api\NetSuiteItemRepositoryInterface;
 use Items\ItemInformation\Api\Data\NetSuiteItemInterface;
 use Items\ItemInformation\Model\NetSuiteItemFactory;
@@ -16,34 +16,46 @@ class NetSuiteItemRepository implements \Items\ItemInformation\Api\NetSuiteItemR
      * @var NetSuiteItemFactory
      */
     private $_netSuiteItemFactory;
- 
+
     public function __construct(
         \Items\ItemInformation\Model\NetSuiteItemFactory $netSuiteItemFactory
     ) {
         $this->_netSuiteItemFactory = $netSuiteItemFactory;
     }
- 
+
     public function getByNetSuiteItemId($netsuiteItemId)
     {
         $netSuiteItem = $this->_netSuiteItemFactory->create();
         $netSuiteItem->getResource()->load($netSuiteItem, $netsuiteItemId);
         if (!$netSuiteItem->getNetSuiteItemId()) { 
-           throw new NoSuchEntityException(__('Unable to find NetSuite item with ID "%1"', $netsuiteItemId));
+            throw new NoSuchEntityException(__('Unable to find NetSuite item with ID "%1"', $netsuiteItemId));
         }
         return $netSuiteItem;
     }
-     
+
+    public function get($value, $attributeCode)
+    {
+        /** @var AddressCompany $addressCompany */
+        $netsuiteItem = $this->_netSuiteItemFactory->create()->load($value, $attributeCode);
+
+        if (!$netsuiteItem->getId()) {
+            throw new NoSuchEntityException(__('Unable to find entity'));
+        }
+        
+        return $netsuiteItem;
+    }
+    
     public function save(NetSuiteItemInterface $netSuiteItem)
     {
         try{
             $netSuiteItem->getResource()->save($netSuiteItem);
-             return $netSuiteItem;
+            return $netSuiteItem;
         } catch (\Exception $error){
             throw new CouldNotSaveException(__('The NetSuite item was unable to be saved. Error details: '.$error->getMessage()), $error);
         }
         
     }
-     
+
     public function delete(NetSuiteItemInterface $netSuiteItem)
     {
         try {

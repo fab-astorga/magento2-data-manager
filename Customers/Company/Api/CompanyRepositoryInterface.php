@@ -13,44 +13,32 @@ interface CompanyRepositoryInterface
      * @param int $customerId
      * @param int $netsuiteId
      * @param string $companyName
-     * @param string $username
-     * @param string $primaryContact
-     * @param string $jobTitle
      * @param string $invoiceEmail
      * @param string $businessPhone
-     * @param string $extension
      * @param string $stateSalesTaxLicense
      * @param string $websiteAddress
      * @param string $preferredModeOfDelivery
-     * @param string $howDidYouHearAboutUs
      * @param string $altPhone
      * @param string $fax
      * @param string $priceLevel
-     * @param string $role
      * @param string $additionalInvoiceEmailRecipient
-     * @param boolean $permission 
+     * @param boolean $access 
      * @return \Customers\Company\Api\Data\CompanyInterface
      */
     public function save(
         $customerId,
         $netsuiteId, 
         $companyName, 
-        $username, 
-        $primaryContact,                                    
-        $jobTitle, 
         $invoiceEmail, 
-        $businessPhone, 
-        $extension,            
+        $businessPhone,            
         $stateSalesTaxLicense, 
         $websiteAddress, 
         $preferredModeOfDelivery,                             
-        $howDidYouHearAboutUs, 
         $altPhone, 
         $fax, 
-        $priceLevel, 
-        $role,                            
+        $priceLevel,                          
         $additionalInvoiceEmailRecipient, 
-        $permission
+        $access
     );
 
     /**
@@ -80,6 +68,11 @@ interface CompanyRepositoryInterface
      * @throws \Magento\Framework\Exception\CouldNotDeleteException
      */
     public function delete(\CustomerS\Company\Api\Data\CompanyInterface $company);
+
+    /**
+     * @return \Customers\Company\Api\Data\CompanyInterface[]
+     */
+    public function getCollection();
 
     /**
      * Delete company by ID.

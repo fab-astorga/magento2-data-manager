@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+   <!-- INTEGRATION API -->
+    <route method="PUT" url="/V1/gordon-customers">
+        <service class="Customers\Company\Api\CompanyManagementInterface" method="updateCompanyNetsuite"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <!-- TESTING -->
+    <route method="POST" url="/V1/wishlist/add/:productId/:customerId">
+        <service class="Customers\CustomerWishlist\Api\CustomerWishlistInterface" method="saveProduct"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="POST" url="/V1/wishlist/delete/:customerId/:productId">
+        <service class="Customers\CustomerWishlist\Api\CustomerWishlistInterface" method="deleteProduct"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/wishlist/get/:customerId">
+        <service class="Customers\CustomerWishlist\Api\CustomerWishlistInterface" method="getWishlistByCustomerId"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    
+</routes>

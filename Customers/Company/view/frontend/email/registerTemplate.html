@@ -1,0 +1,167 @@
+<!--@subject {{trans "emailTemplate"}} @--> 
+{{template config_path="design/email/header_template"}}
+<table>
+<tr>
+    <td><strong>{{trans "Company Name: "}}</strong></td>
+    <td>{{trans "%company_name." company_name=$company_name}}</td>
+</tr>
+<tr>
+    <td><strong>{{trans "Email Address: "}}</strong></td>
+    <td>{{trans "%email_address." email_address=$email_address}}</td>
+</tr>
+<tr>
+    <td><strong>{{trans "Business Phone: "}}</strong></td>
+    <td>{{trans "%business_phone." business_phone=$business_phone}}</td>
+</tr>
+<tr>
+    <td><strong>{{trans "State Sales Tax License:"}}</strong></td>
+    <td>{{trans "%state_sales_tax_license." state_sales_tax_license=$state_sales_tax_license}}</td>
+</tr>
+<tr>
+    <td><strong>{{trans "Website Address: "}}</strong></td>
+    <td>{{trans "%website_address." website_address=$website_address}}</td>
+</tr>
+<tr>
+    <td><strong>{{trans "Preferred Mode of Delivery: "}}</strong></td>
+    <td>{{trans "%preferred_mode_of_delivery." preferred_mode_of_delivery=$preferred_mode_of_delivery}}</td>
+</tr>
+<tr>
+    <td><strong>{{trans "Alternative Phone: "}}</strong></td>
+    <td>{{trans "%alt_phone." alt_phone=$alt_phone}}</td>
+</tr>
+<tr>
+    <td><strong>{{trans "Fax: "}}</strong></td>
+    <td>{{trans "%fax." fax=$fax}}</td>
+</tr>
+<tr>
+    <td><strong>{{trans "Price Level: "}}</strong></td>
+    <td>{{trans "%price_level." price_level=$price_level}}</td>
+</tr>
+<tr>
+    <td><strong>{{trans "Addicional Invoice Email Recipient: "}}</strong></td>
+    <td>{{trans "%additional_invoice_email_recipient." additional_invoice_email_recipient=$additional_invoice_email_recipient}}</td>
+</tr>
+<tr>
+    <td><strong>{{trans "Permission: "}}</strong></td>
+    <td>{{trans "%permission." permission=$permission}}</td>
+</tr>
+<tr>
+    <td><strong>{{trans "Addresses: "}}</strong></td>
+    <td><strong>{{trans "My Address"}}</strong></td>
+    <tr>
+        <td><strong>{{trans "Zip: "}}</strong></td>
+        <td>{{trans "%zip." zip=$zip}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Country: "}}</strong></td>
+        <td>{{trans "%country." country=$country}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Address: "}}</strong></td>
+        <td>{{trans "%address." address=$address}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "City: "}}</strong></td>
+        <td>{{trans "%city." city=$city}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Apt Suite: "}}</strong></td>
+        <td>{{trans "%apt_suite." apt_suite=$apt_suite}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "State: "}}</strong></td>
+        <td>{{trans "%state." state=$state}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Default address: "}}</strong></td>
+        <td>{{trans "%set_is_default_my_address." set_is_default_my_address=$set_is_default_my_address}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Billing address: "}}</strong></td>
+        <td>{{trans "%set_is_default_billing." set_is_default_billing=$set_is_default_billing}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Shipping address: "}}</strong></td>
+        <td>{{trans "%set_is_default_shipping." set_is_default_shipping=$set_is_default_shipping}}</td>
+    </tr>
+    <!-- SHIPPING-->
+    <td><strong>{{trans "Addresses: "}}</strong></td>
+    <td><strong>{{trans "Shipping Address"}}</strong></td>
+    <tr>
+        <td><strong>{{trans "Zip: "}}</strong></td>
+        <td>{{trans "%zip." zip=$s_zip}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Country: "}}</strong></td>
+        <td>{{trans "%country." country=$s_country}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Address: "}}</strong></td>
+        <td>{{trans "%address." address=$s_address}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "City: "}}</strong></td>
+        <td>{{trans "%city." city=$s_city}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Apt Suite: "}}</strong></td>
+        <td>{{trans "%apt_suite." apt_suite=$s_apt_suite}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "State: "}}</strong></td>
+        <td>{{trans "%state." state=$s_state}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Default address: "}}</strong></td>
+        <td>{{trans "%set_is_default_my_address." set_is_default_my_address=$s_set_is_default_my_address}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Billing address: "}}</strong></td>
+        <td>{{trans "%set_is_default_billing." set_is_default_billing=$s_set_is_default_billing}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Shipping address: "}}</strong></td>
+        <td>{{trans "%set_is_default_shipping." set_is_default_shipping=$s_set_is_default_shipping}}</td>
+    </tr>
+    <!-- BILLING -->
+    <td><strong>{{trans "Addresses: "}}</strong></td>
+    <td><strong>{{trans "Billing Address"}}</strong></td>
+    <tr>
+        <td><strong>{{trans "Zip: "}}</strong></td>
+        <td>{{trans "%zip." zip=$b_zip}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Country: "}}</strong></td>
+        <td>{{trans "%country." country=$b_country}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Address: "}}</strong></td>
+        <td>{{trans "%address." address=$b_address}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "City: "}}</strong></td>
+        <td>{{trans "%city." city=$b_city}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Apt Suite: "}}</strong></td>
+        <td>{{trans "%apt_suite." apt_suite=$b_apt_suite}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "State: "}}</strong></td>
+        <td>{{trans "%state." state=$b_state}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Default address: "}}</strong></td>
+        <td>{{trans "%set_is_default_my_address." set_is_default_my_address=$b_set_is_default_my_address}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Billing address: "}}</strong></td>
+        <td>{{trans "%set_is_default_billing." set_is_default_billing=$b_set_is_default_billing}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Shipping address: "}}</strong></td>
+        <td>{{trans "%set_is_default_shipping." set_is_default_shipping=$b_set_is_default_shipping}}</td>
+    </tr>
+</tr>
+</table>
+{{template config_path="design/email/footer_template"}}

@@ -57,51 +57,6 @@ interface CompanyInterface extends CustomAttributesDataInterface
     public function setCompanyName($companyName);
 
     /**
-     * Retrieve the username
-     *
-     * @return string
-     */
-    public function getUsername();
-
-    /**
-     * Set username
-     * 
-     * @param string $username
-     * @return $this
-     */
-    public function setUsername($username);
-
-    /**
-     * Retrieve the primary contact
-     *
-     * @return string
-     */
-    public function getPrimaryContact();
-
-    /**
-     * Set primary contact
-     * 
-     * @param string $primaryContact
-     * @return $this
-     */
-    public function setPrimaryContact($primaryContact);
-
-    /**
-     * Retrieve the job title
-     *
-     * @return string
-     */
-    public function getJobTitle();
-
-    /**
-     * Set job title
-     * 
-     * @param string $jobTitle
-     * @return $this
-     */
-    public function setJobTitle($jobTitle);
-
-    /**
      * Retrieve the invoice email
      *
      * @return string
@@ -131,20 +86,6 @@ interface CompanyInterface extends CustomAttributesDataInterface
      */
     public function setBusinessPhone($businessPhone);
 
-    /**
-     * Retrieve the extension
-     *
-     * @return string
-     */
-    public function getExtension();
-
-    /**
-     * Set extension
-     *
-     * @param string $extension
-     * @return $this
-     */
-    public function setExtension($extension);
 
     /**
      * Retrieve the state sale tax license
@@ -191,20 +132,6 @@ interface CompanyInterface extends CustomAttributesDataInterface
      */
     public function setPreferredModeOfDelivery($preferredModeOfDelivery);
 
-    /**
-     * Retrieve 'how did you hear about us'
-     *
-     * @return string
-     */
-    public function getHowDidYouHearAboutUs();
-
-    /**
-     * Set 'how did you hear about us'
-     *
-     * @param string $howDidYouHearAboutUs
-     * @return $this
-     */
-    public function setHowDidYouHearAboutUs($howDidYouHearAboutUs);
 
     /**
      * Retrieve the alt phone
@@ -252,21 +179,6 @@ interface CompanyInterface extends CustomAttributesDataInterface
     public function setPriceLevel($priceLevel);
 
     /**
-     * Retrieve role
-     *
-     * @return string
-     */
-    public function getRole();
-
-    /**
-     * Set role
-     *
-     * @param string $role
-     * @return $this
-     */
-    public function setRole($role);
-
-    /**
      * Retrieve the additional invoice email recipient
      *
      * @return string
@@ -282,19 +194,19 @@ interface CompanyInterface extends CustomAttributesDataInterface
     public function setAdditionalInvoiceEmailRecipient($additionalInvoiceEmailRecipient);
 
     /**
-     * Retrieve permission
+     * Retrieve access
      *
      * @return boolean
      */
-    public function getPermission();
+    public function getAccess();
 
     /**
      * Set permission
      *
-     * @param boolean $permission
+     * @param boolean $access
      * @return $this
      */
-    public function setPermission($permission);
+    public function setAccess($access);
 
     /**
      * Retrieve existing extension attributes object or create a new one.

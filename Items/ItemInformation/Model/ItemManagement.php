@@ -15,7 +15,7 @@ use Items\ItemInformation\Api\ItemShotsManagementInterface;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Items\ItemInformation\Api\ItemManagementInterface;
 use Items\ItemInformation\Api\FiltersManagementInterface;
-use Integration\Management\Api\DataAuthInterface;
+use Integration\Netsuite\Api\DataAuthInterface;
 
 class ItemManagement implements \Items\ItemInformation\Api\ItemManagementInterface 
 {
@@ -43,6 +43,9 @@ class ItemManagement implements \Items\ItemInformation\Api\ItemManagementInterfa
     protected $_colorSwatch;
     protected $_netsuiteIntegration;
     protected $logger;
+    protected $_nonInventoryManagement;
+    protected $_fedExIntegration;
+    protected $_xmlBuilder;
 
     // Control variable, for rollback if the product does not exist
     protected $_productExist = false;
@@ -70,8 +73,11 @@ class ItemManagement implements \Items\ItemInformation\Api\ItemManagementInterfa
         \Magento\UrlRewrite\Model\UrlRewrite $urlRewrite,
         \Items\ItemInformation\Api\FiltersManagementInterface $filtersManagement,
         \Items\ItemInformation\Helper\ColorSwatch $colorSwatch,
-        \Integration\Management\Api\IntegrationInterface $netsuiteIntegration,
-        \File\CustomLog\Logger\Logger $logger
+        \Integration\Netsuite\Api\IntegrationInterface $netsuiteIntegration,
+        \File\CustomLog\Logger\Logger $logger,
+        \Items\ItemInformation\Api\NonInventoryManagementInterface $nonInventoryManagement,
+        \Integration\FedEx\Api\FedExIntegrationInterface $fedExIntegration,
+        \Items\ItemInformation\Helper\XmlBuilder $xmlBuilder
     ) 
     {
         $this->_productRepository               = $productRepository;
@@ -98,6 +104,9 @@ class ItemManagement implements \Items\ItemInformation\Api\ItemManagementInterfa
         $this->_colorSwatch                     = $colorSwatch;
         $this->_netsuiteIntegration             = $netsuiteIntegration;
         $this->logger                           = $logger;
+        $this->_nonInventoryManagement          = $nonInventoryManagement;
+        $this->_fedExIntegration                = $fedExIntegration; 
+        $this->_xmlBuilder                      = $xmlBuilder;
     }
 
     /**
@@ -115,116 +124,158 @@ class ItemManagement implements \Items\ItemInformation\Api\ItemManagementInterfa
             
             // Save main information
             $itemInformation = $data;
-            $product = $this->saveItemMainInformation($itemInformation);
+            $product = null;
 
-            if($product)
+            /* Check if item is non inventory */
+            if ($itemInformation[ItemManagementInterface::SUB_ITEM_OF] == ItemManagementInterface::NON_INVENTORY)
             {
-                $productSaved = true;
-                $productSku =  $product->getSku();
-                $this->logger->info('product sku: ' . $productSku);
-            }
+                /** AQUI CREA EL NON INVENTORY (virtual product)   */
 
-            // Save Shipping Details
-            $this->logger->info('SAVING SHIPPING DETAILS');
-            $shippingDetailsInformation = $this->getExistingKeys(ShippingDetailsInterface::ATTRIBUTES, $data);
-            $this->_shippingDetailsManagement->saveShippingDetails($product, $shippingDetailsInformation);
-            $this->logger->info('SHIPPING DETAILS SAVED');
+                $netsuiteId = $itemInformation[ItemManagementInterface::NETSUITE_ID];
+                $sku = $itemInformation[ItemManagementInterface::SKU];
+                $product = $this->_nonInventoryManagement->createNonInventoryItem($netsuiteId, $sku);
 
-            // Save Item Details
-            $this->logger->info('SAVING ITEM DETAILS');
-            $itemDetailsInformation = $this->getExistingKeys(ItemDetailsInterface::ATTRIBUTES, $data);
-            $this->_itemDetailsManagement->saveItemDetails($product, $itemDetailsInformation);
-            $this->logger->info('ITEM DETAILS SAVED');
+            } else {
 
-            // Save Safety Details
-            $this->logger->info('SAVING SAFETY DETAILS');
-            $safetyDetailsInformation = $this->getExistingKeys(SafetyDetailsInterface::ATTRIBUTES, $data);
-            $this->_safetyDetailsManagement->saveSafetyDetails($product, $safetyDetailsInformation);
-            $this->logger->info('SAFETY DETAILS SAVED');
+                $product = $this->saveItemMainInformation($itemInformation);
 
-            // Save Web Store Configuration
-            $this->logger->info('SAVING WEB STORE CONF');
-            $webStoreInformation = $this->getExistingKeys(WebStoreConfigurationInterface::ATTRIBUTES, $data);
-            $this->_webStoreConfigurationManagement->saveWebStoreConfiguration($product, $webStoreInformation);
-            $this->logger->info('WEB STORE CONF SAVED');
+                if($product)
+                {
+                    $productSaved = true;
+                    $productSku =  $product->getSku();
+                    $this->logger->info('product sku: ' . $productSku);
+                }
 
-            // Save images
-            $this->logger->info('SAVING IMAGES');
-            $itemShotsInformation = [];
-            $itemShotsInformation[ItemShotsManagementInterface::MAIN_SHOTS] = $this->getExistingKeys(ItemMainShotsInterface::ATTRIBUTES, $data);
-            $this->logger->info('MAIN SHOTS', ['return'=>$itemShotsInformation[ItemShotsManagementInterface::MAIN_SHOTS]]);
-            $itemShotsInformation[ItemShotsManagementInterface::MATRIX_SHOTS] = $this->getExistingKeys(ItemMatrixShotsInterface::ATTRIBUTES, $data);
-            $this->logger->info('MATRIX SHOTS', ['return'=>$itemShotsInformation[ItemShotsManagementInterface::MATRIX_SHOTS]]);
-            $this->_itemShotsManagement->saveItemShots($product, $itemShotsInformation, $itemInformation[ItemManagementInterface::SUB_ITEM_OF]);
-            $this->logger->info('IMAGES SUCCESSFULLY SAVED');
+                // Save Shipping Details
+                $this->logger->info('SAVING SHIPPING DETAILS');
+                $shippingDetailsInformation = $this->getExistingKeys(ShippingDetailsInterface::ATTRIBUTES, $data);
+                $this->_shippingDetailsManagement->saveShippingDetails($product, $shippingDetailsInformation);
+                $this->logger->info('SHIPPING DETAILS SAVED');
+
+                // Save Item Details
+                $this->logger->info('SAVING ITEM DETAILS');
+                $itemDetailsInformation = $this->getExistingKeys(ItemDetailsInterface::ATTRIBUTES, $data);
+                $this->_itemDetailsManagement->saveItemDetails($product, $itemDetailsInformation);
+                $this->logger->info('ITEM DETAILS SAVED');
+
+                // Save Safety Details
+                $this->logger->info('SAVING SAFETY DETAILS');
+                $safetyDetailsInformation = $this->getExistingKeys(SafetyDetailsInterface::ATTRIBUTES, $data);
+                $this->_safetyDetailsManagement->saveSafetyDetails($product, $safetyDetailsInformation);
+                $this->logger->info('SAFETY DETAILS SAVED');
+
+                // Save Web Store Configuration
+                $this->logger->info('SAVING WEB STORE CONF');
+                $webStoreInformation = $this->getExistingKeys(WebStoreConfigurationInterface::ATTRIBUTES, $data);
+                $this->_webStoreConfigurationManagement->saveWebStoreConfiguration($product, $webStoreInformation);
+                $this->logger->info('WEB STORE CONF SAVED');
+
+                // Save images
+                $this->logger->info('SAVING IMAGES');
+                $itemShotsInformation = [];
+                $itemShotsInformation[ItemShotsManagementInterface::MAIN_SHOTS] = $this->getExistingKeys(ItemMainShotsInterface::ATTRIBUTES, $data);
+                $this->logger->info('MAIN SHOTS', ['return'=>$itemShotsInformation[ItemShotsManagementInterface::MAIN_SHOTS]]);
+                $itemShotsInformation[ItemShotsManagementInterface::MATRIX_SHOTS] = $this->getExistingKeys(ItemMatrixShotsInterface::ATTRIBUTES, $data);
+                $this->logger->info('MATRIX SHOTS', ['return'=>$itemShotsInformation[ItemShotsManagementInterface::MATRIX_SHOTS]]);
+                $this->_itemShotsManagement->saveItemShots($product, $itemShotsInformation, $itemInformation[ItemManagementInterface::SUB_ITEM_OF]);
+                $this->logger->info('IMAGES SUCCESSFULLY SAVED');
 
 
-            // Save additional downloads
-            $this->logger->info('SAVING ADDITIONAL DOWNLOADS');
-            $additionalDownloadsInformation = $this->getExistingKeys(AdditionalDownloadsInterface::ATTRIBUTES, $data);
-            $this->_additionalDownloadsManagement->saveAdditionalDownloads($product, $additionalDownloadsInformation);
-            $this->logger->info('ADDITIONAL DOWNLOADS SAVED');
+                // Save additional downloads
+                $this->logger->info('SAVING ADDITIONAL DOWNLOADS');
+                $additionalDownloadsInformation = $this->getExistingKeys(AdditionalDownloadsInterface::ATTRIBUTES, $data);
+                $this->_additionalDownloadsManagement->saveAdditionalDownloads($product, $additionalDownloadsInformation);
+                $this->logger->info('ADDITIONAL DOWNLOADS SAVED');
 
-            // Save related items
-            if (array_key_exists(SELF::RELATED_ITEMS, $data)) {
-                $this->saveRelatedItems($product, $data[SELF::RELATED_ITEMS]);
+                // Save related items
+                if (array_key_exists(SELF::RELATED_ITEMS, $data)) {
+                    $this->saveRelatedItems($product, $data[SELF::RELATED_ITEMS]);
+                }
+
+                // Save Filters
+                $this->logger->info('SAVING FILTERS');
+                $filtersInformation = $this->getExistingKeys(FiltersManagementInterface::FILTERS, $data);
+                $this->logger->info('FILTERS ALMOST SAVED');
+                $this->_filtersManagement->saveFilters($product, $filtersInformation);
+                $this->logger->info('FILTERS SAVED');
+
+                $productType = $product->getTypeId();
+
+                // If is a simple product, we save the configurable - simple product relationship
+                if($productType == 'simple')
+                {
+                    if(array_key_exists(ItemManagementInterface::SUB_ITEM_OF, $itemInformation)
+                        && (!empty($itemInformation[ItemManagementInterface::SUB_ITEM_OF]))
+                        && ($itemInformation[ItemManagementInterface::SUB_ITEM_OF] != 'simple'))
+                    {
+                        $this->logger->info('SETTING SIMPLE PRODUCT TO CONFIGURABLE...');
+                        $this->setSimpleProductToConfigurable($itemInformation[ItemManagementInterface::SUB_ITEM_OF], $product);
+                        $this->logger->info('PRODUCT SET');
+                    }
+                }
+
+                // Save Prices  *********
+                $pricesInformation = $this->getExistingKeys([ItemManagementInterface::PRICES], $data);
+                $this->_pricesManagement->savePrices($product, $pricesInformation);
+
+                /************ Custom Attributes / Special Categories (On sale, Clearance, New) *****************/
+                $this->logger->info('Before special categories assignment');
+                $this->setSpecialCategories($product, $itemInformation);
+                $this->logger->info('FINISH', ['return' => $product]);
             }
 
             // Save Prices
-            $pricesInformation = $this->getExistingKeys([SELF::PRICES], $data);
-            $this->_pricesManagement->savePrices($product, $pricesInformation);
+           // $pricesInformation = $this->getExistingKeys([ItemManagementInterface::PRICES], $data);
+           // $this->_pricesManagement->savePrices($product, $pricesInformation);
 
-            // Save Filters
-            $this->logger->info('SAVING FILTERS');
-            $filtersInformation = $this->getExistingKeys(FiltersManagementInterface::FILTERS, $data);
-            $this->logger->info('FILTERS ALMOST SAVED');
-            $this->_filtersManagement->saveFilters($product, $filtersInformation);
-            $this->logger->info('FILTERS SAVED');
-
-            $productType = $product->getTypeId();
-
-            // If is a simple product, we save the configurable - simple product relationship
-            if($productType == 'simple')
-            {
-                if(array_key_exists(ItemManagementInterface::SUB_ITEM_OF, $itemInformation)
-                    && (!empty($itemInformation[ItemManagementInterface::SUB_ITEM_OF]))
-                    && ($itemInformation[ItemManagementInterface::SUB_ITEM_OF] != 'simple'))
-                {
-                    $this->logger->info('SETTING SIMPLE PRODUCT TO CONFIGURABLE...');
-                    $this->setSimpleProductToConfigurable($itemInformation[ItemManagementInterface::SUB_ITEM_OF], $product);
-                    $this->logger->info('PRODUCT SET');
-                }
-            }
-
-            /************ Custom Attributes / Special Categories (On sale, Clearance, New) *****************/
-            $this->logger->info('Before special categories assignment');
-            $this->setSpecialCategories($product, $itemInformation);
-            $this->logger->info('FINISH', ['return' => $product]);
+            $result = [
+                "status"=>true,
+                "error"=>null
+            ];
 
         } catch(\Exception $error) {
             if($productSaved && !$this->_productExist) {
-                $this->_productRepository->deleteById($productSku);
+                $this->_productRepository->deleteById($product->getSku());
             }
-            throw new CouldNotSaveException(__('The product was unable to be saved or updated. Error details: '.$error->getMessage()), $error);
+
+            $result = [
+                "status"=>false,
+                "error"=>$error->getMessage()
+            ];
         }
 
-        return true;
+        $response = json_encode($result);
+        return $response;
     }
 
     /**
      * This method delete an item by id
      * {@inheritdoc}
      */
-    public function deleteItem($itemId)
+    public function deleteItem()
     {
         try {
-            $this->_productRepository->deleteById($itemId);
-        } catch(\Exception $error){
-            throw new CouldNotDeleteException(__('The product was unable to be deleted. Error details: '.$error->getMessage()),
-                $error
-            );
+            $data = (array) json_decode(file_get_contents('php://input'), true);
+
+            $netsuiteId = $data["netsuite_id"];
+            $productId = $this->_netsuiteItemRepository->getByNetSuiteItemId($netsuiteId)->getItemId();
+            $product = $this->_productRepository->getById($productId);
+            $this->_productRepository->delete($product);
+
+            $result = [
+                "status"=>true,
+                "error"=>null
+            ];
+
+        } catch(\Exception $error) {
+            $result = [
+                "status"=>false,
+                "error"=>$error->getMessage()
+            ];
         }
-        return true;
+
+        $response = json_encode($result);
+        return $response;
     }
 
     /**
@@ -322,9 +373,11 @@ class ItemManagement implements \Items\ItemInformation\Api\ItemManagementInterfa
                 if ($itemInformation[ItemManagementInterface::SUB_ITEM_OF] != 'simple') 
                 {
                     $currentValue = array_search("Not Visible Individually", $visibilityOptions);
-                    $this->_colorSwatch->createColorSwatch($name);
                 } else {
                     $currentValue = array_search("Catalog, Search", $visibilityOptions);
+                }
+                if(!empty($itemInformation['colors'])) {
+                    $this->_colorSwatch->createColorSwatch($name);
                 }
 
                 $product->setVisibility($currentValue);
@@ -339,7 +392,7 @@ class ItemManagement implements \Items\ItemInformation\Api\ItemManagementInterfa
 
         /************ Default Values *****************/
         if(!$this->_productExist)
-        { 
+        {
             $product->setAttributeSetId(4);
             $product->setStatus(1);
             $product->setWebsiteIds([1]);
@@ -574,10 +627,20 @@ class ItemManagement implements \Items\ItemInformation\Api\ItemManagementInterfa
                 $this->_categoryRepository->save($category);
             }
 
-            return true;
-        } catch(\Exception $error){
-            throw new CouldNotSaveException(__('The categories was unable to be saved or updated. Error details: '.$error->getMessage()));
+            $result = [
+                "status"=>true,
+                "error"=>null
+            ];
+        
+        } catch(\Exception $error) {
+            $result = [
+                "status"=>false,
+                "error"=>$error->getMessage()
+            ];
         }
+
+        $response = json_encode($result);
+        return $response;
     }
 
     /**
@@ -593,18 +656,27 @@ class ItemManagement implements \Items\ItemInformation\Api\ItemManagementInterfa
 
             if (!array_key_exists('netsuite_id', $category)) {
                 throw new CouldNotDeleteException(__('There is not a netsuite id for the category.'));
-            }else {
+            } else {
                 $netsuiteIdCategory = $category['netsuite_id'];
             }
 
             $categoryId = $this->_netsuiteCategoryRepository->getByNetSuiteCategoryId($netsuiteIdCategory)->getCategoryId();
             $this->_categoryRepository->deleteByIdentifier($categoryId);
 
-            return true;
+            $result = [
+                "status"=>true,
+                "error"=>null
+            ];
 
         } catch(\Exception $error) {
-            throw new CouldNotDeleteException(__('The category was unable to be deleted. Error details: '.$error->getMessage()));
+            $result = [
+                "status"=>false,
+                "error"=>$error->getMessage()
+            ];
         }
+
+        $response = json_encode($result);
+        return $response;
     }
 
     /**
@@ -832,13 +904,14 @@ class ItemManagement implements \Items\ItemInformation\Api\ItemManagementInterfa
     /**
      * Check inventory from Magento to Netsuite
      * 
-     * @param int $netsuiteId
+     * @param int $itemId
      * @param int $quantity
      * @return boolean
      */
-    public function checkInventory($netsuiteId, $quantity)
+    public function checkInventory($itemId, $quantity)
     {
         try {
+            $netsuiteId = $this->_netsuiteItemRepository->get($itemId, 'item_id')->getNetSuiteItemId();
             $script = 1759;
             $deploy = 1;
             $method = "GET";
@@ -864,5 +937,28 @@ class ItemManagement implements \Items\ItemInformation\Api\ItemManagementInterfa
         } catch (\Exception $e) {
             $this->logger->info('Exception: ' . $e->getMessage());
         }
+    }
+
+    /**
+     * Check total estimate shipping result according to zip code and
+     * the amount of items
+     * 
+     * @param int $zipCode
+     * @param int $requestedQuantity
+     * @return void
+     */
+    public function estimateShipping($zipCode, $requestedQuantity)
+    {
+        /* Set connection with FedEx */
+        $xmlFedExRequest = $this->_xmlBuilder->buildXmlFedEx($zipCode, $requestedQuantity);
+        $response = $this->_fedExIntegration->sendFedExRateRequest($xmlFedExRequest);
+
+        $this->logger->info('FEDEX JSON: ',['return'=>$response]);
+
+        $xml = simplexml_load_string($response);
+        $json = json_encode($xml);
+        $array = json_decode($json, true);
+        
+        $this->logger->info('FEDEX JSON: ',['return'=>$array]);
     }
 }

@@ -88,45 +88,33 @@ class CompanyRepository implements CompanyRepositoryInterface
     public function save(
         $customerId,
         $netsuiteId, 
-        $companyName, 
-        $username, 
-        $primaryContact,                                    
-        $jobTitle, 
+        $companyName,  
         $invoiceEmail, 
-        $businessPhone, 
-        $extension,            
+        $businessPhone,            
         $stateSalesTaxLicense, 
         $websiteAddress, 
         $preferredModeOfDelivery,                             
-        $howDidYouHearAboutUs, 
         $altPhone, 
         $fax, 
-        $priceLevel, 
-        $role,                            
+        $priceLevel,                          
         $additionalInvoiceEmailRecipient, 
-        $permission
+        $access
     )
     {
         $company = $this->_companyFactory->create();
         $company->setCustomerId($customerId);
         $company->setNetsuiteId($netsuiteId);
         $company->setCompanyName($companyName);
-        $company->setUsername($username);
-        $company->setPrimaryContact($primaryContact);
-        $company->setJobTitle($jobTitle);
         $company->setInvoiceEmail($invoiceEmail);
         $company->setBusinessPhone($businessPhone);
-        $company->setExtension($extension);
         $company->setStateSalesTaxLicense($stateSalesTaxLicense);
         $company->setWebsiteAddress($websiteAddress);
         $company->setPreferredModeOfDelivery($preferredModeOfDelivery);
-        $company->setHowDidYouHearAboutUs($howDidYouHearAboutUs);
         $company->setAltPhone($altPhone);
         $company->setFax($fax);
         $company->setPriceLevel($priceLevel);
-        $company->setRole($role);
         $company->setAdditionalInvoiceEmailRecipient($additionalInvoiceEmailRecipient);
-        $company->setPermission($permission);
+        $company->setAccess($access);
         $this->_resourceModelCompany->save($company);
         return $company;
     }
@@ -180,6 +168,22 @@ class CompanyRepository implements CompanyRepositoryInterface
     {
         $companyId = $this->getById($netsuiteId);
         return $this->delete($companyId);
+    }
+
+
+    /**
+    * @inheritdoc
+    */
+    public function getCollection()
+    {
+        $collection = $this->_companyCollectionFactory->create();
+        $itemsArray = array();
+
+        foreach ($collection as $item){
+
+            $itemsArray [] = $this->getById($item->getId());
+        }
+        return $itemsArray;
     }
 
     /**

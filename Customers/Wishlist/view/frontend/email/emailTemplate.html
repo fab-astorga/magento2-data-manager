@@ -1,0 +1,21 @@
+<!--@subject {{trans "emailTemplate"}} @--> 
+{{template config_path="design/email/header_template"}}
+<table>
+    <tr>
+        <td><strong>{{trans "Sku: "}}</strong></td>
+        <td>{{trans "%item_sku." item_sku=$item_sku}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Name: "}}</strong></td>
+        <td>{{trans "%item_name." item_name=$item_name}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Price: $"}}</strong></td>
+        <td>{{trans "%item_price." item_price=$item_price}}</td>
+    </tr>
+    <tr>
+        <td><strong>{{trans "Weight: "}}</strong></td>
+        <td>{{trans "%item_weight." item_weight=$item_weight}}</td>
+    </tr>
+</table>
+{{template config_path="design/email/footer_template"}}

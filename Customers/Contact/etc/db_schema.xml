@@ -6,6 +6,10 @@
         <column xsi:type="int" name="customer_id" padding="10" unsigned="true" nullable="false" comment="customer_id"/>
         <column xsi:type="int" name="company_id" padding="10" unsigned="true" nullable="false" comment="company_id"/>
         <column xsi:type="varchar" name="job_title" nullable="true" length="255" comment="job_title"/>
+        <column xsi:type="varchar" name="name" nullable="true" length="255" comment="name"/>
+        <column xsi:type="varchar" name="email" nullable="true" length="255" comment="email"/>
+        <column xsi:type="varchar" name="phone" nullable="true" length="255" comment="phone"/>
+        <column xsi:type="boolean" name="access" nullable="true" comment="access"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="id"/>
         </constraint>

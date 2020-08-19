@@ -36,10 +36,10 @@
             <resource ref="self"/>
         </resources>
     </route>
-    <route method="GET" url="/V1/check-inventory/:netsuiteId/:quantity">
-    <service class="Items\ItemInformation\Api\ItemManagementInterface" method="checkInventory"/>
+    <route method="POST" url="/V1/estimate-shipping/:zipCode/:requestedQuantity">
+    <service class="Items\ItemInformation\Api\ItemManagementInterface" method="estimateShipping"/>
         <resources>
-            <resource ref="anonymous"/>
+            <resource ref="self"/>
         </resources>
     </route>
 </routes>

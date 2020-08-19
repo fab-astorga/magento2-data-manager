@@ -38,7 +38,7 @@ interface CompanyManagementInterface
      * @param array $addresses
      * @return boolean
      */
-    public function registerCompany(
+    public function sendFormData(
         $companyName, 
         $username, 
         $primaryContact,                                    
@@ -60,9 +60,16 @@ interface CompanyManagementInterface
     );
 
     /**
+     * The company will save and will be synchronized if happens in Netsuite
+     * 
+     * @return boolean
+     */
+    public function saveCompanyNetsuite();
+
+    /**
      * The company will update and will be synchronized if happens in Netsuite
      * 
-     * @return \Customers\Company\Api\Data\CompanyInterface
+     * @return boolean
      */
     public function updateCompanyNetsuite();
 
@@ -88,7 +95,7 @@ interface CompanyManagementInterface
      * @param int $contactId
      * @return boolean
      */
-    public function deleteCompany($netsuiteId, $contactId);
+    public function deleteCompany();
 
     /**
      * Update Company
@@ -96,9 +103,16 @@ interface CompanyManagementInterface
      * @param string $email
      * @param string $firstname
      * @param string $lastname
+     * @param string $companyName
+     * @param string $businessPhone
+     * @param string $address
+     * @param string $zipcode
+     * @param string $country
+     * @param string $state
+     * @param string $city
      * @return boolean
      */
-    public function updateCompany($email, $firstname, $lastname);
+    public function updateCompany($email, $firstname, $lastname, $companyName, $businessPhone, $address, $zipcode, $country, $state, $city);
 
     /**
      * Change password company
@@ -116,6 +130,7 @@ interface CompanyManagementInterface
      * 
      * @param string $email
      * @param string $password
+     * @param int|null $wishlistId
      * @return \Customers\Company\Api\Data\CompanyInterface|string
      */
     public function loginCompany($email, $password);

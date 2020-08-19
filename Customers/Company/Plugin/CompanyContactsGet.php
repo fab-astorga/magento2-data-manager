@@ -21,6 +21,7 @@ class CompanyContactsGet
     protected $_customerDataRepository;
     protected $_logger;
 
+
     public function __construct (
         \Magento\Customer\Api\Data\CustomerExtensionFactory $customerExtensionFactory,
         \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder,
@@ -33,6 +34,7 @@ class CompanyContactsGet
         \Customers\Address\Model\ResourceModel\AddressData\CollectionFactory $addressDataCollection,
         \Customers\Contact\Api\CustomerDataRepositoryInterface $customerDataRepository,
         \File\CustomLog\Logger\Logger $logger
+
     ) {
         $this->_customerExtensionFactory = $customerExtensionFactory;
         $this->_searchCriteriaBuilder    = $searchCriteriaBuilder;
@@ -122,4 +124,5 @@ class CompanyContactsGet
 
         return $customer;
     }
+
 }

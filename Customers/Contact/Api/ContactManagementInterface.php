@@ -13,27 +13,15 @@ interface ContactManagementInterface
 
     /**
      * Create new contact
-     * 
-     * @param string $email  
-     * @param string $firstname
-     * @param string $lastname
-     * @param string $password
-     * @param int $netsuiteId
-     * @param int $companyId
-     * @param string $jobTitle
-     * @param array $addresses
      * @return \Magento\Customer\Api\Data\CustomerInterface
      */
-    public function registerContact(
-        $email, 
-        $firstname, 
-        $lastname, 
-        $password, 
-        $netsuiteId, 
-        $companyId,
-        $jobTitle, 
-        $addresses
-    );
+    public function registerContact();
+
+    /**
+     * update contact
+     * @return boolean
+     */
+    public function updateContactNetsuite();
 
     /**
      * Get contact by email
@@ -53,10 +41,9 @@ interface ContactManagementInterface
     /**
      * Delete contact by email
      * 
-     * @param string $email
      * @return boolean
      */
-    public function deleteContact($email);
+    public function deleteContact();
 
     /**
      * Update contact
@@ -64,9 +51,16 @@ interface ContactManagementInterface
      * @param string $email
      * @param string $firstname
      * @param string $lastname
+     * @param string $companyName
+     * @param string $businessPhone
+     * @param string $address
+     * @param string $zipcode
+     * @param string $country
+     * @param string $state
+     * @param string $city
      * @return boolean
      */
-    public function updateContact($email, $firstname, $lastname);
+    public function updateContact($email, $firstname, $lastname, $companyName, $businessPhone, $address, $zipcode, $country, $state, $city);
 
     /**
      * Change password contact

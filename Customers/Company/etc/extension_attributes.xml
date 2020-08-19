@@ -3,6 +3,6 @@
         <attribute code="company" type="Customers\Company\Api\Data\CompanyInterface" />
     </extension_attributes>
     <extension_attributes for="Customers\Company\Api\Data\CompanyInterface">
-        <attribute code="contacts" type="\Magento\Customer\Api\Data\CustomerInterface[]" />
+        <attribute code="contacts" type="\Magento\Customer\Api\Data\ContactInterface[]" />
     </extension_attributes>
 </config>

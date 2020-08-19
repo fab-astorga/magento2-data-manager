@@ -5,22 +5,16 @@
         <column xsi:type="int" name="customer_id" padding="10" unsigned="true" nullable="true" comment="customer_id"/>
         <column xsi:type="int" name="netsuite_id" padding="10" unsigned="true" nullable="true" comment="netsuite_id"/>
         <column xsi:type="varchar" name="company_name" nullable="false" length="255" comment="company_name"/>
-        <column xsi:type="varchar" name="username" nullable="false" length="255" comment="username"/>
-        <column xsi:type="varchar" name="primary_contact" nullable="false" length="255" comment="primary_contact"/>
-        <column xsi:type="varchar" name="job_title" nullable="true" length="255" comment="job_title"/>
         <column xsi:type="varchar" name="invoice_email" nullable="false" length="255" comment="invoice_email"/>
         <column xsi:type="varchar" name="business_phone" nullable="true" length="255" comment="business_phone"/>
-        <column xsi:type="varchar" name="extension" nullable="true" length="255" comment="extension"/>
         <column xsi:type="varchar" name="state_sales_tax_license" nullable="false" length="255" comment="state_sales_tax_license"/>
         <column xsi:type="varchar" name="website_address" nullable="true" length="255" comment="website_address"/>
         <column xsi:type="varchar" name="preferred_mode_of_delivery" nullable="true" length="255" comment="preferred_mode_of_delivery"/>
-        <column xsi:type="varchar" name="how_did_you_hear_about_us" nullable="true" length="255" comment="how_did_you_hear_about_us"/>
         <column xsi:type="varchar" name="alt_phone" nullable="true" length="255" comment="alt_phone"/>
         <column xsi:type="varchar" name="fax" nullable="true" length="255" comment="fax"/>
         <column xsi:type="varchar" name="price_level" nullable="true" length="255" comment="price_level"/>
-        <column xsi:type="varchar" name="role" nullable="true" length="255" comment="role"/>
         <column xsi:type="varchar" name="additional_invoice_email_recipient" nullable="true" length="255" comment="additional_invoice_email_recipient"/>
-        <column xsi:type="boolean" name="permission" nullable="true" comment="permission"/>
+        <column xsi:type="boolean" name="access" nullable="true" comment="access"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="id"/>
         </constraint>

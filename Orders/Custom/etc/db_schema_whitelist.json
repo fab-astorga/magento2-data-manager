@@ -1,0 +1,16 @@
+{
+    "order_po": {
+        "column": {
+            "id": true,
+            "order_id": true,
+            "purchase_order": true
+        },
+        "index": {
+            "ORDER_PO_ORDER_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ORDER_PO_ORDER_ID_SALES_ORDER_ENTITY_ID": true
+        }
+    }
+}
