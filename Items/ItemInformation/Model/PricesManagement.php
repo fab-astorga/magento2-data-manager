@@ -42,12 +42,8 @@ Class PricesManagement extends \Magento\Framework\Model\AbstractExtensibleModel 
     {
         if(!empty($pricesInformation))
         {   
-            //$this->logger->info('PRICES  MMM', ['return' => $pricesInformation]);
             try {
                 $productId = $product->getIdBySku($product->getSku());
-
-                /* Delete old prices */
-                $this->checkAndDeleteProductPrices($productId);
 
                 /* Create new prices */
                 $pricesLines = $pricesInformation[SELF::PRICES];
@@ -75,110 +71,8 @@ Class PricesManagement extends \Magento\Framework\Model\AbstractExtensibleModel 
                 throw new CouldNotSaveException(__('The product prices was unable to be saved. Error details: '.$error->getMessage()), $error);
             }
         } else {
-            $this->checkAndDeleteProductPrices($productId);
+            $this->logger->info('Nothing to do here');
         }
-    }
-
-    /**
-     * Check if product has prices stored. If so, they will be deleted.
-     * @param int $productId
-     * @return boolean
-     */
-    public function checkAndDeleteProductPrices($productId)
-    {
-        try {
-            /*** USA ***/
-            if(!empty($this->getPricesListArray($productId, PricesLink::NET_PRICE_USA))) 
-            {
-                $this->_pricesLink->deletePrices($productId, PricesLink::NET_PRICE_USA);
-            }
-
-            if(!empty($this->getPricesListArray($productId, PricesLink::EQP_USA))) 
-            {
-                $this->_pricesLink->deletePrices($productId, PricesLink::EQP_USA);
-            }
-
-            if(!empty($this->getPricesListArray($productId, PricesLink::PROMOTION_USA))) 
-            {
-                $this->_pricesLink->deletePrices($productId, PricesLink::PROMOTION_USA);
-            }
-
-            if(!empty($this->getPricesListArray($productId, PricesLink::RETAIL_PRICE_USA))) 
-            {
-                $this->_pricesLink->deletePrices($productId, PricesLink::RETAIL_PRICE_USA);
-            }
-
-            if(!empty($this->getPricesListArray($productId, PricesLink::SALE_PRICE_USA))) 
-            {
-                $this->_pricesLink->deletePrices($productId, PricesLink::SALE_PRICE_USA);
-            }
-
-            if(!empty($this->getPricesListArray($productId, PricesLink::SALE_PRICE_ONLINE_USA))) 
-            {
-                $this->_pricesLink->deletePrices($productId, PricesLink::SALE_PRICE_ONLINE_USA);
-            }
-
-            if(!empty($this->getPricesListArray($productId, PricesLink::SAMPLE_PRICE_USA))) 
-            {
-                $this->_pricesLink->deletePrices($productId, PricesLink::SAMPLE_PRICE_USA);
-            }
-
-            if(!empty($this->getPricesListArray($productId, PricesLink::ONLINE_PRICE_USA))) 
-            {
-                $this->_pricesLink->deletePrices($productId, PricesLink::ONLINE_PRICE_USA);
-            }
-
-            /*** CANADA ***/
-            if(!empty($this->getPricesListArray($productId, PricesLink::NET_PRICE_CANADA))) 
-            {
-                $this->_pricesLink->deletePrices($productId, PricesLink::NET_PRICE_CANADA);
-            }
-
-            if(!empty($this->getPricesListArray($productId, PricesLink::EQP_CANADA))) 
-            {
-                $this->_pricesLink->deletePrices($productId, PricesLink::EQP_CANADA);
-            }
-
-            if(!empty($this->getPricesListArray($productId, PricesLink::PROMOTION_CANADA))) 
-            {
-                $this->_pricesLink->deletePrices($productId, PricesLink::PROMOTION_CANADA);
-            }
-
-            if(!empty($this->getPricesListArray($productId, PricesLink::RETAIL_PRICE_CANADA))) 
-            {
-                $this->_pricesLink->deletePrices($productId, PricesLink::RETAIL_PRICE_CANADA);
-            }
-
-            if(!empty($this->getPricesListArray($productId, PricesLink::SALE_PRICE_CANADA))) 
-            {
-                $this->_pricesLink->deletePrices($productId, PricesLink::SALE_PRICE_CANADA);
-            }
-
-            if(!empty($this->getPricesListArray($productId, PricesLink::SALE_PRICE_ONLINE_CANADA))) 
-            {
-                $this->_pricesLink->deletePrices($productId, PricesLink::SALE_PRICE_ONLINE_CANADA);
-            }
-
-            if(!empty($this->getPricesListArray($productId, PricesLink::SALE_PRICE_ONLINE_CANADA))) 
-            {
-                $this->_pricesLink->deletePrices($productId, PricesLink::SALE_PRICE_ONLINE_CANADA);
-            }
-
-            if(!empty($this->getPricesListArray($productId, PricesLink::SAMPLE_PRICE_CANADA))) 
-            {
-                $this->_pricesLink->deletePrices($productId, PricesLink::SAMPLE_PRICE_CANADA);
-            }
-
-            if(!empty($this->getPricesListArray($productId, PricesLink::ONLINE_PRICE_CANADA))) 
-            {
-                $this->_pricesLink->deletePrices($productId, PricesLink::ONLINE_PRICE_CANADA);
-            }
-
-        } catch (\Exception $error) {
-            throw new CouldNotDeleteException(__('The prices were unabled to be deleted. Error details: '.$error->getMessage()), $error);
-        }
-        
-        return true;
     }
 
     /**
@@ -190,7 +84,8 @@ Class PricesManagement extends \Magento\Framework\Model\AbstractExtensibleModel 
     public function savePricesArray($priceTable, $prices, $productId)
     {
         $pricesArray = [];
-        foreach ($prices as $price){
+        foreach ($prices as $price)
+        {
             $priceObject = $this->_pricesFactory->create();
             $priceObject->setItemId($productId);
             $priceObject->setMinQuantity((int)$price[PricesInterface::MIN_QUANTITY]);

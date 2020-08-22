@@ -12,13 +12,6 @@ interface PricesManagementInterface
     public function savePrices($product, $pricesInformation);
 
     /**
-     * Check if product has prices stored. If so, they will be deleted.
-     * @param int $productId
-     * @return boolean
-     */
-    public function checkAndDeleteProductPrices($productId);
-
-    /**
      * Save prices array
      * @param string $priceTable
      * @param array $prices

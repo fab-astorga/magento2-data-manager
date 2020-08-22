@@ -224,10 +224,6 @@ class ItemManagement implements \Items\ItemInformation\Api\ItemManagementInterfa
                 $this->logger->info('FINISH', ['return' => $product]);
             }
 
-            // Save Prices
-           // $pricesInformation = $this->getExistingKeys([ItemManagementInterface::PRICES], $data);
-           // $this->_pricesManagement->savePrices($product, $pricesInformation);
-
             $result = [
                 "status"=>true,
                 "error"=>null
@@ -923,7 +919,6 @@ class ItemManagement implements \Items\ItemInformation\Api\ItemManagementInterfa
             ];
 
             $response = $this->_netsuiteIntegration->getNetsuiteResponse($url, $method, $script, $deploy, $params);
-
             $result = json_decode($response, true);
 
             if (!empty($result["error"])) {
@@ -932,6 +927,9 @@ class ItemManagement implements \Items\ItemInformation\Api\ItemManagementInterfa
 
             $this->logger->info('check inventory', ['return'=>$result]);
             $stock = $result["stock_list"];
+
+            // Recorrer el stock list y ver cuales productos están disponibles
+
             return $stock[0]["stock_available"];
 
         } catch (\Exception $e) {
@@ -945,7 +943,7 @@ class ItemManagement implements \Items\ItemInformation\Api\ItemManagementInterfa
      * 
      * @param int $zipCode
      * @param int $requestedQuantity
-     * @return void
+     * @return string
      */
     public function estimateShipping($zipCode, $requestedQuantity)
     {
@@ -953,12 +951,10 @@ class ItemManagement implements \Items\ItemInformation\Api\ItemManagementInterfa
         $xmlFedExRequest = $this->_xmlBuilder->buildXmlFedEx($zipCode, $requestedQuantity);
         $response = $this->_fedExIntegration->sendFedExRateRequest($xmlFedExRequest);
 
+        //$xml = simplexml_load_string($response);
+        
         $this->logger->info('FEDEX JSON: ',['return'=>$response]);
 
-        $xml = simplexml_load_string($response);
-        $json = json_encode($xml);
-        $array = json_decode($json, true);
-        
-        $this->logger->info('FEDEX JSON: ',['return'=>$array]);
+        return $response;
     }
 }

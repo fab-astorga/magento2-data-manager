@@ -5,6 +5,7 @@
         <column xsi:type="int" name="netsuite_id" padding="10" unsigned="true" nullable="true" identity="false" comment="netsuite_id"/>
         <column xsi:type="int" name="order_id" padding="10" unsigned="true" nullable="false" comment="order_id"/>
         <column xsi:type="varchar" name="purchase_order" nullable="false" length="255" comment="purchase_order"/>
+        <column xsi:type="varchar" name="order_type" nullable="false" length="255" comment="order_type"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="id"/>
         </constraint>

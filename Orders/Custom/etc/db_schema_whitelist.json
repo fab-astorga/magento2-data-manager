@@ -2,8 +2,10 @@
     "order_po": {
         "column": {
             "id": true,
+            "netsuite_id": true,
             "order_id": true,
-            "purchase_order": true
+            "purchase_order": true,
+            "order_type": true
         },
         "index": {
             "ORDER_PO_ORDER_ID": true

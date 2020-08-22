@@ -11,23 +11,37 @@ use Magento\Sales\Api\OrderManagementInterface;
 class AfterPlaceOrder
 {
     const INITIAL_PO_STATUS = 'Pending to generate';
+    const ORDER_TYPE = 'regular';
 
     protected $_logger;
-    protected $_purchaseOrderRepository;
+    protected $_orderCustomRepository;
     protected $_netsuiteIntegration;
     protected $_order;
+    protected $_netsuiteItemRepository;
+    protected $_companyRepository;
+    protected $_productRepository;
+    protected $_triggerIndex;
 
     public function __construct(
         \File\CustomLog\Logger\Logger $logger,
-        \Orders\Custom\Api\PurchaseOrderRepositoryInterface $purchaseOrderRepository,
+        \Orders\Custom\Api\OrderCustomRepositoryInterface $orderCustomRepository,
         \Integration\Netsuite\Api\IntegrationInterface $netsuiteIntegration,
-        \Magento\Sales\Model\Order $order
+        \Magento\Sales\Model\Order $order,
+        \Items\ItemInformation\Api\NetSuiteItemRepositoryInterface $netsuiteItemRepository,
+        \Customers\Company\Api\CompanyRepositoryInterface $companyRepository,
+        \Magento\Catalog\Api\ProductRepositoryInterface $productRepository,
+        \Orders\Custom\Helper\TriggerIndex $triggerIndex
+
     )
     {
         $this->_logger                  = $logger;
-        $this->_purchaseOrderRepository = $purchaseOrderRepository;
+        $this->_orderCustomRepository   = $orderCustomRepository;
         $this->_netsuiteIntegration     = $netsuiteIntegration;
         $this->_order                   = $order;
+        $this->_netsuiteItemRepository  = $netsuiteItemRepository;
+        $this->_companyRepository       = $companyRepository;
+        $this->_productRepository       = $productRepository;
+        $this->_triggerIndex            = $triggerIndex;
     }
 
     /**
@@ -40,65 +54,73 @@ class AfterPlaceOrder
     public function afterPlace(OrderManagementInterface $subject, OrderInterface $result) 
     {
         $orderId = $result->getIncrementId();
+        $trigger = $this->_triggerIndex->getValue();
 
-        if ($orderId)
-        {
-            try {
-                $this->_purchaseOrderRepository->save($orderId, 2828, self::INITIAL_PO_STATUS);
+        if ($trigger) {
+            $this->_triggerIndex->setValue(false);
 
-                $orderObj = $this->_order->load($orderId);
-                $shippingAddress = $orderObj->getShippingAddress();
-                $shippingMethod = $orderObj->getShippingMethod();
-                $billingAddress = $result->getBillingAddress();
+        } else {
+            if ($orderId) {
+                try {
+                    $customerId = $result->getCustomerId();
+                    $customerNetsuiteId = $this->_companyRepository->get($customerId, 'customer_id')->getNetsuiteId();
+                    
+                    $orderObj = $this->_order->load($orderId);
+                    $shippingAddress = $orderObj->getShippingAddress();
+                    $shippingMethod = $orderObj->getShippingMethod();
+                    $billingAddress = $result->getBillingAddress();
 
-                $script = 1759;
-                $deploy = 1;
-                $method = "POST";
+                    $script = 1759; // netsuite script
+                    $deploy = 1;
+                    $method = "POST";
 
-                $data = [
-                    'currency_id'          => $result->getOrderCurrencyCode(),
-                    'email'                => $result->getCustomerEmail(),
-                    'order_number'         => $orderId,
-                    'purchase_order_number'=> self::INITIAL_PO_STATUS,
-                    'total'                => $result->getGrandTotal(),
-                    'status'               => $result->getStatus(),
-                    'shipping_address' => [
-                        'firstname'	   => $shippingAddress->getFirstname(),
-                        'lastname'	   => $shippingAddress->getLastname(),
-                        'street'       => $shippingAddress->getStreet(),
-                        'city'         => $shippingAddress->getCity(),
-                        'country_id'   => $shippingAddress->getCountryId(),
-                        'region'       => $shippingAddress->getRegion(),
-                        'postcode'     => $shippingAddress->getPostcode(),
-                        'telephone'    => $shippingAddress->getTelephone(),
-                        'fax'          => $shippingAddress->getFax()
-                    ],
-                    'billing_address'  => [
-                        'firstname'	   => $billingAddress->getFirstname(),
-                        'lastname'	   => $billingAddress->getLastname(),
-                        'street'       => $billingAddress->getStreet(),
-                        'city'         => $billingAddress->getCity(),
-                        'country_id'   => $billingAddress->getCountryId(),
-                        'region'       => $billingAddress->getRegion(),
-                        'postcode'     => $billingAddress->getPostcode(),
-                        'telephone'    => $billingAddress->getTelephone(),
-                        'fax'          => $billingAddress->getFax()
-                    ],
-                    'items'                => $this->getOrderItems($result),
-                    'payment_method'       => $result->getPayment()->getMethod(),
-                    'shipping_method'      => $shippingMethod
-                ];
+                    $data = [
+                        'netsuite_id'          => null,
+                        'order_type'           => self::ORDER_TYPE,
+                        'currency_id'          => $result->getOrderCurrencyCode(),
+                        'customer'             => $customerNetsuiteId,
+                        'order_number'         => $orderId,
+                        'purchase_order_number'=> self::INITIAL_PO_STATUS,
+                    // 'total'                => $result->getGrandTotal(),
+                    // 'status'               => $result->getStatus(),
+                        'shipping_address' => [
+                            'address'	   => $shippingAddress->getFirstname().' '.$shippingAddress->getLastname(),
+                            'apt_suite'	   => 'N/A',
+                            'city'         => $shippingAddress->getCity(),
+                            'country'      => $shippingAddress->getCountryId(),
+                            'state'        => $shippingAddress->getState(),
+                            'zip'          => $shippingAddress->getPostcode(),
+                            'telephone'    => $shippingAddress->getTelephone(),
+                            'fax'          => $shippingAddress->getFax()
+                        ],
+                        'billing_address'  => [
+                            'address'	   => $billingAddress->getFirstname().' '.$billingAddress->getLastname(),
+                            'apt_suite'	   => 'N/A',
+                            'city'         => $billingAddress->getCity(),
+                            'country'      => $billingAddress->getCountryId(),
+                            'state'        => $billingAddress->getState(),
+                            'zip'          => $billingAddress->getPostcode(),
+                            'telephone'    => $billingAddress->getTelephone(),
+                            'fax'          => $billingAddress->getFax()
+                        ],
+                        'items'                => $this->getOrderItems($result)
+                    ];
 
-                $this->_logger->info('ORDER DATA',['return'=>$data]);
+                    $this->_logger->info('ORDER DATA',['return'=>$data]);
 
+                //  $result = $this->_netsuiteIntegration->sendNetsuiteRequest($data, $method, $script, $deploy);
+                //  $response = json_encode($result, true);
+                //  if(!empty($response['error'])) {
+                //    return $response['error'];
+                // }
+                // $this->_orderCustomRepository->save($orderId, $response['netsuite_id'], self::INITIAL_PO_STATUS, self::ORDER_TYPE);
 
-              //  $this->_netsuiteIntegration->sendNetsuiteRequest($data, $method, $script, $deploy);
-
-            } catch (Exception $e) {
-                $this->_logger->info('Order exception: '.$e->getMessage());
-            } 
+                } catch (Exception $e) {
+                    throw new Exception(__('Something went wrong when sending order to Netsuite.'));
+                }
+            }
         }
-
+        
         return $result;
     }
 
@@ -114,9 +136,10 @@ class AfterPlaceOrder
 
         foreach($order->getItems() as $item)
         {
+            $itemId = $this->_productRepository->get($item->getSku())->getId();
+            $itemNetsuiteId = $this->_netsuiteItemRepository->get($itemId,'item_id')->getNetSuiteItemId();
             $tmpItem = [
-                'product_id' => $item->getItemId(),
-                'price'      => $item->getPrice(),
+                'product_id' => $itemNetsuiteId,
                 'qty'        => $item->getQtyOrdered()
             ];
             $result[] = $tmpItem;

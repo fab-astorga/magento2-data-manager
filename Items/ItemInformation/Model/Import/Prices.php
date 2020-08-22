@@ -145,7 +145,6 @@ class Prices extends AbstractEntity
         $priceLevel = $rowData['price_level'] ?? '';
         $currency = $rowData['currency'] ?? '';
         $sku = $rowData['sku'] ?? '';
-        $minQuantity = $rowData['min_quantity'] ?? '';
         $unitPrice = $rowData['unit_price'] ?? '';
     
         if (!$priceLevel) {
@@ -158,10 +157,6 @@ class Prices extends AbstractEntity
 
         if (!$sku) {
             $this->addRowError('SKU required', $rowNum);
-        }
-
-        if (!empty($minQuantity)) {
-            $this->addRowError('Min quantity required', $rowNum);
         }
 
         if (!$unitPrice) {

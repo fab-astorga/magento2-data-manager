@@ -113,7 +113,7 @@ interface ItemManagementInterface
      * 
      * @param int $zipCode
      * @param int $requestedQuantity
-     * @return void
+     * @return string
      */
     public function estimateShipping($zipCode, $requestedQuantity);
 }
