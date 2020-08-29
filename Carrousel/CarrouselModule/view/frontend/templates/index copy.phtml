@@ -1,0 +1,516 @@
+<?php
+
+/**
+ * Product list template
+ *
+ * @var $block \Product\Module\Block\Rating
+ */
+
+$ObjectManager= \Magento\Framework\App\ObjectManager::getInstance();
+$context = $ObjectManager->get('Magento\Framework\App\Http\Context');
+$isLoggedIn = $context->getValue(\Magento\Customer\Model\Context::CONTEXT_AUTH);
+$storeName = $block->getThemeName() ? $block->getThemeName() : $block->getLogoAlt();
+
+
+?>
+
+<div class="landing">
+<div class="row cms">   
+   
+<div class="col-12 m-15">
+    <div class="container-fluid containerFluid">
+        <div id="carousel" class="carousel slide carousel-fade w-100 mb-lg-5 mb-sm-4" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carousel" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel" data-slide-to="1"></li>
+                <li data-target="#carousel" data-slide-to="2"></li>
+                <li data-target="#carousel" data-slide-to="3"></li>
+            </ol>
+            <div class="carousel-inner  d-flex justify-content-center featureCarousel">
+                <div class="carousel-item active">
+                    <img class="d-block w-100 carouselImg" src='<?php echo $this->getViewFileUrl('images/baner/Banner01.jpg'); ?>' alt="First slide">
+                    <div class="carousel-caption d-none d-md-block banner1">
+                        <h1>NEW ITEMS 2020</h1>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    
+                    <img class="d-block w-100 carouselImg" src='<?php echo $this->getViewFileUrl('images/baner/Banner02.jpg'); ?>' alt="First slide">
+                    <div class="carousel-caption d-none d-md-block banner2">
+                        <div>
+                            <div class="labelImg"><h4>ON SALE</h4></div>    
+                            <h1>CAMPER</h1>
+                            <h4>Super lightweight, perfect mug to pack for camping, no heavy load</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100 carouselImg" src='<?php echo $this->getViewFileUrl('images/baner/Banner03.jpg'); ?>' alt="First slide">
+                    <div class="carousel-caption d-none d-md-block banner3">
+                        <div>
+                            <h1>Take your brand wherever you go!</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100 carouselImg" src='<?php echo $this->getViewFileUrl('images/baner/Banner04.jpg'); ?>' alt="First slide">
+                    <div class="carousel-caption d-none d-md-block banner3 banner4">
+                        <div>
+                            <h1>Products to help you prevent and protect</h1>
+                        </div>
+                    </div>
+                </div>
+             </div>
+        </div> 
+    </div>
+</div>
+
+</div>
+<!-- landing page  -->
+<div class="mt100 mt700">
+
+    <div class="row howToSelectYourProductContainer">
+        <div class="col-lg-3 col-6 individualContainer "> 
+            <a href="#" class="nav-link c-preview" >
+                <div class="gradient">
+                    <div class="inner">
+                    <div class="imgSearchCategories imgProductSelect"></div>
+                    <h5>Categories</h5>
+                    </div>
+                </div>
+            </a>           
+        </div>
+        <div class="col-lg-3 col-6 individualContainer">
+            <a href="<?= $block->escapeUrl($block->getUrl('')) ?>" class="nav-link">   
+                <div class="gradient">
+                    <div class="inner">
+                    <div class="imgCheckInventory imgProductSelect"></div>
+                    <h5 class="">Inventory</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-6 individualContainer">
+            <a href="<?= $block->escapeUrl($block->getUrl('')) ?>" class="nav-link">   
+                <div class="gradient">
+                    <div class="inner">
+                    <div class="imgOrderStatus imgProductSelect"></div>
+                    <h5 class="">Order Status</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-6 individualContainer">
+        <?php if ($isLoggedIn): ?>
+            <a href="<?= $block->escapeUrl($block->getUrl('checkout/cart/')) ?>" class="nav-link">   
+                <div class="gradient">
+                    <div class="inner">
+                    <div class="imgWishlist imgProductSelect"></div>
+                    <h5 class="">Cart</h5>
+                    </div>
+                </div>
+            </a>
+        <?php else:?>
+            <a href="<?= $block->escapeUrl($block->getUrl('')) ?>" class="nav-link">   
+                <div class="gradient">
+                    <div class="inner">
+                    <div class="imgWishlist imgProductSelect"></div>
+                    <h5 class=" ">Wishlist</h5>
+                    </div>
+                </div>
+            </a>
+        <?php endif; ?>
+        </div>
+    </div>
+
+
+</div>
+
+<!-- Featured Categories -->
+<div class="mt100 featuredCategories">
+    <h1 class="mb-5 title">Featured Categories</h1>
+<!-- 
+    <?php foreach ($block->getProductCollection() as $product) : ?>
+        <p><?= $product->getSku() ?></p>
+        <p><?= $product->getId() ?></p>
+        <p><?= $product->getName() ?></p>
+        <p><?= $product->getImage() ?></p>
+    <?php endforeach;?> -->
+
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-12 featuredContainer ">  
+            <div class="gradientBorder">
+            <div class="gradientSpace">
+                <h3 class="text-center">What’s New?</h3>
+                <div id="whatNew" class="carousel slide carousel-fade w-100 mb-lg-5 mb-sm-4" data-ride="carousel" data-interval="false">
+                    <div class="carousel-inner  d-flex justify-content-center featureCarousel">
+                        <div class="carousel-item active">
+                            <img class="d-block featureCategoryHeight mb-2" src="https://www.amarilloverdeyazul.com/wp-content/uploads/2014/11/recoge-cables-botella-2.jpg" alt="First slide">
+                            <p>BakBuk</p>
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block featureCategoryHeight mb-2" src="https://i1.wp.com/www.focuslogo.com.ar/wp-content/uploads/2016/10/FLBPIC_AZ.png?fit=2448%2C3264" alt="First slide">
+                            <p>Glacier</p>
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block featureCategoryHeight mb-2" src="https://resources.claroshop.com/medios-plazavip/s2/10173/781139/5bb3e55d5b663-71244-2-1600x1600.jpg" alt="First slide">
+                            <p>Commuter</p>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#whatNew" role="button" data-slide="prev">
+                        <i class="fas fa-chevron-left"></i>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#whatNew" role="button" data-slide="next">
+                        <i class="fas fa-chevron-right"></i>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>     
+                <a class="nav-link seeMoreBtn" href="<?php echo $this->getBaseUrl()."new.html"; ?>">See More</a>      
+            </div>  
+            </div>     
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-12 featuredContainer">
+            <div class="gradientBorder">
+            <div class="gradientSpace">
+                <h3 class="text-center">On sale</h3>
+                <div id="onSale" class="carousel slide carousel-fade w-100 mb-lg-5 mb-sm-4" data-ride="carousel" data-interval="false">
+                    <div class="carousel-inner  d-flex justify-content-center featureCarousel">
+                        <div class="carousel-item active">
+                            <img class="d-block featureCategoryHeight mb-2" src="https://resources.claroshop.com/medios-plazavip/s2/10173/781139/5bb3e55d5b663-71244-2-1600x1600.jpg" alt="First slide">
+                            <p>BakBuk</p>
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block featureCategoryHeight mb-2" src="https://www.amarilloverdeyazul.com/wp-content/uploads/2014/11/recoge-cables-botella-2.jpg" alt="First slide">
+                            <p>Glacier</p>
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block featureCategoryHeight mb-2" src="https://i1.wp.com/www.focuslogo.com.ar/wp-content/uploads/2016/10/FLBPIC_AZ.png?fit=2448%2C3264" alt="First slide">
+                            <p>Commuter</p>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#onSale" role="button" data-slide="prev">
+                        <i class="fas fa-chevron-left"></i>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#onSale" role="button" data-slide="next">
+                        <i class="fas fa-chevron-right"></i>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>   
+                <a class="nav-link seeMoreBtn" href="#">See More</a>   
+            </div> 
+            </div>           
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-12 featuredContainer">
+            <div class="gradientBorder">
+            <div class="gradientSpace">
+                <h3 class="text-center">Clearence</h3>
+                <div id="clearence" class="carousel slide carousel-fade w-100 mb-lg-5 mb-sm-4" data-ride="carousel" data-interval="false">
+                    <div class="carousel-inner  d-flex justify-content-center featureCarousel">
+                        <div class="carousel-item active">
+                            <img class="d-block featureCategoryHeight mb-2" src="https://d26lpennugtm8s.cloudfront.net/stores/488/595/products/pink-full-sola1-81a39e94f48635eec015810807742476-1024-1024.png" alt="First slide">
+                            <p>BakBuk</p>
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block featureCategoryHeight mb-2" src="https://resources.claroshop.com/medios-plazavip/s2/10173/781139/5bb3e55d5b663-71244-2-1600x1600.jpg" alt="First slide">
+                            <p>Glacier</p>
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block featureCategoryHeight mb-2" src="https://www.amarilloverdeyazul.com/wp-content/uploads/2014/11/recoge-cables-botella-2.jpg" alt="First slide">
+                            <p>Commuter</p>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#clearence" role="button" data-slide="prev">
+                        <i class="fas fa-chevron-left"></i>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#clearence" role="button" data-slide="next">
+                        <i class="fas fa-chevron-right"></i>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>  
+                <a class="nav-link seeMoreBtn" href="<?php echo $this->getBaseUrl()."clearance.html"; ?>">See More</a>
+                </div>    
+                </div> 
+        </div>
+    </div>
+</div>
+
+<!-- Top Product -->
+<div class="mt100">
+    <h1 class="mb-5 title">Best Sellers</h1>
+    <div class="row heighTopProduct">
+    <?php $y = 0; ?>
+        <?php foreach ($block->getBestSellers() as $bestSeller): ?>
+            <?php if($y===0): ?>
+                <a class="col-lg-4 heighTopProductBig" href=<?= $bestSeller["product"]->getProductUrl() ?> >
+                    <div>
+                        <div class="gradientBorder2">
+                            <div class="gradientSpace">
+                                <img class="mb-5 imgTopproductB" src="http://18.216.207.131/pub/media/catalog/product/cache/f9e1b6f161305e499f2941aae1f1bdfe<?= $bestSeller['product']->getImage()?>">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <?php 
+                        $shippingDetail = $bestSeller["product"]->getExtensionAttributes()->getPrices();
+                        $priceArray = end($shippingDetail);
+                        $price = number_format($priceArray["unit_price"],1); 
+                        ?>
+                        <p><strong> <?= $bestSeller["product"]->getName() ?> </strong></p>
+                        <div>
+                            <p class="span">Price: $ <?= $price ?></p>
+                            <div class="rating">
+                                <div class="stars" data-rating="5">
+                                    <p class="span review">
+                                    Review
+                                    </p>
+                                    <span class="star rated">&nbsp;</span>
+                                    <span class="star rated">&nbsp;</span>
+                                    <span class="star rated">&nbsp;</span>
+                                    <span class="star rated">&nbsp;</span>
+                                    <span class="star rated">&nbsp;</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <?php $y++;?>
+                <?php endif; ?>
+        <?php endforeach; ?>
+        <div class="col-lg-8  topProductSmall">
+        <?php $i = 0; ?>
+        <?php foreach ($block->getBestSellers() as $bestSeller): ?>
+        <?php if($bestSeller['product']->getImage() !== "no_selection") : ?>
+            <?php if($i===0) : ?>
+                <a class="col-lg-4 col-md-12 col-sm-6 heighTopProductSmall d-none" href=<?= $bestSeller["product"]->getProductUrl() ?>>
+                            <div>
+                                <div class="gradientBorder2">
+                                    <img class=" imgTopproductS" 
+                                    src="http://18.216.207.131/pub/media/catalog/product/cache/f9e1b6f161305e499f2941aae1f1bdfe <?= $bestSeller['product']->getImage()?>">
+                                </div>
+                            </div>
+                            <div class="text-left mt-3">
+                                <p><strong><?= $bestSeller["product"]->getName() ?></strong></p>
+                                <?php 
+                                    $shippingDetail = $bestSeller["product"]->getExtensionAttributes()->getPrices();
+                                    $priceArray = end($shippingDetail);
+                                    $price = number_format($priceArray["unit_price"],1); 
+                                ?>
+                                <p class="span">Price: $ <?= $price ?></p>
+                                <div class="rating">
+                                    
+                                    <div class="stars" data-rating="5">
+                                        <p class="mb-lg-2 mb-md-5 span review">
+                                        Review:
+                                        </p>
+                                            <span class="star rated">&nbsp;</span>
+                                            <span class="star rated">&nbsp;</span>
+                                            <span class="star rated">&nbsp;</span>
+                                            <span class="star rated">&nbsp;</span>
+                                            <span class="star rated">&nbsp;</span>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                </a>
+                <?php $i++;?>
+            <?php elseif(0<$i && $i<7) : ?>         
+                    <a class="col-lg-4 col-md-12 col-sm-6 heighTopProductSmall" href=<?= $bestSeller["product"]->getProductUrl() ?>>
+                            <div>
+                                <div class="gradientBorder2">
+                                    <div class="gradientSpace">
+                                        <img class=" imgTopproductS" 
+                                        src="http://18.216.207.131/pub/media/catalog/product/cache/f9e1b6f161305e499f2941aae1f1bdfe<?= $bestSeller['product']->getImage()?>">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-left infoSmall">
+                                <p><strong><?= $bestSeller["product"]->getName() ?></strong></p>
+                                <?php 
+                                    $shippingDetail = $bestSeller["product"]->getExtensionAttributes()->getPrices();
+                                    $priceArray = end($shippingDetail);
+                                    $price = number_format($priceArray["unit_price"],1); 
+                                ?>
+                                <div>
+                                    <p class="span">Price: $ <?= $price ?></p>
+                                    <div class="rating">
+                                    
+                                        <div class="stars" data-rating="5">
+                                            <p class="mb-lg-2 mb-md-5 span review">
+                                            Review:
+                                            </p>
+                                                <span class="star rated">&nbsp;</span>
+                                                <span class="star rated">&nbsp;</span>
+                                                <span class="star rated">&nbsp;</span>
+                                                <span class="star rated">&nbsp;</span>
+                                                <span class="star rated">&nbsp;</span>
+                                        </div>
+                                    </div>   
+                                </div>
+                            </div>
+                    </a>
+            <?php endif; ?>
+            <?php $i++;?>
+        <?php endif; ?>
+           
+            
+        <?php endforeach; ?>
+        </div>
+    </div>
+    <div class="row topProductResponsive">
+    <?php 
+        $show = "MORE";
+            for($i=0; $i<6; $i++){  
+                if($i>1){
+                echo "<div class=\"col-md-6 heighTopProductSmall bool collapse\" id=\"topProduct\">
+                        <div class=\"gradientBorder2\">
+                            <img class=\" imgTopproductS\" 
+                                src=\"https://resources.claroshop.com/medios-plazavip/s2/10173/781139/5bb3e55d5b663-71244-2-1600x1600.jpg\"/>
+                        </div>
+                        <div class=\"text-left mt-3\">
+                            <p><strong>Serendipity</strong></p>
+                            <p class=\"span\">Price: $ 9999</p>
+                            <div class=\"rating\">
+                                
+                                    <div class=\"stars\" data-rating=\"5\">
+                                    <p class=\"mb-lg-2 mb-md-5 span review\">
+                                    Review:
+                                    </p>
+                                        <span class=\"star\">&nbsp;</span>
+                                        <span class=\"star\">&nbsp;</span>
+                                        <span class=\"star\">&nbsp;</span>
+                                        <span class=\"star\">&nbsp;</span>
+                                        <span class=\"star\">&nbsp;</span>
+                                    </div>
+                               
+                            </div>
+                        </div>
+                    </div>";    
+                }else{
+                    echo "<div class=\"col-md-6 heighTopProductSmall\">
+                        <div class=\"gradientBorder2\">
+                            <img class=\" imgTopproductS\" 
+                                src=\"https://resources.claroshop.com/medios-plazavip/s2/10173/781139/5bb3e55d5b663-71244-2-1600x1600.jpg\"/>
+                        </div>
+                        <div class=\"text-left mt-3\">
+                            <p><strong>Serendipity</strong></p>
+                            <p class=\"span\">Price: $ 9999</p>
+                            <div class=\"rating\">
+                                
+                                    <div class=\"stars\" data-rating=\"5\">
+                                    <p class=\"mb-lg-2 mb-md-5 span review\">
+                                    Review:</p>
+                                        <span class=\"star\">&nbsp;</span>
+                                        <span class=\"star\">&nbsp;</span>
+                                        <span class=\"star\">&nbsp;</span>
+                                        <span class=\"star\">&nbsp;</span>
+                                        <span class=\"star\">&nbsp;</span>
+                                        
+                                    </div>
+                               
+                            </div>
+                        </div>
+                    </div>";  
+                }    
+            }
+            echo "<a id= \"showBtn\" onclick = \"showMore()\" class=\"seeMoreBtn mt-5\" type=\"button\" data-toggle=\"collapse\" 
+                        data-target=\"#topProduct\" aria-expanded=\"false\" aria-controls=\"topProduct\">
+                        SHOW MORE
+                    </a>";
+    ?>
+    </div>
+</div>
+
+    <!-- Imprint Methods tablet desktop -->
+<div class="mt100 imprintMethodContainer p-0">
+    <div class="row height449">
+        <div class="col-lg-5 pt-5 px-5 text-light imprintMethodText">
+            <h1 class="title">Imprint Methods</h1>
+            <p class="text-light">We offer fifteen different imprint methods with the most trending technologies so you can have the best quality products.</p>
+            <a class="btn"  href="<?php echo $this->getBaseUrl()."decoration/imprint-methods.html"; ?>">
+                <h5>See More</h5>
+            </a>
+        </div>
+        <div class="col-lg-7 d-flex p-0">
+            <a target="_blank" href="https://www.youtube.com/watch?v=udlnLhv1iw0">
+            <img class="videoImprint" src="<?php echo $this->getViewFileUrl('images/imprintmethods_videoportada.jpg'); ?>"/>
+            </a>
+            <!-- <iframe class="videoImprint" src="https://www.youtube.com/embed/dD_63JQ7inU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Testimonials  -->
+<div class="mt100 testimonial p-0">
+    <h1 class="mb-0 title">Testimonials</h1>
+    <div class="row">
+            <div id="carouselExampleControls" class="carousel slide carousel-fade" data-ride="carousel" data-interval="false">
+                <div class="carousel-inner  d-flex testimonialCarousel">
+                    <div class="carousel-item active">
+                        <div class="carouselCustom">
+                            <img src='<?php echo $this->getViewFileUrl('images/netsuiteLogo.png'); ?>'/>
+                            <p>Good day I want to take few minutes to tell you that I am surprised and very satisfied about your customer service.
+                                You set this little problem very fast.
+                                No word to tell you that since 1988 I do advertising, and this is not often that we can see supplier with this kind of service.
+                                On top of that, my customer is very happy with the product I ordred for their promotion. I will continue to deal with your company.</p>
+                            <p><strong>Thank you again</strong></p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="carouselCustom">
+                            <img src='<?php echo $this->getViewFileUrl('images/magentoLogo.png'); ?>'/>
+                            <p>You guys are really one of the best in our industry that I work with. No matter what it takes (or what CRAZY deadline we give you) you always make our orders work and I just want you (and everyone else there)to know that we really appreciate that and your efforts certainly are not unnoticed. </p>
+                            <p><strong>Thank you again</strong></p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="carouselCustom">
+                            <img src='<?php echo $this->getViewFileUrl('images/midwareLogo.png'); ?>'/>
+                            <p>Thank you very much for making this order work.
+                                I know there were complications and this became an “unprofitable” order for Gordon Sinclair but
+                                the replacement tumblers arrived and they were perfect and everyone loved them.
+                                
+                                I greatly appreciate that I am able to count on you.</p>
+                            <p><strong>Thank you again</strong></p>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <svg width="16" height="26" viewBox="0 0 16 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 25L2 13L15 1" stroke="#9F9F9F" stroke-width="2"/>
+                    </svg>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <svg width="16" height="26" viewBox="0 0 16 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 1L14 13L1 25" stroke="#9F9F9F" stroke-width="2"/>
+                    </svg>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+    </div>
+    <a class="nav-link readmoreBtn btn" href="<?php echo $this->getBaseUrl(); ?>">read More</a>
+</div>
+
+<script>
+    requirejs(['jquery','bootstrap'], function(jQuery, jQueryBootstrap){
+jQuery('.carousel').carousel();
+});
+</script>
+<script type="text/x-magento-init">
+{
+    "*":{
+        "Magento_Cms/js/showMore":{}
+    }
+}
+
+</script>
+</div>
+
+
+
+

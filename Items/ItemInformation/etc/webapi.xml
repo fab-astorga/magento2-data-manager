@@ -36,10 +36,4 @@
             <resource ref="self"/>
         </resources>
     </route>
-    <route method="POST" url="/V1/estimate-shipping/:zipCode/:requestedQuantity">
-    <service class="Items\ItemInformation\Api\ItemManagementInterface" method="estimateShipping"/>
-        <resources>
-            <resource ref="self"/>
-        </resources>
-    </route>
 </routes>

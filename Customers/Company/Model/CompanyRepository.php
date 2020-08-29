@@ -54,6 +54,8 @@ class CompanyRepository implements CompanyRepositoryInterface
     private $_extensionAttributesJoinProcessor;
 
     protected $_logger;
+    protected $_customerRepository;
+
     /**
      * CustomerCompanyRepository constructor.
      *
@@ -71,7 +73,8 @@ class CompanyRepository implements CompanyRepositoryInterface
         CompanySearchResultsInterfaceFactory $companySearchResultsInterfaceFactory,
         CollectionProcessorInterface $collectionProcessor,
         JoinProcessorInterface $extensionAttributesJoinProcessor,
-        \File\CustomLog\Logger\Logger $logger
+        \File\CustomLog\Logger\Logger $logger,
+        \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository
     ) {
         $this->_companyFactory                       = $companyFactory;
         $this->_resourceModelCompany                 = $resourceModelCompany;
@@ -79,7 +82,8 @@ class CompanyRepository implements CompanyRepositoryInterface
         $this->_companySearchResultsInterfaceFactory = $companySearchResultsInterfaceFactory;
         $this->_collectionProcessor                  = $collectionProcessor;
         $this->_extensionAttributesJoinProcessor     = $extensionAttributesJoinProcessor;
-        $this->_logger = $logger;
+        $this->_logger                               = $logger;
+        $this->_customerRepository                   = $customerRepository;
     }
 
     /**
@@ -170,6 +174,15 @@ class CompanyRepository implements CompanyRepositoryInterface
         return $this->delete($companyId);
     }
 
+    /**
+     * @inheritdoc
+     */
+    public function getCustomerByNetsuiteId($netsuiteId)
+    {
+        $company = $this->get($netsuiteId, 'netsuite_id');
+        $customerId = $company->getCustomerId();
+        return $this->_customerRepository->getById($customerId);
+    }
 
     /**
     * @inheritdoc

@@ -1,0 +1,20 @@
+
+<?php
+//get category name
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$category = $objectManager->get('Magento\Framework\Registry')->registry('current_category');
+?>
+
+<?php
+    $file_arr=$block->getAllFiles();
+    $block->create_zip($file_arr);
+    $url =  '/product-images.zip';
+?>
+
+<a href="<?php echo $url?>" class="btn-text--gradient mb32 mt32 mx-auto" download>Download images</a>
+<div class="imgSocialContainer mx-auto">
+    <a><img  class="" src='<?php echo $this->getViewFileUrl('images/Follow/facebookGradient.png'); ?>'/></a>
+    <a><img  class="" src='<?php echo $this->getViewFileUrl('images/Follow/pinterestGradient.png'); ?>'/></a>
+    <a><img class="" src='<?php echo $this->getViewFileUrl('images/Follow/instagramGradient.png'); ?>'/></a>
+    <a><img  class="" src='<?php echo $this->getViewFileUrl('images/Follow/youtubeGradient.png'); ?>'/></a>
+</div>

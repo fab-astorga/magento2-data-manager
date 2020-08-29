@@ -1,0 +1,20 @@
+<?php
+$ObjectManager= \Magento\Framework\App\ObjectManager::getInstance();
+$context = $ObjectManager->get('Magento\Framework\App\Http\Context');
+$isLoggedIn = $context->getValue(\Magento\Customer\Model\Context::CONTEXT_AUTH);
+?>
+<?php if ($isLoggedIn): ?>
+<div class="specialQuote">
+    <div class="row mb32">
+        <h5>SPECIAL QUOTE</h5>
+        <span class="btn-text--gradient">Your special quote has been send.</span>
+    </div>
+    <div class="field name">
+        <div class="control row">
+            <input name="qty" id="qty" title="<?= $block->escapeHtmlAttr(__('Insert quantity')) ?>" class="input-text" type="text" data-validate="{required:true}" placeholder="Insert quantity"/>
+            <button class="font12">request</button>
+        </div>
+        <span class="font12">Requested Quantity*</span>
+    </div>
+</div>
+<?php endif; ?>

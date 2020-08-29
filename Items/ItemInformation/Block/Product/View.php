@@ -1,8 +1,45 @@
 <?php
 namespace Items\ItemInformation\Block\Product;
 
+class View extends \Magento\Catalog\Block\Product\View
+{	
+	protected $productFactory;
+	protected $dataObjectHelper;
+	protected $productRepository;
+	protected $emailHelper;
+	
+	public function __construct(
+		\Magento\Catalog\Block\Product\Context $context,
+		\Magento\Framework\Url\EncoderInterface $urlEncoder,
+		\Magento\Framework\Json\EncoderInterface $jsonEncoder,
+		\Magento\Framework\Stdlib\StringUtils $string,
+		\Magento\Catalog\Helper\Product $productHelper,
+		\Magento\Catalog\Model\ProductTypes\ConfigInterface $productTypeConfig,
+		\Magento\Framework\Locale\FormatInterface $localeFormat,
+		\Magento\Customer\Model\Session $customerSession,
+		\Magento\Catalog\Api\ProductRepositoryInterface $productRepository,
+		\Magento\Framework\Pricing\PriceCurrencyInterface $priceCurrency,
+		array $data = [],
+		\Magento\Catalog\Api\Data\ProductInterfaceFactory $productFactory, 
+		\Magento\Framework\Api\DataObjectHelper $dataObjectHelper,
+		\Items\ItemInformation\Helper\Email $emailHelper
+		
+	){
+		parent::__construct($context, $urlEncoder, $jsonEncoder, $string, $productHelper, $productTypeConfig, $localeFormat, $customerSession, $productRepository, $priceCurrency, $data);
+		$this->productFactory = $productFactory;      
+		$this->productRepository = $productRepository;        
+		$this->dataObjectHelper = $dataObjectHelper;
+		$this->emailHelper = $emailHelper;
+	}	
 
-class View extends \Magento\Catalog\Block\Product\View{
+	public function sendEmail($qty)
+	{
+		$product = $this->getProduct();
+		$sku = $product->getSku();
+		
+		$response = $this->emailHelper->sendSpecialQuoteEmail($qty, $sku);
+		return $response;
+	}
 	
 	public function getItemDetails(){
 		

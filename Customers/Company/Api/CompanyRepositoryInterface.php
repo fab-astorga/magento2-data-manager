@@ -70,6 +70,14 @@ interface CompanyRepositoryInterface
     public function delete(\CustomerS\Company\Api\Data\CompanyInterface $company);
 
     /**
+     * Retrieve magento customer through netsuite ID
+     *
+     * @param int $netsuiteId
+     * @return \Magento\Customer\Api\Data\CustomerInterface
+     */
+    public function getCustomerByNetsuiteId($netsuiteId);
+
+    /**
      * @return \Customers\Company\Api\Data\CompanyInterface[]
      */
     public function getCollection();

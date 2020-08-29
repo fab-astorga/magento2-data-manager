@@ -1,0 +1,9 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_ImportExport:etc/import.xsd">
+       <entity name="categories" label="Categories" model="Items\ItemInformation\Model\Import\Categories"
+            behaviorModel="Magento\ImportExport\Model\Source\Import\Behavior\Basic" />
+       <entity name="items" label="Items" model="Items\ItemInformation\Model\Import\Items"
+            behaviorModel="Magento\ImportExport\Model\Source\Import\Behavior\Basic" />
+       <entity name="prices" label="Gordon Prices" model="Items\ItemInformation\Model\Import\Prices"
+            behaviorModel="Magento\ImportExport\Model\Source\Import\Behavior\Basic"/>
+</config>

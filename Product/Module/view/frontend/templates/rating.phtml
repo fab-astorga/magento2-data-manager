@@ -1,0 +1,175 @@
+<script>
+$(document).ready(function(){
+    $('input.star').rating();
+});
+</script>
+
+<?php
+$i = 0;
+?>
+<div class="mt100 mb100 ratingContainer">
+<div class="row p-0">
+    <div class="col-lg-6 pl-0 ratings">
+        <h4>RATING</h4>
+        <?php if (! $block->getProductRating()): ?>
+            <h3>5.0</h3>
+            <div class="row">
+            <div class="starsSt" data-rating-all="1">
+                <span class="starSt rated">&nbsp;</span>
+                <span class="starSt rated">&nbsp;</span>
+                <span class="starSt rated">&nbsp;</span>
+                <span class="starSt rated">&nbsp;</span>
+                <span class="starSt rated">&nbsp;</span>
+            </div>
+            </div>
+        <?php else: ?>
+            <h3>5.0</h3>
+            <div class="row">
+            <div class="starsSt" data-rating-all="1">
+                <span class="starSt rated">&nbsp;</span>
+                <span class="starSt rated">&nbsp;</span>
+                <span class="starSt rated">&nbsp;</span>
+                <span class="starSt rated">&nbsp;</span>
+                <span class="starSt rated">&nbsp;</span>
+            </div>
+            </div>
+        <?php endif; ?>
+        <span class="mb64">Bases on <?php echo $block->getProductAmountReviews()?> reviews</span>
+        <span class="mb-3">Your opinion is important for us, please rate this product</span> 
+        <div class="row">
+        <div id="content" class="col-lg-12">
+            <form action=<?php echo $_SERVER['PHP_SELF'];?> method="post">
+                <div class="star_content">
+                    <input name="rate" value="1" type="radio" class="star"/> 
+                    <input name="rate" value="2" type="radio" class="star"/> 
+                    <input name="rate" value="3" type="radio" class="star"/> 
+                    <input name="rate" value="4" type="radio" class="star"/> 
+                    <input name="rate" value="5" type="radio" class="star"/>
+                </div>
+                <button type="submit" name="submitRatingStar" class="btn btn-primary btn-sm">sUBMIT</button>
+            </form>
+
+            <?php
+                if (isset($_POST['submitRatingStar'])) {
+                    //procesar el rating
+                    echo '<div class="alert alert-success">Rating: <strong>'.$_POST['rate'].'</strong></div>';
+                    $block->createProductReview($_POST['rate']);
+                }
+            ?>
+        </div>
+    </div>
+    </div>
+    <div class="col-lg-6 px-0">
+        <div class="inventory">
+            <div class="row mb32">
+                <h5>ESTIMATE SHIPPING</h5>
+            </div>
+            <form action=<?php echo $_SERVER['PHP_SELF'];?> method="post">
+                <div class="row">
+                    <div class="col-lg-6 pl-0">
+                        <input class="mr30" type="text" name="zipCode" placeholder="Insert the zip code"> 
+                        <span>Zip code*</span>
+                    </div>
+                    <div class="col-lg-6 pr-0">
+                        <input class="mr30" type="text" name="shippingQuantity" placeholder="Insert quantity"> 
+                        <span>Requested Quantity*</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 pl-0">
+                        <button type="submit" name="submitEstimateCost" class="btn btn-primary btn-sm">ESTIMATE FREIGHT COST</button>
+                    </div>
+                </div>
+            </form>
+            <?php
+                if (isset($_POST['submitEstimateCost'])) {
+                    echo $block->getEstimateShipping($_POST['zipCode'], $_POST['shippingQuantity']);
+                }
+            ?>
+            <div class="row mt64 mb32">
+                <h5 class="mr-3">CHECK INVENTORY</h5>
+                <span class="btn-text--gradient">Inventory status: Available</span>
+            </div>
+            <form action=<?php echo $_SERVER['PHP_SELF'];?> method="post">
+                <div class="row">
+                    <div class="col-lg-6 pl-0">
+                        <input class="mr30" type="text" name="inventoryQuantity" placeholder="Insert quantity"> 
+                        <span>Requested Quantity*</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 pl-0">
+                        <button type="submit" name="submitCheckInventory" class="btn btn-primary btn-sm">check inventory</button>
+                    </div>
+                </div>
+            </form>
+            <?php
+                if (isset($_POST['submitCheckInventory'])) {
+                    if ($block->getCheckInventory($_POST['inventoryQuantity'])) {
+                        echo 'Quantity is available!';
+                    } else {
+                        echo 'This quantity is NOT available';
+                    }
+                }
+            ?>
+        </div>
+    </div>
+</div>
+
+<!-- RATING JS -->
+    <script>
+        //initial setup
+        document.addEventListener('DOMContentLoaded', function(){
+            let stars = document.querySelectorAll('.star');
+            stars.forEach(function(star){
+                star.addEventListener('click', setRating); 
+            });
+            let rating = parseInt(document.querySelector('.stars').getAttribute('data-rating'));
+            let target = stars[rating - 1];
+            
+
+            target.dispatchEvent(new MouseEvent('click'));
+            
+        });
+
+        function setRating(ev){
+            let span = ev.currentTarget;
+            let stars = document.querySelectorAll('.star');
+            let match = false;
+            let num = 0;
+            let test = document.querySelector('.test');
+            stars.forEach(function(star, index){
+                if(match){
+                    star.classList.remove('rated');
+                }else{
+                    star.classList.add('rated');
+                }
+                //are we currently looking at the span that was clicked
+                if(star === span){
+                    match = true;
+                    num = index + 1;
+                }
+            });
+            document.querySelector('.stars').setAttribute('data-rating', num);
+            let score = document.querySelector('.stars').getAttribute('data-rating');
+            return score;
+        }
+
+            function getScore() {
+                let stars = document.querySelectorAll('.star');
+                let rated = document.querySelector('.rated');
+                let i=0;
+                stars.forEach(function(star, index){
+                    if(star.classList.contains("rated")){
+
+                        i++;
+
+                    }
+                    
+                });
+                console.log(i)
+                return i;
+
+            }  
+    </script>   
+</div>

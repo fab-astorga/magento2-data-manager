@@ -109,11 +109,20 @@ interface ItemManagementInterface
     public function checkInventory($itemId, $quantity);
 
     /**
-     * Check total estimate shipping
+     * Check total estimate shipping result according to zip code and
+     * the amount of items
      * 
      * @param int $zipCode
      * @param int $requestedQuantity
+     * @param int $productId
      * @return string
      */
-    public function estimateShipping($zipCode, $requestedQuantity);
+    public function estimateShipping($zipCode, $requestedQuantity, $productId);
+
+    /**
+     * Retrieve all category names available
+     * 
+     * @return array
+     */
+    public function getAvailableCategories();
 }

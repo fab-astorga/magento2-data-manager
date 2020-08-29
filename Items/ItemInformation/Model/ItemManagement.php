@@ -19,6 +19,8 @@ use Integration\Netsuite\Api\DataAuthInterface;
 
 class ItemManagement implements \Items\ItemInformation\Api\ItemManagementInterface 
 {
+    const CATEGORY_PARENT = 'Products';
+
     protected $_productRepository;
     protected $_productFactory;
     protected $_shippingDetailsManagement;
@@ -44,8 +46,9 @@ class ItemManagement implements \Items\ItemInformation\Api\ItemManagementInterfa
     protected $_netsuiteIntegration;
     protected $logger;
     protected $_nonInventoryManagement;
-    protected $_fedExIntegration;
-    protected $_xmlBuilder;
+    protected $_upsIntegration;
+    protected $_jsonBuilder;
+    protected $_categoryCollection;
 
     // Control variable, for rollback if the product does not exist
     protected $_productExist = false;
@@ -76,8 +79,9 @@ class ItemManagement implements \Items\ItemInformation\Api\ItemManagementInterfa
         \Integration\Netsuite\Api\IntegrationInterface $netsuiteIntegration,
         \File\CustomLog\Logger\Logger $logger,
         \Items\ItemInformation\Api\NonInventoryManagementInterface $nonInventoryManagement,
-        \Integration\FedEx\Api\FedExIntegrationInterface $fedExIntegration,
-        \Items\ItemInformation\Helper\XmlBuilder $xmlBuilder
+        \Integration\Ups\Api\UpsIntegrationInterface $upsIntegration,
+        \Items\ItemInformation\Helper\JsonBuilder $jsonBuilder,
+        \Magento\Catalog\Model\ResourceModel\Category\CollectionFactory $categoryCollection
     ) 
     {
         $this->_productRepository               = $productRepository;
@@ -105,8 +109,9 @@ class ItemManagement implements \Items\ItemInformation\Api\ItemManagementInterfa
         $this->_netsuiteIntegration             = $netsuiteIntegration;
         $this->logger                           = $logger;
         $this->_nonInventoryManagement          = $nonInventoryManagement;
-        $this->_fedExIntegration                = $fedExIntegration; 
-        $this->_xmlBuilder                      = $xmlBuilder;
+        $this->_upsIntegration                  = $upsIntegration; 
+        $this->_jsonBuilder                     = $jsonBuilder;
+        $this->_categoryCollection              = $categoryCollection;
     }
 
     /**
@@ -943,18 +948,67 @@ class ItemManagement implements \Items\ItemInformation\Api\ItemManagementInterfa
      * 
      * @param int $zipCode
      * @param int $requestedQuantity
+     * @param int $productId
      * @return string
      */
-    public function estimateShipping($zipCode, $requestedQuantity)
+    public function estimateShipping($zipCode, $requestedQuantity, $productId)
     {
-        /* Set connection with FedEx */
-        $xmlFedExRequest = $this->_xmlBuilder->buildXmlFedEx($zipCode, $requestedQuantity);
-        $response = $this->_fedExIntegration->sendFedExRateRequest($xmlFedExRequest);
+        /* Set connection with UPS API */
+        try {
+            $jsonUpsRequest = $this->_jsonBuilder->buildJsonUps($zipCode, $requestedQuantity, $productId);
 
-        //$xml = simplexml_load_string($response);
-        
-        $this->logger->info('FEDEX JSON: ',['return'=>$response]);
+            if(!$jsonUpsRequest) {
+                return 'Invalid zip code';
+            }
 
-        return $response;
+            $response = $this->_upsIntegration->sendUpsRateRequest($jsonUpsRequest);
+            $upsData = json_decode($response, true);
+           // $this->logger->info('UPS: ',['return'=>$upsData]);
+
+            $result = '';
+            if ($upsData['RateResponse']['Response']['ResponseStatus']['Description'] == "Success") 
+            {
+                foreach($upsData['RateResponse']['RatedShipment'] as $rate) 
+                {
+                    if($rate['Service']['Code'] == "03") {
+                        $result = 'UPS Ground: '.$rate['TotalCharges']['MonetaryValue']
+                                .' '.$rate['TotalCharges']['CurrencyCode'];
+                    }
+                }
+            }
+
+        } catch (Exception $e) {
+            throw new Exception(__('Something went wrong. Try again.'));
+        }
+
+        return $result;
+    }
+
+    /**
+     * Retrieve all category names available
+     * 
+     * @return array
+     */
+    public function getAvailableCategories()
+    {
+        $categories = $this->_categoryCollection->create();
+        $categoryIds = array();
+        $childNames = array();
+
+        foreach ($categories as $category)
+        {
+            $tmpCategory = $this->_categoryRepository->get($category->getId());
+            if ($tmpCategory->getName() == self::CATEGORY_PARENT) 
+            {                
+                $categoryIds = explode(',',$tmpCategory->getChildren());
+                foreach ($categoryIds as $child)
+                {
+                    $childCategory = $this->_categoryRepository->get($child)->getName();
+                    $childNames[] = $childCategory; 
+                }
+            }
+        }
+
+        return $childNames;
     }
 }

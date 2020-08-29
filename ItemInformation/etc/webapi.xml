@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route method="POST" url="/V1/items">
+    <service class="Items\ItemInformation\Api\ItemManagementInterface" method="saveOrUpdateItem"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <route method="PUT" url="/V1/items">
+    <service class="Items\ItemInformation\Api\ItemManagementInterface" method="saveOrUpdateItem"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <route method="DELETE" url="/V1/items">
+    <service class="Items\ItemInformation\Api\ItemManagementInterface" method="deleteItem"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <route method="POST" url="/V1/items-categories">
+    <service class="Items\ItemInformation\Api\ItemManagementInterface" method="saveCategories"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <route method="PUT" url="/V1/items-categories">
+    <service class="Items\ItemInformation\Api\ItemManagementInterface" method="saveCategories"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <route method="DELETE" url="/V1/items-categories">
+    <service class="Items\ItemInformation\Api\ItemManagementInterface" method="deleteCategory"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <route method="POST" url="/V1/estimate-shipping/:zipCode/:requestedQuantity">
+    <service class="Items\ItemInformation\Api\ItemManagementInterface" method="estimateShipping"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+</routes>
